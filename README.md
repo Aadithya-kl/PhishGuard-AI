@@ -10,6 +10,8 @@
 
 ---
 
+![Mission Control](docs/images/mission-control.png)
+
 ## Overview
 
 PhishGuard AI is a production-grade cybersecurity SaaS platform that detects phishing, business email compromise (BEC), spoofing attacks, malicious URLs, credential theft attempts, malware delivery, and social engineering attacks using a hybrid AI + threat intelligence architecture.
@@ -129,6 +131,8 @@ npm run dev
 ### 📧 Email Analysis
 Upload `.eml`/`.msg` files, paste email content, or submit raw headers for comprehensive analysis.
 
+![Email Analysis & Active Response](docs/images/active-response.png)
+
 ### 🔍 Multi-Agent Threat Analysis
 Six specialized AI agents analyze emails independently:
 - **Header Analysis Agent** — SPF/DKIM/DMARC validation, sender spoofing detection
@@ -148,8 +152,12 @@ Real-time threat intelligence dashboard with:
 ### 🕸️ Security Knowledge Graph
 Interactive graph visualization connecting emails, domains, senders, URLs, and campaigns.
 
+![Security Knowledge Graph](docs/images/knowledge-graph.png)
+
 ### 🤖 AI Security Copilot
 Chat-based investigation assistant that explains findings, answers questions, and generates incident response plans.
+
+![AI Security Copilot](docs/images/copilot.png)
 
 ### 📋 Executive Reporting
 Generate professional reports (PDF/JSON/HTML) in four formats:
@@ -158,8 +166,12 @@ Generate professional reports (PDF/JSON/HTML) in four formats:
 - Incident Response Report
 - Compliance Report
 
+![Executive Dashboard](docs/images/executive-dashboard.png)
+
 ### 🔎 Threat Hunting
 Advanced search across all historical scans with complex filtering by sender, domain, risk level, attack type, and date range.
+
+![Threat Hunting](docs/images/threat-hunting.png)
 
 ## API Documentation
 
