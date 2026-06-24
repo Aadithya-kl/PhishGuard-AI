@@ -1,0 +1,19 @@
+Subject: GitHub: Account Suspension Notice
+From: billing@paypal.com
+To: you@company.com
+Message-ID: <0b211233-64a1-4682-b2c9-3092998a7a2a@paypal.com>
+Date: Sun, 21 Jun 2026 17:41:33 +0530
+Authentication-Results: spf=fail dkim=fail
+Return-Path: <attacker@evil.com>
+Content-Type: multipart/alternative;
+ boundary="===============6042390341158635607=="
+
+--===============6042390341158635607==
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+
+<html><body>Your GitHub account will be suspended. <a href=3D'http://xn--gthu=
+b-1sa.com/login'>Verify now</a></body></html>
+
+--===============6042390341158635607==--

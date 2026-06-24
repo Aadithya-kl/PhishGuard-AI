@@ -1,0 +1,6 @@
+Subject: Enable 2FA Now
+From: security@company-auth.com
+To: victim@company.com
+
+Please scan the code below to enable 2FA.
+<img src='cid:qr1' />

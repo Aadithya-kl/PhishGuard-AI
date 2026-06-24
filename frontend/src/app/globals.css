@@ -1,0 +1,431 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* ═══════════════════════════════════════════════════════════
+   PHISHGUARD AI — VISUAL INTELLIGENCE DESIGN SYSTEM
+   Liquid Glass + Spatial Intelligence + Cyber Command Center
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── Tailwind Theme Tokens ── */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  --font-heading: 'Inter', ui-sans-serif, system-ui, sans-serif;
+
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+
+  --color-status-safe: var(--status-safe);
+  --color-status-safe-bg: var(--status-safe-bg);
+  --color-status-suspicious: var(--status-suspicious);
+  --color-status-suspicious-bg: var(--status-suspicious-bg);
+  --color-status-high: var(--status-high);
+  --color-status-high-bg: var(--status-high-bg);
+  --color-status-critical: var(--status-critical);
+  --color-status-critical-bg: var(--status-critical-bg);
+
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+}
+
+/* ══════════════════════════════════════════
+   LAYER 1 — DEEP INTELLIGENCE ENVIRONMENT
+   Navy tones, never pure black
+   ══════════════════════════════════════════ */
+
+:root {
+  color-scheme: dark;
+
+  /* Backgrounds — Deep Navy Intelligence Palette */
+  --background: #020617;
+  --foreground: #e2e8f0;
+
+  /* Surfaces — Elevated matte panels (Palantir-style) */
+  --card: rgba(15, 23, 42, 0.85);
+  --card-foreground: #e2e8f0;
+  --popover: rgba(15, 23, 42, 0.95);
+  --popover-foreground: #e2e8f0;
+
+  /* Primary — Electric Indigo-Violet */
+  --primary: #818cf8;
+  --primary-foreground: #020617;
+
+  /* Secondary & Muted — Slate Intelligence */
+  --secondary: rgba(30, 41, 59, 0.8);
+  --secondary-foreground: #cbd5e1;
+  --muted: rgba(30, 41, 59, 0.6);
+  --muted-foreground: #64748b;
+
+  /* Accent — Deep Indigo */
+  --accent: rgba(99, 102, 241, 0.15);
+  --accent-foreground: #a5b4fc;
+
+  /* Borders & Inputs — Subtle white channels */
+  --border: rgba(255, 255, 255, 0.06);
+  --input: rgba(30, 41, 59, 0.8);
+  --ring: #818cf8;
+
+  /* Status — Semantic Threat Colors */
+  --status-safe: #34d399;
+  --status-safe-bg: rgba(52, 211, 153, 0.1);
+  --status-suspicious: #fbbf24;
+  --status-suspicious-bg: rgba(251, 191, 36, 0.1);
+  --status-high: #f97316;
+  --status-high-bg: rgba(249, 115, 22, 0.1);
+  --status-critical: #ef4444;
+  --status-critical-bg: rgba(239, 68, 68, 0.1);
+
+  --destructive: #ef4444;
+  --destructive-foreground: #fef2f2;
+
+  --radius: 0.625rem;
+
+  /* Sidebar — Darker than background */
+  --sidebar: rgba(2, 6, 23, 0.95);
+  --sidebar-foreground: #94a3b8;
+  --sidebar-primary: #818cf8;
+  --sidebar-primary-foreground: #020617;
+  --sidebar-accent: rgba(99, 102, 241, 0.08);
+  --sidebar-accent-foreground: #e2e8f0;
+  --sidebar-border: rgba(255, 255, 255, 0.04);
+  --sidebar-ring: #818cf8;
+}
+
+.dark {
+  /* Universal dark — identical to root */
+}
+
+/* ══════════════════════════════════════
+   BASE LAYER
+   ══════════════════════════════════════ */
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+  html {
+    @apply font-sans;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Refined scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(100, 116, 139, 0.3);
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(100, 116, 139, 0.5);
+  }
+}
+
+/* ══════════════════════════════════════════
+   LAYER 2 — LIQUID GLASS (Constrained)
+   Only: Command Bar, Copilot, Modals, 
+   Floating Panels, Context Drawers
+   ══════════════════════════════════════════ */
+
+@layer utilities {
+  /* Primary Liquid Glass — navigation, command bar */
+  .liquid-glass {
+    background: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(24px) saturate(1.4);
+    -webkit-backdrop-filter: blur(24px) saturate(1.4);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow:
+      0 0 0 1px rgba(255, 255, 255, 0.03) inset,
+      0 8px 32px rgba(0, 0, 0, 0.4);
+  }
+
+  /* Elevated Glass — copilot, modals */
+  .liquid-glass-elevated {
+    background: rgba(15, 23, 42, 0.7);
+    backdrop-filter: blur(32px) saturate(1.5);
+    -webkit-backdrop-filter: blur(32px) saturate(1.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow:
+      0 0 0 1px rgba(255, 255, 255, 0.05) inset,
+      0 16px 64px rgba(0, 0, 0, 0.5),
+      0 0 1px rgba(129, 140, 248, 0.2);
+  }
+
+  /* ══════════════════════════════════════════
+     LAYER 3 — INTELLIGENCE SURFACES (Matte)
+     Primary content containers — Palantir style
+     ══════════════════════════════════════════ */
+
+  /* Standard intel surface */
+  .surface-0 {
+    background: rgba(15, 23, 42, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  /* Elevated surface */
+  .surface-1 {
+    background: rgba(15, 23, 42, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Prominent surface */
+  .surface-2 {
+    background: rgba(20, 30, 52, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  }
+
+  /* Interactive surface — hover state for cards */
+  .surface-interactive {
+    background: rgba(15, 23, 42, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .surface-interactive:hover {
+    background: rgba(20, 30, 52, 0.9);
+    border-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    transform: translateY(-1px);
+  }
+
+  /* ══════════════════════════════════════
+     ACCENT STRIPS & INDICATORS
+     ══════════════════════════════════════ */
+
+  .accent-glow-indigo {
+    box-shadow: 0 0 20px rgba(129, 140, 248, 0.15), 0 0 60px rgba(129, 140, 248, 0.05);
+  }
+  .accent-glow-critical {
+    box-shadow: 0 0 20px rgba(239, 68, 68, 0.2), 0 0 60px rgba(239, 68, 68, 0.06);
+  }
+  .accent-glow-safe {
+    box-shadow: 0 0 20px rgba(52, 211, 153, 0.15), 0 0 60px rgba(52, 211, 153, 0.05);
+  }
+
+  .accent-strip-left {
+    position: relative;
+  }
+  .accent-strip-left::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 12px;
+    bottom: 12px;
+    width: 2px;
+    border-radius: 1px;
+    background: linear-gradient(180deg, #818cf8 0%, #6366f1 100%);
+    opacity: 0.8;
+  }
+
+  /* ══════════════════════════════════════
+     TYPOGRAPHY — Intelligence Grade
+     ══════════════════════════════════════ */
+
+  .text-display {
+    font-size: 3rem;
+    line-height: 1;
+    font-weight: 300;
+    letter-spacing: -0.02em;
+    color: #f1f5f9;
+  }
+
+  .text-headline {
+    font-size: 1.5rem;
+    line-height: 1.2;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    color: #f1f5f9;
+  }
+
+  .text-title {
+    font-size: 0.8125rem;
+    line-height: 1.4;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    color: #94a3b8;
+    text-transform: uppercase;
+  }
+
+  .text-label {
+    font-size: 0.6875rem;
+    line-height: 1.4;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    color: #64748b;
+    text-transform: uppercase;
+  }
+
+  .text-mono {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0;
+  }
+}
+
+/* ══════════════════════════════════════════
+   AMBIENT ENVIRONMENT — Aurora & Grid
+   ══════════════════════════════════════════ */
+
+/* Aurora gradient — slow ambient movement */
+.aurora-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.aurora-bg::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background:
+    radial-gradient(ellipse 600px 400px at 20% 20%, rgba(99, 102, 241, 0.08) 0%, transparent 70%),
+    radial-gradient(ellipse 500px 350px at 80% 30%, rgba(139, 92, 246, 0.06) 0%, transparent 70%),
+    radial-gradient(ellipse 400px 300px at 50% 80%, rgba(6, 182, 212, 0.04) 0%, transparent 70%);
+  animation: aurora-drift 30s ease-in-out infinite alternate;
+}
+
+@keyframes aurora-drift {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  33% { transform: translate(-2%, 1%) rotate(0.5deg); }
+  66% { transform: translate(1%, -1%) rotate(-0.3deg); }
+  100% { transform: translate(-1%, 2%) rotate(0.2deg); }
+}
+
+/* Intelligence Grid Overlay */
+.intel-grid {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.03;
+  background-image:
+    linear-gradient(rgba(148, 163, 184, 0.5) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 163, 184, 0.5) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 0%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 0%, transparent 100%);
+}
+
+/* Tactical sweep — very subtle rotating radar line */
+.tactical-sweep {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 140%;
+  height: 140%;
+  transform: translate(-50%, -50%);
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.015;
+  background: conic-gradient(from 0deg, transparent 0deg, rgba(129, 140, 248, 0.4) 2deg, transparent 4deg, transparent 360deg);
+  animation: tactical-rotate 20s linear infinite;
+}
+
+@keyframes tactical-rotate {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* ══════════════════════════════════════════
+   ANIMATION TOKENS — Spring Curves
+   ══════════════════════════════════════════ */
+
+@layer utilities {
+  .transition-fast {
+    transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .transition-smooth {
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .transition-spatial {
+    transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+}
+
+/* Pulse glow for critical indicators */
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Subtle float for featured elements */
+@keyframes float-subtle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-2px); }
+}
+
+.animate-float {
+  animation: float-subtle 4s ease-in-out infinite;
+}
+
+/* Count-up number animation support */
+@keyframes count-fade-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-count-in {
+  animation: count-fade-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Edge flow animation for Knowledge Graph */
+@keyframes edge-flow {
+  from { stroke-dashoffset: 20; }
+  to { stroke-dashoffset: 0; }
+}
+
+.animate-edge-flow {
+  stroke-dasharray: 5 5;
+  animation: edge-flow 1s linear infinite;
+}

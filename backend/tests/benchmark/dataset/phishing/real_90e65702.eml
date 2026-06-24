@@ -1,0 +1,19 @@
+Subject: LinkedIn: View urgent document
+From: billing@paypal.com
+To: you@company.com
+Message-ID: <568c836e-4fb6-46f8-a6aa-eb663d6829ad@paypal.com>
+Date: Sun, 21 Jun 2026 17:41:33 +0530
+Authentication-Results: spf=fail dkim=fail
+Return-Path: <attacker@evil.com>
+Content-Type: multipart/alternative;
+ boundary="===============8119855150527304849=="
+
+--===============8119855150527304849==
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+
+<html><body>View the secure document here: <a href=3D'http://evil.com/doc.exe=
+'>Document</a></body></html>
+
+--===============8119855150527304849==--

@@ -1,0 +1,19 @@
+Subject: Google: Action Required: Payment Declined
+From: billing@paypal.com
+To: you@company.com
+Message-ID: <4a51b70d-ee46-4670-88cc-13e7718caf3e@paypal.com>
+Date: Sun, 21 Jun 2026 17:41:33 +0530
+Authentication-Results: spf=fail dkim=fail
+Return-Path: <attacker@evil.com>
+Content-Type: multipart/alternative;
+ boundary="===============8270551007603867273=="
+
+--===============8270551007603867273==
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+
+<html><body>Update your payment method: <a href=3D'http://104.28.14.32/pay'>U=
+pdate</a></body></html>
+
+--===============8270551007603867273==--

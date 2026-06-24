@@ -1,0 +1,75 @@
+{
+  "gemini_execution": {
+    "model_used": "llama3.1:8b",
+    "attack_classification": "Credential Harvesting",
+    "confidence_score": 0.85,
+    "severity_level": "high",
+    "reasoning": "The email appears to be a phishing attempt, with the sender claiming to be PayPal and requesting urgent access to a document. The lack of any relevant threat intelligence data suggests that this is an unsophisticated attack. However, the fact that it's attempting to harvest credentials (LinkedIn login info) indicates a malicious intent.",
+    "tactics_detected": [
+      {
+        "tactic": "Impersonation",
+        "description": "The email impersonates PayPal to create a sense of trust and legitimacy.",
+        "confidence": 0.9,
+        "evidence": "The sender's email address claims to be from 'billing@paypal.com'."
+      },
+      {
+        "tactic": "Urgency",
+        "description": "The email attempts to create a sense of urgency by claiming that the document is urgent.",
+        "confidence": 0.8,
+        "evidence": "The subject line claims that there is an 'urgent' document."
+      }
+    ],
+    "structured_output": {
+      "attack_classification": "Credential Harvesting",
+      "confidence_score": 0.85,
+      "severity_level": "high",
+      "reasoning": "The email appears to be a phishing attempt, with the sender claiming to be PayPal and requesting urgent access to a document. The lack of any relevant threat intelligence data suggests that this is an unsophisticated attack. However, the fact that it's attempting to harvest credentials (LinkedIn login info) indicates a malicious intent.",
+      "executive_summary": "Phishing attempt targeting LinkedIn users with a fake PayPal email requesting urgent access to a document.",
+      "technical_summary": "The email attempts to lure the user into clicking on a non-existent URL, which would redirect them to a malicious site where their LinkedIn login credentials could be stolen. The sender's email address is spoofed, and there are no signs of any malware or other malicious attachments.",
+      "attack_chain": [
+        "Email sent from spoofed PayPal email address",
+        "User clicks on non-existent URL (or responds with credentials)",
+        "Credentials harvested by attackers"
+      ],
+      "recommended_actions": [
+        "Verify the authenticity of the email before responding or clicking on any links",
+        "Do not click on suspicious URLs or provide login credentials via email",
+        "Consider implementing additional security measures, such as two-factor authentication for LinkedIn accounts"
+      ],
+      "analyst_notes": [
+        "The use of 'billing' in the sender's email address is a common tactic used by attackers to appear more legitimate.",
+        "There are no obvious signs of phishing lures (e.g. urgency, sense of importance) beyond the claim that the document is 'urgent'."
+      ],
+      "ioc_summary": [
+        {
+          "tactic": "Impersonation",
+          "description": "The email impersonates PayPal to create a sense of trust and legitimacy.",
+          "confidence": 0.9,
+          "evidence": "The sender's email address claims to be from 'billing@paypal.com'."
+        },
+        {
+          "tactic": "Urgency",
+          "description": "The email attempts to create a sense of urgency by claiming that the document is urgent.",
+          "confidence": 0.8,
+          "evidence": "The subject line claims that there is an 'urgent' document."
+        }
+      ]
+    },
+    "evidence": [],
+    "latency_seconds": 136.79
+  },
+  "before_after_comparison": {
+    "file": "real_0008414a.eml",
+    "new_score": 57.25,
+    "new_risk_level": "suspicious",
+    "ai_breakdown": {
+      "header_score": 80,
+      "url_score": 85.0,
+      "attachment_score": 0,
+      "intel_score": 0.0,
+      "ai_score": 75,
+      "overall_score": 57.25,
+      "risk_level": "suspicious"
+    }
+  }
+}

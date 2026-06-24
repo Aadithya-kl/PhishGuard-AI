@@ -1,0 +1,6 @@
+Subject: Connect new App
+From: app@cloud.com
+To: victim@company.com
+
+Please authorize the new meeting app.
+<a href='https://login.microsoftonline.com/common/oauth2/v2.0/authorize?client_id=bad&prompt=consent'>Authorize</a>

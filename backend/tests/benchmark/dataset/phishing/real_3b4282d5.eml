@@ -1,0 +1,19 @@
+Subject: Microsoft 365: Password Expires in 24 hours
+From: billing@paypal.com
+To: you@company.com
+Message-ID: <544737cb-6896-4e92-8072-7c9430d1773f@paypal.com>
+Date: Sun, 21 Jun 2026 17:41:33 +0530
+Authentication-Results: spf=fail dkim=fail
+Return-Path: <attacker@evil.com>
+Content-Type: multipart/alternative;
+ boundary="===============4743265978236208487=="
+
+--===============4743265978236208487==
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+
+<html><body>Keep same password: <a href=3D'http://ms-login-update.com/'>Click=
+ here</a></body></html>
+
+--===============4743265978236208487==--

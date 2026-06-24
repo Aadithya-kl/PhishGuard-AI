@@ -1,0 +1,5 @@
+Subject: OTP Alert - Multiple Attempts
+From: otp@bank.com
+To: victim@company.com
+
+Multiple OTP requests were made. Deny if not you, or approve immediately to confirm.

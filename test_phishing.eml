@@ -1,0 +1,28 @@
+Delivered-To: victim@company.com
+Received: by 10.1.2.3 with SMTP id abcdef123; Thu, 22 Jun 2026 14:00:00 -0700 (PDT)
+Return-Path: <security@baddomain-paypal.com>
+Authentication-Results: mx.company.com;
+       spf=fail (google.com: domain of security@baddomain-paypal.com does not designate 192.168.1.1 as permitted sender) smtp.mailfrom=security@baddomain-paypal.com;
+       dkim=fail header.i=@baddomain-paypal.com header.s=selector1 header.b=xyz;
+       dmarc=fail (p=NONE sp=NONE dis=NONE) header.from=baddomain-paypal.com
+From: "PayPal Security" <security@baddomain-paypal.com>
+To: victim@company.com
+Reply-To: support@hacker-email.com
+Message-ID: <1234567890.phish@baddomain-paypal.com>
+Subject: URGENT: Your Account Has Been Suspended!
+Date: Thu, 22 Jun 2026 14:00:00 -0700
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+<head></head>
+<body>
+    <p>Dear Customer,</p>
+    <p>We have detected suspicious activity on your account. Your account has been temporarily suspended for your security.</p>
+    <p><b>URGENT:</b> You must verify your identity within 24 hours or your account will be permanently closed.</p>
+    <p>Please click the link below to securely verify your information and restore access:</p>
+    <p><a href="http://192.168.5.100/verify?token=xyz123">http://paypal.com/secure-verification</a></p>
+    <p>If the link above does not work, you can also use this alternative link: <a href="http://paypal-verification-update.tk/login">Verify Account</a></p>
+    <p>If you have any questions, contact us at +1-800-555-0199 or send Bitcoin to 1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa for fast-tracked support.</p>
+    <p>Thank you,<br>PayPal Security Team</p>
+</body>
+</html>

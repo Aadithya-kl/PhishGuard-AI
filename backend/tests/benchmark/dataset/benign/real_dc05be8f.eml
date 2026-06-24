@@ -1,0 +1,11 @@
+Subject: Amazon: Your order has shipped
+From: shipment-tracking@amazon.com
+To: you@company.com
+Message-ID: <19de69eb-f373-467e-b227-a3e9c5f5534b@amazon.com>
+Date: Sun, 21 Jun 2026 17:41:33 +0530
+Authentication-Results: spf=pass dkim=pass dmarc=pass
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+MIME-Version: 1.0
+
+Order #123-456-789 has shipped. Track it at https://amazon.com/track

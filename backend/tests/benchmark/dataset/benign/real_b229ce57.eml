@@ -1,0 +1,12 @@
+Subject: GitHub: [company/repo] New pull request
+From: notifications@github.com
+To: you@company.com
+Message-ID: <421d7b56-db46-4969-9db1-27b0bcca950a@github.com>
+Date: Sun, 21 Jun 2026 17:41:33 +0530
+Authentication-Results: spf=pass dkim=pass dmarc=pass
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+
+User has opened a new pull request #42. https://github.com/company/repo/pull/=
+42

@@ -1,0 +1,5 @@
+Subject: Approve App Access Immediately
+From: it@company.com
+To: victim@company.com
+
+We noticed multiple suspicious activities. Approve this oauth request immediately: <a href='https://login.microsoftonline.com/common/oauth2/authorize?client_id=evil&prompt=consent'>Grant Access</a>

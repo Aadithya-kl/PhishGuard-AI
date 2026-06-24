@@ -1,0 +1,6 @@
+Subject: Google Drive Integration
+From: integration@service.com
+To: victim@company.com
+
+Link your account.
+<a href='https://accounts.google.com/o/oauth2/auth?client_id=123&response_type=code'>Link Now</a>

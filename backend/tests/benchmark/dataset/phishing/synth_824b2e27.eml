@@ -1,0 +1,18 @@
+Subject: URGENT: Password Reset Required 13
+From: security@paypal-update.tk
+To: you@company.com
+Message-ID: <14597b01-2226-423b-8dce-b2ce8e0ae9ec@paypal-update.tk>
+Date: Sun, 21 Jun 2026 17:41:33 +0530
+Authentication-Results: spf=fail dkim=fail
+Content-Type: multipart/alternative;
+ boundary="===============7919246106848261432=="
+
+--===============7919246106848261432==
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+
+<html><body>Click <a href=3D'http://192.168.1.100/login'>here</a> to reset.</=
+body></html>
+
+--===============7919246106848261432==--

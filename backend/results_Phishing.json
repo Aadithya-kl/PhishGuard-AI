@@ -1,0 +1,83 @@
+{
+  "ai_analysis": {
+    "model_used": "llama3.1:8b",
+    "attack_classification": "Brand Impersonation",
+    "confidence_score": 0.8,
+    "severity_level": "medium",
+    "reasoning": "The email attempts to create a sense of urgency by referencing a 'urgent document' and includes the PayPal logo, attempting to impersonate the legitimate company.",
+    "tactics_detected": [
+      {
+        "tactic": "Impersonation",
+        "description": "Email from spoofed address 'billing@paypal.com' attempts to impersonate the legitimate PayPal logo.",
+        "confidence": 0.9,
+        "evidence": "Subject line: LinkedIn: View urgent document"
+      },
+      {
+        "tactic": "Urgency",
+        "description": "Email creates a sense of urgency by referencing an 'urgent document'.",
+        "confidence": 0.8,
+        "evidence": "Body text: 'View urgent document'"
+      }
+    ],
+    "structured_output": {
+      "attack_classification": "Brand Impersonation",
+      "confidence_score": 0.8,
+      "severity_level": "medium",
+      "reasoning": "The email attempts to create a sense of urgency by referencing a 'urgent document' and includes the PayPal logo, attempting to impersonate the legitimate company.",
+      "executive_summary": "Potential brand impersonation attempt via email phishing. Urgency tactic employed to encourage swift action.",
+      "technical_summary": "Email with subject line 'LinkedIn: View urgent document' sent from spoofed address 'billing@paypal.com', likely an attempt to trick recipient into divulging sensitive information or clicking on malicious links.",
+      "attack_chain": [
+        "Initial contact via email",
+        "Recipient receives email with spoofed PayPal logo, attempting to create a sense of urgency and trust",
+        "Potential for phishing or credential harvesting if recipient clicks on embedded link or provides sensitive info"
+      ],
+      "recommended_actions": [
+        "Verify the authenticity of the email by contacting PayPal directly",
+        "Report suspicious emails to the IT department and mark as spam",
+        "Update security software and ensure all systems are up-to-date"
+      ],
+      "analyst_notes": [
+        "No specific threat intelligence indicators found for this incident, however, brand impersonation tactics have been seen in previous phishing campaigns targeting employees with access to sensitive information.",
+        "Recipient's LinkedIn account may be targeted; suggest strengthening password policies and conducting regular security awareness training."
+      ],
+      "ioc_summary": [
+        {
+          "tactic": "Impersonation",
+          "description": "Email from spoofed address 'billing@paypal.com' attempts to impersonate the legitimate PayPal logo.",
+          "confidence": 0.9,
+          "evidence": "Subject line: LinkedIn: View urgent document"
+        },
+        {
+          "tactic": "Urgency",
+          "description": "Email creates a sense of urgency by referencing an 'urgent document'.",
+          "confidence": 0.8,
+          "evidence": "Body text: 'View urgent document'"
+        }
+      ]
+    },
+    "evidence": [],
+    "latency_seconds": 20.78
+  },
+  "risk_scoring": {
+    "overall_score": 54.75,
+    "risk_level": "suspicious",
+    "reasoning": [
+      "Header analysis contributed 20.0 points due to a header risk score of 80.0.",
+      " - None",
+      " - None",
+      " - None",
+      "URL analysis contributed 29.7 points due to a URL risk score of 85.0.",
+      " - URL directly links to a potentially dangerous executable file",
+      "AI classification (medium) contributed 5.0 points."
+    ],
+    "breakdown": {
+      "header_score": 80,
+      "url_score": 85.0,
+      "attachment_score": 0,
+      "intel_score": 0.0,
+      "ai_score": 50,
+      "overall_score": 54.75,
+      "risk_level": "suspicious"
+    }
+  }
+}

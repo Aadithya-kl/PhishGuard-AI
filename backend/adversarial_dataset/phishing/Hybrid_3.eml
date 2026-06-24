@@ -1,0 +1,5 @@
+Subject: Microsoft Security: Grant App Access
+From: Microsoft <admin@m1crosoft.com>
+To: victim@company.com
+
+Please authorize the new security app to protect your microsoft account: <a href='https://login.microsoftonline.com/common/oauth2/authorize?client_id=evil&prompt=consent'>Grant Access</a>

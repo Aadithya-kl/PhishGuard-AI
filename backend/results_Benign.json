@@ -1,0 +1,58 @@
+{
+  "ai_analysis": {
+    "model_used": "llama3.1:8b",
+    "attack_classification": "Benign",
+    "confidence_score": 0.9,
+    "severity_level": "low",
+    "reasoning": "The email is a legitimate daily briefing from Microsoft, with no suspicious URLs, attachments, or phishing indicators found in the threat intelligence data. The sender's domain (briefing@microsoft.com) does not appear to be malicious, and the email content appears to be innocuous.",
+    "tactics_detected": [
+      {
+        "tactic": "Benign",
+        "description": "Legitimate communication from Microsoft.",
+        "confidence": 0.9,
+        "evidence": "The email's sender domain (briefing@microsoft.com) does not appear to be malicious."
+      }
+    ],
+    "structured_output": {
+      "attack_classification": "Benign",
+      "confidence_score": 0.9,
+      "severity_level": "low",
+      "reasoning": "The email is a legitimate daily briefing from Microsoft, with no suspicious URLs, attachments, or phishing indicators found in the threat intelligence data. The sender's domain (briefing@microsoft.com) does not appear to be malicious, and the email content appears to be innocuous.",
+      "executive_summary": "This email is likely a genuine communication from Microsoft, sent as part of their daily briefing service. No malicious activity is suspected.",
+      "technical_summary": "The email's header indicates it was sent from a legitimate domain (briefing@microsoft.com). The content does not contain any suspicious keywords or URLs. Threat intelligence data did not reveal any indicators of phishing or malware.",
+      "attack_chain": [],
+      "recommended_actions": [
+        "Verify the authenticity of all emails claiming to be from Microsoft, but this email is considered benign."
+      ],
+      "analyst_notes": [
+        "The lack of malicious indicators does not necessarily rule out future attacks; continuous monitoring and threat hunting are essential for maintaining network security."
+      ],
+      "ioc_summary": [
+        {
+          "tactic": "Benign",
+          "description": "Legitimate communication from Microsoft.",
+          "confidence": 0.9,
+          "evidence": "The email's sender domain (briefing@microsoft.com) does not appear to be malicious."
+        }
+      ]
+    },
+    "evidence": [],
+    "latency_seconds": 14.64
+  },
+  "risk_scoring": {
+    "overall_score": 2.5,
+    "risk_level": "safe",
+    "reasoning": [
+      "AI classification (low) contributed 2.5 points."
+    ],
+    "breakdown": {
+      "header_score": 0,
+      "url_score": 0,
+      "attachment_score": 0,
+      "intel_score": 0.0,
+      "ai_score": 25,
+      "overall_score": 2.5,
+      "risk_level": "safe"
+    }
+  }
+}

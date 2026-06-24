@@ -1,0 +1,23 @@
+Delivered-To: victim@company.com
+Received: by 10.1.2.3 with SMTP id abcdef123; Thu, 22 Jun 2026 10:00:00 -0700 (PDT)
+Return-Path: <newsletter@github.com>
+Authentication-Results: mx.company.com;
+       spf=pass (google.com: domain of newsletter@github.com designates 192.30.252.1 as permitted sender) smtp.mailfrom=newsletter@github.com;
+       dkim=pass header.i=@github.com header.s=selector1 header.b=abc;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=github.com
+From: "GitHub" <newsletter@github.com>
+To: victim@company.com
+Message-ID: <1234567890.valid@github.com>
+Subject: Your weekly GitHub digest
+Date: Thu, 22 Jun 2026 10:00:00 -0700
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+<head></head>
+<body>
+    <p>Hi there,</p>
+    <p>Here is your weekly digest of activity on GitHub.</p>
+    <p>Check out the latest trending repositories at <a href="https://github.com/trending">https://github.com/trending</a></p>
+    <p>Happy coding!</p>
+</body>
+</html>

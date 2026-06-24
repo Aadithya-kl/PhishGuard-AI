@@ -1,0 +1,72 @@
+{
+    "Credential Harvesting": {
+        "Precision": 100.0,
+        "Recall": 100.0,
+        "Trigger_Count": 36,
+        "False_Positives": 0,
+        "False_Negatives": 0
+    },
+    "Invoice Fraud": {
+        "Precision": 100.0,
+        "Recall": 100.0,
+        "Trigger_Count": 4,
+        "False_Positives": 0,
+        "False_Negatives": 0
+    },
+    "Brand Impersonation": {
+        "Precision": 100.0,
+        "Recall": 100.0,
+        "Trigger_Count": 5,
+        "False_Positives": 0,
+        "False_Negatives": 0
+    },
+    "Business Email Compromise": {
+        "Precision": 100.0,
+        "Recall": 100.0,
+        "Trigger_Count": 6,
+        "False_Positives": 0,
+        "False_Negatives": 0
+    },
+    "Malware Delivery": {
+        "Precision": 100.0,
+        "Recall": 100.0,
+        "Trigger_Count": 3,
+        "False_Positives": 0,
+        "False_Negatives": 0
+    },
+    "MFA Fatigue": {
+        "Precision": 100.0,
+        "Recall": 100.0,
+        "Trigger_Count": 2,
+        "False_Positives": 0,
+        "False_Negatives": 0
+    },
+    "Crypto Scam": {
+        "Precision": 100.0,
+        "Recall": 100.0,
+        "Trigger_Count": 1,
+        "False_Positives": 0,
+        "False_Negatives": 0
+    },
+    "Fake Recruiting": {
+        "Precision": 100.0,
+        "Recall": 100.0,
+        "Trigger_Count": 1,
+        "False_Positives": 0,
+        "False_Negatives": 0
+    },
+    "OAuth Consent": {
+        "Precision": 100.0,
+        "Recall": 100.0,
+        "Trigger_Count": 2,
+        "False_Positives": 0,
+        "False_Negatives": 0
+    },
+    "QR Phishing": {
+        "Precision": 100.0,
+        "Recall": 100.0,
+        "Trigger_Count": 1,
+        "False_Positives": 0,
+        "False_Negatives": 0
+    }
+}

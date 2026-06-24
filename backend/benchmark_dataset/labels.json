@@ -1,0 +1,402 @@
+{
+    "CredHarv_1.eml": {
+        "type": "phishing",
+        "expected_category": "Credential Harvesting"
+    },
+    "CredHarv_2.eml": {
+        "type": "phishing",
+        "expected_category": "Credential Harvesting"
+    },
+    "CredHarv_3.eml": {
+        "type": "phishing",
+        "expected_category": "Credential Harvesting"
+    },
+    "CredHarv_4.eml": {
+        "type": "phishing",
+        "expected_category": "Credential Harvesting"
+    },
+    "CredHarv_5.eml": {
+        "type": "phishing",
+        "expected_category": "Credential Harvesting"
+    },
+    "BEC_1.eml": {
+        "type": "phishing",
+        "expected_category": "Business Email Compromise (BEC)"
+    },
+    "BEC_2.eml": {
+        "type": "phishing",
+        "expected_category": "Business Email Compromise (BEC)"
+    },
+    "BEC_3.eml": {
+        "type": "phishing",
+        "expected_category": "Business Email Compromise (BEC)"
+    },
+    "BEC_4.eml": {
+        "type": "phishing",
+        "expected_category": "Business Email Compromise (BEC)"
+    },
+    "BEC_5.eml": {
+        "type": "phishing",
+        "expected_category": "Business Email Compromise (BEC)"
+    },
+    "Invoice_1.eml": {
+        "type": "phishing",
+        "expected_category": "Invoice Fraud Attempt"
+    },
+    "Invoice_2.eml": {
+        "type": "phishing",
+        "expected_category": "Invoice Fraud Attempt"
+    },
+    "Invoice_3.eml": {
+        "type": "phishing",
+        "expected_category": "Invoice Fraud Attempt"
+    },
+    "Invoice_4.eml": {
+        "type": "phishing",
+        "expected_category": "Invoice Fraud Attempt"
+    },
+    "Invoice_5.eml": {
+        "type": "phishing",
+        "expected_category": "Invoice Fraud Attempt"
+    },
+    "Malware_1.eml": {
+        "type": "phishing",
+        "expected_category": "Malware Delivery"
+    },
+    "Malware_2.eml": {
+        "type": "phishing",
+        "expected_category": "Malware Delivery"
+    },
+    "Malware_3.eml": {
+        "type": "phishing",
+        "expected_category": "Malware Delivery"
+    },
+    "Malware_4.eml": {
+        "type": "phishing",
+        "expected_category": "Malware Delivery"
+    },
+    "Malware_5.eml": {
+        "type": "phishing",
+        "expected_category": "Malware Delivery"
+    },
+    "QR_1.eml": {
+        "type": "phishing",
+        "expected_category": "QR Code Phishing (Quishing)"
+    },
+    "QR_2.eml": {
+        "type": "phishing",
+        "expected_category": "QR Code Phishing (Quishing)"
+    },
+    "QR_3.eml": {
+        "type": "phishing",
+        "expected_category": "QR Code Phishing (Quishing)"
+    },
+    "QR_4.eml": {
+        "type": "phishing",
+        "expected_category": "QR Code Phishing (Quishing)"
+    },
+    "QR_5.eml": {
+        "type": "phishing",
+        "expected_category": "QR Code Phishing (Quishing)"
+    },
+    "OAuth_1.eml": {
+        "type": "phishing",
+        "expected_category": "OAuth Consent Phishing"
+    },
+    "OAuth_2.eml": {
+        "type": "phishing",
+        "expected_category": "OAuth Consent Phishing"
+    },
+    "OAuth_3.eml": {
+        "type": "phishing",
+        "expected_category": "OAuth Consent Phishing"
+    },
+    "OAuth_4.eml": {
+        "type": "phishing",
+        "expected_category": "OAuth Consent Phishing"
+    },
+    "OAuth_5.eml": {
+        "type": "phishing",
+        "expected_category": "OAuth Consent Phishing"
+    },
+    "MFA_1.eml": {
+        "type": "phishing",
+        "expected_category": "MFA Fatigue / Push Spam"
+    },
+    "MFA_2.eml": {
+        "type": "phishing",
+        "expected_category": "MFA Fatigue / Push Spam"
+    },
+    "MFA_3.eml": {
+        "type": "phishing",
+        "expected_category": "MFA Fatigue / Push Spam"
+    },
+    "MFA_4.eml": {
+        "type": "phishing",
+        "expected_category": "MFA Fatigue / Push Spam"
+    },
+    "MFA_5.eml": {
+        "type": "phishing",
+        "expected_category": "MFA Fatigue / Push Spam"
+    },
+    "Crypto_1.eml": {
+        "type": "phishing",
+        "expected_category": "Cryptocurrency Extortion / Scam"
+    },
+    "Crypto_2.eml": {
+        "type": "phishing",
+        "expected_category": "Cryptocurrency Extortion / Scam"
+    },
+    "Crypto_3.eml": {
+        "type": "phishing",
+        "expected_category": "Cryptocurrency Extortion / Scam"
+    },
+    "Crypto_4.eml": {
+        "type": "phishing",
+        "expected_category": "Cryptocurrency Extortion / Scam"
+    },
+    "Crypto_5.eml": {
+        "type": "phishing",
+        "expected_category": "Cryptocurrency Extortion / Scam"
+    },
+    "Recruit_1.eml": {
+        "type": "phishing",
+        "expected_category": "Fake Recruiting Campaign"
+    },
+    "Recruit_2.eml": {
+        "type": "phishing",
+        "expected_category": "Fake Recruiting Campaign"
+    },
+    "Recruit_3.eml": {
+        "type": "phishing",
+        "expected_category": "Fake Recruiting Campaign"
+    },
+    "Recruit_4.eml": {
+        "type": "phishing",
+        "expected_category": "Fake Recruiting Campaign"
+    },
+    "Recruit_5.eml": {
+        "type": "phishing",
+        "expected_category": "Fake Recruiting Campaign"
+    },
+    "Brand_1.eml": {
+        "type": "phishing",
+        "expected_category": "Brand Impersonation"
+    },
+    "Brand_2.eml": {
+        "type": "phishing",
+        "expected_category": "Brand Impersonation"
+    },
+    "Brand_3.eml": {
+        "type": "phishing",
+        "expected_category": "Brand Impersonation"
+    },
+    "Brand_4.eml": {
+        "type": "phishing",
+        "expected_category": "Brand Impersonation"
+    },
+    "Brand_5.eml": {
+        "type": "phishing",
+        "expected_category": "Brand Impersonation"
+    },
+    "Benign_OOO_1.eml": {
+        "type": "benign",
+        "expected_category": null
+    },
+    "Benign_OOO_2.eml": {
+        "type": "benign",
+        "expected_category": null
+    },
+    "Benign_OOO_3.eml": {
+        "type": "benign",
+        "expected_category": null
+    },
+    "Benign_OOO_4.eml": {
+        "type": "benign",
+        "expected_category": null
+    },
+    "Benign_OOO_5.eml": {
+        "type": "benign",
+        "expected_category": null
+    },
+    "Benign_HR_1.eml": {
+        "type": "benign",
+        "expected_category": null
+    },
+    "Benign_HR_2.eml": {
+        "type": "benign",
+        "expected_category": null
+    },
+    "Benign_HR_3.eml": {
+        "type": "benign",
+        "expected_category": null
+    },
+    "Benign_HR_4.eml": {
+        "type": "benign",
+        "expected_category": null
+    },
+    "Benign_HR_5.eml": {
+        "type": "benign",
+        "expected_category": null
+    },
+    "Benign_Jira_1.eml": {
+        "type": "benign",
+        "expected_category": null
+    },
+    "Benign_Jira_2.eml": {
+        "type": "benign",
+        "expected_category": null
+    },
+    "Benign_Jira_3.eml": {
+        "type": "benign",
+        "expected_category": null
+    },
+    "Benign_Jira_4.eml": {
+        "type": "benign",
+        "expected_category": null
+    },
+    "Benign_Jira_5.eml": {
+        "type": "benign",
+        "expected_category": null
+    },
+    "Benign_GH_1.eml": {
+        "type": "benign",
+        "expected_category": null
+    },
+    "Benign_GH_2.eml": {
+        "type": "benign",
+        "expected_category": null
+    },
+    "Benign_GH_3.eml": {
+        "type": "benign",
+        "expected_category": null
+    },
+    "Benign_GH_4.eml": {
+        "type": "benign",
+        "expected_category": null
+    },
+    "Benign_GH_5.eml": {
+        "type": "benign",
+        "expected_category": null
+    },
+    "Benign_Cal_1.eml": {
+        "type": "benign",
+        "expected_category": null
+    },
+    "Benign_Cal_2.eml": {
+        "type": "benign",
+        "expected_category": null
+    },
+    "Benign_Cal_3.eml": {
+        "type": "benign",
+        "expected_category": null
+    },
+    "Benign_Cal_4.eml": {
+        "type": "benign",
+        "expected_category": null
+    },
+    "Benign_Cal_5.eml": {
+        "type": "benign",
+        "expected_category": null
+    },
+    "Benign_News_1.eml": {
+        "type": "benign",
+        "expected_category": null
+    },
+    "Benign_News_2.eml": {
+        "type": "benign",
+        "expected_category": null
+    },
+    "Benign_News_3.eml": {
+        "type": "benign",
+        "expected_category": null
+    },
+    "Benign_News_4.eml": {
+        "type": "benign",
+        "expected_category": null
+    },
+    "Benign_News_5.eml": {
+        "type": "benign",
+        "expected_category": null
+    },
+    "Benign_Bank_1.eml": {
+        "type": "benign",
+        "expected_category": null
+    },
+    "Benign_Bank_2.eml": {
+        "type": "benign",
+        "expected_category": null
+    },
+    "Benign_Bank_3.eml": {
+        "type": "benign",
+        "expected_category": null
+    },
+    "Benign_Bank_4.eml": {
+        "type": "benign",
+        "expected_category": null
+    },
+    "Benign_Bank_5.eml": {
+        "type": "benign",
+        "expected_category": null
+    },
+    "Benign_Univ_1.eml": {
+        "type": "benign",
+        "expected_category": null
+    },
+    "Benign_Univ_2.eml": {
+        "type": "benign",
+        "expected_category": null
+    },
+    "Benign_Univ_3.eml": {
+        "type": "benign",
+        "expected_category": null
+    },
+    "Benign_Univ_4.eml": {
+        "type": "benign",
+        "expected_category": null
+    },
+    "Benign_Univ_5.eml": {
+        "type": "benign",
+        "expected_category": null
+    },
+    "Benign_Int_1.eml": {
+        "type": "benign",
+        "expected_category": null
+    },
+    "Benign_Int_2.eml": {
+        "type": "benign",
+        "expected_category": null
+    },
+    "Benign_Int_3.eml": {
+        "type": "benign",
+        "expected_category": null
+    },
+    "Benign_Int_4.eml": {
+        "type": "benign",
+        "expected_category": null
+    },
+    "Benign_Int_5.eml": {
+        "type": "benign",
+        "expected_category": null
+    },
+    "Benign_Support_1.eml": {
+        "type": "benign",
+        "expected_category": null
+    },
+    "Benign_Support_2.eml": {
+        "type": "benign",
+        "expected_category": null
+    },
+    "Benign_Support_3.eml": {
+        "type": "benign",
+        "expected_category": null
+    },
+    "Benign_Support_4.eml": {
+        "type": "benign",
+        "expected_category": null
+    },
+    "Benign_Support_5.eml": {
+        "type": "benign",
+        "expected_category": null
+    }
+}

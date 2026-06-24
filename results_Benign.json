@@ -1,0 +1,170 @@
+{
+  "id": "34a7b2d9-7358-4637-bacb-0e245fe098cf",
+  "subject": "Your weekly GitHub digest",
+  "sender_address": "newsletter@github.com",
+  "sender_display_name": "GitHub",
+  "recipient": "victim@company.com",
+  "overall_risk_score": 0.0,
+  "risk_level": "safe",
+  "attack_type": null,
+  "status": "completed",
+  "scanned_at": "2026-06-21T11:42:24.450913Z",
+  "reply_to": null,
+  "return_path": "<newsletter@github.com>",
+  "body_text": "",
+  "risk_breakdown": null,
+  "investigation_report": null,
+  "header_analysis": {
+    "id": "442d7282-f5a2-479b-9c86-914db6cbce31",
+    "spf_pass": true,
+    "spf_result": "pass",
+    "dkim_pass": true,
+    "dkim_result": "pass",
+    "dmarc_pass": true,
+    "dmarc_result": "pass",
+    "sender_spoofed": false,
+    "display_name_impersonation": false,
+    "domain_mismatch": false,
+    "relay_chain": null,
+    "forged_headers": null,
+    "bec_indicators": null,
+    "trust_score": 100.0,
+    "evidence": null
+  },
+  "url_analyses": [],
+  "attachment_analyses": [],
+  "ai_analysis": {
+    "id": "1e6fe794-e9be-4224-a6c6-3f866a9c6069",
+    "model_used": "llama3.1:8b",
+    "attack_classification": "safe",
+    "confidence_score": 1.0,
+    "severity_level": "low",
+    "reasoning": "The email is sent from a verified sender 'newsletter@github.com' and the subject matches the expected format of a weekly digest. The content does not contain any suspicious links or attachments.",
+    "tactics_detected": [],
+    "structured_output": {
+      "attack_classification": "safe",
+      "confidence_score": 1.0,
+      "severity_level": "low",
+      "reasoning": "The email is sent from a verified sender 'newsletter@github.com' and the subject matches the expected format of a weekly digest. The content does not contain any suspicious links or attachments.",
+      "tactics_detected": []
+    },
+    "evidence": null
+  },
+  "iocs": [
+    {
+      "id": "486cb9dc-fed8-4988-912a-605c9e354764",
+      "ioc_type": "email",
+      "value": "newsletter@github.com",
+      "threat_score": 0.0,
+      "reputation_data": {
+        "AlienVault OTX": {
+          "is_malicious": false,
+          "pulses": 0
+        }
+      }
+    },
+    {
+      "id": "12004f37-99bc-49dd-8999-4104b2e88f0d",
+      "ioc_type": "sender_domain",
+      "value": "github.com",
+      "threat_score": 0.0,
+      "reputation_data": {}
+    },
+    {
+      "id": "1d656ed1-48d6-4796-a711-ac75ec2758a7",
+      "ioc_type": "ip",
+      "value": "192.30.252.1",
+      "threat_score": 0.0,
+      "reputation_data": {
+        "AlienVault OTX": {
+          "pulses": 0,
+          "reputation": 0,
+          "is_malicious": false,
+          "raw_data": {
+            "whois": "http://whois.domaintools.com/192.30.252.1",
+            "reputation": 0,
+            "indicator": "192.30.252.1",
+            "type": "IPv4",
+            "type_title": "IPv4",
+            "base_indicator": {},
+            "pulse_info": {
+              "count": 0,
+              "pulses": [],
+              "references": [],
+              "related": {
+                "alienvault": {
+                  "adversary": [],
+                  "malware_families": [],
+                  "industries": []
+                },
+                "other": {
+                  "adversary": [],
+                  "malware_families": [],
+                  "industries": []
+                }
+              }
+            },
+            "false_positive": [],
+            "validation": [
+              {
+                "source": "whitelist",
+                "message": "contained in whitelisted prefix",
+                "name": "Whitelisted IP"
+              }
+            ],
+            "asn": "AS36459 github  inc.",
+            "city_data": true,
+            "city": null,
+            "region": null,
+            "continent_code": "NA",
+            "country_code3": "USA",
+            "country_code2": "US",
+            "subdivision": null,
+            "latitude": 37.751,
+            "postal_code": null,
+            "longitude": -97.822,
+            "accuracy_radius": 1000,
+            "country_code": "US",
+            "country_name": "United States of America",
+            "dma_code": 0,
+            "charset": 0,
+            "area_code": 0,
+            "flag_url": "/assets/images/flags/us.png",
+            "flag_title": "United States of America",
+            "sections": [
+              "general",
+              "geo",
+              "reputation",
+              "url_list",
+              "passive_dns",
+              "malware",
+              "nids_list",
+              "http_scans"
+            ]
+          }
+        },
+        "AbuseIPDB": {
+          "abuse_confidence_score": 0,
+          "total_reports": 0,
+          "is_malicious": false,
+          "raw_data": {
+            "ipAddress": "192.30.252.1",
+            "isPublic": true,
+            "ipVersion": 4,
+            "isWhitelisted": true,
+            "abuseConfidenceScore": 0,
+            "countryCode": "US",
+            "usageType": "Data Center/Web Hosting/Transit",
+            "isp": "GitHub, Inc.",
+            "domain": "github.com",
+            "hostnames": [],
+            "isTor": false,
+            "totalReports": 0,
+            "numDistinctUsers": 0,
+            "lastReportedAt": null
+          }
+        }
+      }
+    }
+  ]
+}

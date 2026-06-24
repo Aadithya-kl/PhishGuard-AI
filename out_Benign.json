@@ -1,0 +1,2545 @@
+{
+  "id": "68169674-2b10-4d4c-bc03-a154e75d04ff",
+  "subject": "Your weekly GitHub digest",
+  "sender_address": "newsletter@github.com",
+  "sender_display_name": "GitHub",
+  "recipient": "victim@company.com",
+  "overall_risk_score": 10.0,
+  "risk_level": "low",
+  "attack_type": null,
+  "status": "completed",
+  "scanned_at": "2026-06-21T11:58:19.289771Z",
+  "reply_to": null,
+  "return_path": "<newsletter@github.com>",
+  "body_text": "",
+  "risk_breakdown": {
+    "header_score": 0,
+    "url_score": 0.0,
+    "attachment_score": 0,
+    "intel_score": 0.0,
+    "ai_score": 50,
+    "overall_score": 10.0,
+    "risk_level": "safe"
+  },
+  "investigation_report": null,
+  "header_analysis": {
+    "id": "69da7675-af7f-4759-ad70-bd16a26ed678",
+    "spf_pass": true,
+    "spf_result": "pass",
+    "dkim_pass": true,
+    "dkim_result": "pass",
+    "dmarc_pass": true,
+    "dmarc_result": "pass",
+    "sender_spoofed": false,
+    "display_name_impersonation": false,
+    "domain_mismatch": false,
+    "relay_chain": null,
+    "forged_headers": null,
+    "bec_indicators": null,
+    "trust_score": 100.0,
+    "evidence": null
+  },
+  "url_analyses": [
+    {
+      "id": "054acdfa-a7b8-429a-b9ad-4af6369b7b96",
+      "original_url": "https://github.com/trending",
+      "final_url": null,
+      "domain": "github.com",
+      "domain_age_days": null,
+      "registrar": null,
+      "is_shortened": false,
+      "is_homoglyph": false,
+      "is_typosquatting": false,
+      "is_ip_based": false,
+      "tld": "",
+      "risk_score": 0.0,
+      "threat_intel_results": {
+        "AlienVault OTX": {
+          "pulses": 6,
+          "reputation": 0,
+          "is_malicious": true,
+          "raw_data": {
+            "sections": [
+              "general",
+              "url_list",
+              "http_scans",
+              "screenshot"
+            ],
+            "indicator": "https://github.com/trending",
+            "type": "url",
+            "type_title": "URL",
+            "validation": [
+              {
+                "source": "alexa",
+                "message": "Alexa rank: #87",
+                "name": "Listed on Alexa"
+              },
+              {
+                "source": "akamai",
+                "message": "Akamai rank: #560",
+                "name": "Akamai Popular Domain"
+              },
+              {
+                "source": "whitelist",
+                "message": "Whitelisted domain github.com",
+                "name": "Whitelisted domain"
+              },
+              {
+                "source": "majestic",
+                "message": "Whitelisted domain github.com",
+                "name": "Whitelisted domain"
+              }
+            ],
+            "base_indicator": {
+              "id": 3983514941,
+              "indicator": "https://github.com/trending",
+              "type": "URL",
+              "title": "",
+              "description": "",
+              "content": "",
+              "access_type": "public",
+              "access_reason": ""
+            },
+            "pulse_info": {
+              "count": 6,
+              "pulses": [
+                {
+                  "id": "6941e87912ebb7843300906d",
+                  "name": "Telus Github",
+                  "description": "Telus has a Github. They are one of Canada's 'big 3' ISPs. They are compromised.",
+                  "modified": "2026-01-15T23:03:27.378000",
+                  "created": "2025-12-16T23:17:13.020000",
+                  "tags": [
+                    "type",
+                    "path",
+                    "secure",
+                    "date",
+                    "accept",
+                    "self",
+                    "httponly",
+                    "samesitelax",
+                    "expireswed",
+                    "updated",
+                    "sandbox",
+                    "malware",
+                    "analysis",
+                    "online",
+                    "submit",
+                    "vxstream",
+                    "sample",
+                    "download",
+                    "trojan",
+                    "apt",
+                    "prefetch8 ansi",
+                    "ansi",
+                    "show process",
+                    "hash seen",
+                    "threat level",
+                    "pcap",
+                    "sha256",
+                    "pcap processing",
+                    "ck id",
+                    "suspicious",
+                    "hybrid",
+                    "comspec",
+                    "close",
+                    "click",
+                    "hosts",
+                    "general",
+                    "model",
+                    "strings",
+                    "contact",
+                    "hybrid analysis",
+                    "api key",
+                    "vetting process",
+                    "please note",
+                    "please",
+                    "virus",
+                    "ransomware",
+                    "static",
+                    "indicator of compromise",
+                    "ioc",
+                    "extraction",
+                    "emulation",
+                    "platform",
+                    "javascript",
+                    "static analyzer",
+                    "analyzer"
+                  ],
+                  "references": [
+                    "http://hybrid-analysis.com/sample/f62e99ffe34a3f0c186ac31d151d22dd940884f79bbaafcc6061a2a9387f45a8/6941e0586df20223a505d490",
+                    "http://hybrid-analysis.com/sample/f62e99ffe34a3f0c186ac31d151d22dd940884f79bbaafcc6061a2a9387f45a8",
+                    "https://www.filescan.io/uploads/6941e02584afa5547b586bac/reports/a23ea43a-ad21-4306-9f47-1a8deaa129c0/ioc",
+                    "https://www.virustotal.com/gui/collection/5967f31c865dce02efd16cebad1e75bd838298965361912987dd932a513f9212/iocs",
+                    "https://www.virustotal.com/gui/collection/5967f31c865dce02efd16cebad1e75bd838298965361912987dd932a513f9212/summary",
+                    "https://app.threat.zone/submission/12b7b619-0e5a-4996-9bb5-493ef98f2803/url-analysis-report"
+                  ],
+                  "public": 1,
+                  "adversary": "",
+                  "targeted_countries": [
+                    "Canada",
+                    "United States of America"
+                  ],
+                  "malware_families": [],
+                  "attack_ids": [
+                    {
+                      "id": "T1027",
+                      "name": "Obfuscated Files or Information",
+                      "display_name": "T1027 - Obfuscated Files or Information"
+                    },
+                    {
+                      "id": "T1057",
+                      "name": "Process Discovery",
+                      "display_name": "T1057 - Process Discovery"
+                    },
+                    {
+                      "id": "T1071",
+                      "name": "Application Layer Protocol",
+                      "display_name": "T1071 - Application Layer Protocol"
+                    },
+                    {
+                      "id": "T1105",
+                      "name": "Ingress Tool Transfer",
+                      "display_name": "T1105 - Ingress Tool Transfer"
+                    },
+                    {
+                      "id": "T1129",
+                      "name": "Shared Modules",
+                      "display_name": "T1129 - Shared Modules"
+                    },
+                    {
+                      "id": "T1518",
+                      "name": "Software Discovery",
+                      "display_name": "T1518 - Software Discovery"
+                    },
+                    {
+                      "id": "T1553",
+                      "name": "Subvert Trust Controls",
+                      "display_name": "T1553 - Subvert Trust Controls"
+                    },
+                    {
+                      "id": "T1568",
+                      "name": "Dynamic Resolution",
+                      "display_name": "T1568 - Dynamic Resolution"
+                    },
+                    {
+                      "id": "T1590",
+                      "name": "Gather Victim Network Information",
+                      "display_name": "T1590 - Gather Victim Network Information"
+                    }
+                  ],
+                  "industries": [
+                    "Telecommunications",
+                    "Technology",
+                    "Healthcare",
+                    "Education"
+                  ],
+                  "TLP": "white",
+                  "cloned_from": null,
+                  "export_count": 3,
+                  "upvotes_count": 0,
+                  "downvotes_count": 0,
+                  "votes_count": 0,
+                  "locked": false,
+                  "pulse_source": "web",
+                  "validator_count": 0,
+                  "comment_count": 0,
+                  "follower_count": 0,
+                  "vote": 0,
+                  "author": {
+                    "username": "Disable_Duck",
+                    "id": "244325",
+                    "avatar_url": "/otxapi/users/avatar_image/media/avatars/user_244325/resized/80/avatar_3b9c358f36.png",
+                    "is_subscribed": false,
+                    "is_following": false
+                  },
+                  "indicator_type_counts": {
+                    "FileHash-MD5": 32,
+                    "FileHash-SHA1": 31,
+                    "FileHash-SHA256": 31,
+                    "SSLCertFingerprint": 11,
+                    "URL": 197,
+                    "domain": 27,
+                    "email": 2,
+                    "hostname": 101
+                  },
+                  "indicator_count": 432,
+                  "is_author": false,
+                  "is_subscribing": null,
+                  "subscriber_count": 133,
+                  "modified_text": "156 days ago ",
+                  "is_modified": true,
+                  "groups": [],
+                  "in_group": false,
+                  "threat_hunter_scannable": true,
+                  "threat_hunter_has_agents": 1,
+                  "related_indicator_type": "URL",
+                  "related_indicator_is_active": 1
+                },
+                {
+                  "id": "660afeb0c9812049de87dec1",
+                  "name": "hxxps://github[.]com/MSUDenverSystemsEngineering/Salt-Instructional-18/tree/master/AppDeployToolkit",
+                  "description": "hxxps://github.com/MSUDenverSystemsEngineering/Salt-Instructional-18/tree/master/AppDeployToolkit\n\nSomething I figured worth looking into - present on several University of Alberta documents on devices sampled from several labs\n\nIOCs (04.01.24): parsed using IOC parser on IOCs (behavioral) derived from: Tri.age Analysis: https://tria.ge/240401-v8bafsaf71/behavioral1 and Hybrid Analysis: http://www.hybrid-analysis.com/sample/e1a88d17a7c013cf623d01c2105e6233e2debb67a9c3fd0eb73b286091c82917/660af3e16e24fdbb100e03d9\n-IOCs submitted to URLscan.io\nUpdate: 09.27.24 -> Present in a word document on Uni Computers (All)",
+                  "modified": "2025-09-06T17:02:07.070000",
+                  "created": "2024-04-01T18:36:32.583000",
+                  "tags": [
+                    "please",
+                    "javascript",
+                    "triage",
+                    "malware",
+                    "analysis",
+                    "report",
+                    "reported",
+                    "analyze",
+                    "sandbox",
+                    "download submit",
+                    "sha256",
+                    "sha1",
+                    "sha512",
+                    "prefetch1",
+                    "iocs",
+                    "suspicious use",
+                    "prefetch8",
+                    "ck v13",
+                    "monitor",
+                    "general",
+                    "config",
+                    "copy",
+                    "target",
+                    "score",
+                    "entity",
+                    "domain",
+                    "ipv6",
+                    "mitreatt",
+                    "macaddress",
+                    "filename"
+                  ],
+                  "references": [
+                    "https://www.virustotal.com/gui/collection/78cac7a60cb9ea18ed98d5529491d4351d031634dfe7de0088a3054fba1e53be/iocs",
+                    "https://tria.ge/240401-v8bafsaf71/behavioral1",
+                    "https://www.virustotal.com/gui/collection/78cac7a60cb9ea18ed98d5529491d4351d031634dfe7de0088a3054fba1e53be/summary",
+                    "https://www.virustotal.com/graph/embed/g0e28b9d656774e73b987b563164f4c51556d897677ed4a78920d44a0715390e6?theme=dark",
+                    "http://www.hybrid-analysis.com/sample/e1a88d17a7c013cf623d01c2105e6233e2debb67a9c3fd0eb73b286091c82917/660af3e16e24fdbb100e03d9",
+                    "https://viz.greynoise.io/tags/georgia-tech-research-scanner?days=10",
+                    "https://www.virustotal.com/graph/embed/g4928995ad74946e184fceac08d1c9ec4b891ca72d6c84eb08fc776c915c99e60?theme=dark",
+                    "https://www.filescan.io/uploads/66f6fe25f71b9c224c13bdf7/reports/b95801f7-d70e-4cc6-b967-b1cc8ad56fc9/overview",
+                    "https://tria.ge/250807-vg754scn6t/behavioral1 - 08.07.25",
+                    "https://app.any.run/tasks/53605645-2825-4d09-95ff-183a59b25518 - 08.07.25"
+                  ],
+                  "public": 1,
+                  "adversary": "",
+                  "targeted_countries": [
+                    "Canada",
+                    "United States of America"
+                  ],
+                  "malware_families": [],
+                  "attack_ids": [
+                    {
+                      "id": "T1012",
+                      "name": "Query Registry",
+                      "display_name": "T1012 - Query Registry"
+                    },
+                    {
+                      "id": "T1082",
+                      "name": "System Information Discovery",
+                      "display_name": "T1082 - System Information Discovery"
+                    },
+                    {
+                      "id": "T1553",
+                      "name": "Subvert Trust Controls",
+                      "display_name": "T1553 - Subvert Trust Controls"
+                    },
+                    {
+                      "id": "T1105",
+                      "name": "Ingress Tool Transfer",
+                      "display_name": "T1105 - Ingress Tool Transfer"
+                    },
+                    {
+                      "id": "T1568",
+                      "name": "Dynamic Resolution",
+                      "display_name": "T1568 - Dynamic Resolution"
+                    },
+                    {
+                      "id": "T1071",
+                      "name": "Application Layer Protocol",
+                      "display_name": "T1071 - Application Layer Protocol"
+                    }
+                  ],
+                  "industries": [
+                    "Education",
+                    "Technology",
+                    "Government"
+                  ],
+                  "TLP": "white",
+                  "cloned_from": null,
+                  "export_count": 59,
+                  "upvotes_count": 0,
+                  "downvotes_count": 0,
+                  "votes_count": 0,
+                  "locked": false,
+                  "pulse_source": "web",
+                  "validator_count": 0,
+                  "comment_count": 0,
+                  "follower_count": 0,
+                  "vote": 0,
+                  "author": {
+                    "username": "Disable_Duck",
+                    "id": "244325",
+                    "avatar_url": "/otxapi/users/avatar_image/media/avatars/user_244325/resized/80/avatar_3b9c358f36.png",
+                    "is_subscribed": false,
+                    "is_following": false
+                  },
+                  "indicator_type_counts": {
+                    "FileHash-MD5": 103,
+                    "FileHash-SHA1": 105,
+                    "FileHash-SHA256": 495,
+                    "URL": 613,
+                    "hostname": 109,
+                    "CVE": 4,
+                    "domain": 122,
+                    "email": 10
+                  },
+                  "indicator_count": 1561,
+                  "is_author": false,
+                  "is_subscribing": null,
+                  "subscriber_count": 135,
+                  "modified_text": "287 days ago ",
+                  "is_modified": true,
+                  "groups": [],
+                  "in_group": false,
+                  "threat_hunter_scannable": true,
+                  "threat_hunter_has_agents": 1,
+                  "related_indicator_type": "URL",
+                  "related_indicator_is_active": 1
+                },
+                {
+                  "id": "67df904daf96180003ff1e14",
+                  "name": "hxxps://github[.]com/Cn33liz/p0wnedShell - 07.15.25 (Un-Enriched)",
+                  "description": "Yara Rules Triggered:\n\n9b0e9dce190e3dcf83b697ba2a08c9031aa2de00a6d3a3db9c86e2a8b4bc7bc0\np0wnedShell\n\nMatches rule Base64_Encoded_URL from ruleset Base64_Encoded_URL at https://github.com/InQuest/yara-rules-vt by InQuest Labs\nThis signature fires on the presence of Base64 encoded URI prefixes (http:// and https://) across any file. The simple presence of such strings is not inherently an indicator of malicious content, but is worth further investigation. - a moment ago\n View Ruleset\nMatches rule Hacktool_Strings_p0wnedShell from ruleset gen_p0wnshell at https://github.com/Neo23x0/signature-base by Florian Roth\nDetects strings found in Runspace Post Exploitation Toolkit - a moment ago\nMatches rule p0wnedPotato from ruleset gen_p0wnshell at https://github.com/Neo23x0/signature-base by Florian Roth (Nextron Systems)\np0wnedShell Runspace Post Exploitation Toolkit - file p0wnedPotato.cs - a moment ago",
+                  "modified": "2025-08-16T05:00:22.327000",
+                  "created": "2025-03-23T04:38:37.512000",
+                  "tags": [
+                    "sandbox",
+                    "malware",
+                    "analysis",
+                    "online",
+                    "submit",
+                    "vxstream",
+                    "sample",
+                    "download",
+                    "trojan",
+                    "apt",
+                    "ansi",
+                    "prefetch8 ansi",
+                    "date",
+                    "threat level",
+                    "show process",
+                    "sha256",
+                    "hash seen",
+                    "pcap processing",
+                    "command decode",
+                    "pcap",
+                    "suspicious",
+                    "hybrid",
+                    "comspec",
+                    "close",
+                    "click",
+                    "hosts",
+                    "general",
+                    "path",
+                    "model",
+                    "strings",
+                    "contact",
+                    "threat intelligence",
+                    "feed",
+                    "ioc",
+                    "change theme",
+                    "contact us",
+                    "intelligence",
+                    "threats api",
+                    "analyze api",
+                    "overview",
+                    "threats explore",
+                    "rate limits",
+                    "stixtaxii",
+                    "bulk export",
+                    "please",
+                    "javascript",
+                    "virus",
+                    "ransomware",
+                    "static",
+                    "indicator of compromise",
+                    "extraction",
+                    "emulation",
+                    "platform",
+                    "entity",
+                    "report phishing",
+                    "suspicious urls",
+                    "error",
+                    "sorry"
+                  ],
+                  "references": [
+                    "https://hybrid-analysis.com/sample/c801e05a1ee3423572349377ea9bdc3846b62e949611679e81c3d6cddcde77e5/67dde11e816206bd720dc9a0",
+                    "https://pulsedive.com/indicator/?iid=68355616",
+                    "https://www.virustotal.com/gui/url/bc0fe9233e19654c54cc439e9f3e06491556867cde40e25c8589dbee265f3f2f/details",
+                    "https://www.filescan.io/uploads/67df8925a175d31773454fd7/reports/d000025d-8403-4b03-8f76-a3b74d9b821f/overview",
+                    "https://www.virustotal.com/graph/embed/ga577e541c45f4ef3b8c2ee0e464a4264caf5439148f941db8c2615f1b83baebe?theme=dark",
+                    "https://www.virustotal.com/gui/collection/f5259d2e7f82856773d9a0867206fe5b571627740209eb72652fd2c04b099a16",
+                    "https://www.virustotal.com/gui/collection/f5259d2e7f82856773d9a0867206fe5b571627740209eb72652fd2c04b099a16/iocs",
+                    "https://report.netcraft.com/submission/OAoeOZfDFap5UPDTF52Uy5Q754Z5Fctm?tab=urls",
+                    "https://app.threat.zone/submission/ef652ac5-bc19-43e4-a603-e2d2ccae55ff/static-scan-report/strings",
+                    "https://www.filescan.io/uploads/685b8c3dcf2af157111779ff/reports/69c49cb3-aef0-4a32-b382-6b38ec8187d0/overview",
+                    "https://app.any.run/tasks/2f11fff7-a2bc-4744-af91-279753100630",
+                    "https://app.threat.zone/submission/2514e91a-4ad4-4c54-bee3-276c86dcc970/overview",
+                    "https://polyswarm.network/scan/results/url/bc0fe9233e19654c54cc439e9f3e06491556867cde40e25c8589dbee265f3f2f",
+                    "https://tria.ge/250717-f744tavxcy/behavioral1"
+                  ],
+                  "public": 1,
+                  "adversary": "",
+                  "targeted_countries": [
+                    "United States of America",
+                    "Canada"
+                  ],
+                  "malware_families": [],
+                  "attack_ids": [
+                    {
+                      "id": "T1027",
+                      "name": "Obfuscated Files or Information",
+                      "display_name": "T1027 - Obfuscated Files or Information"
+                    },
+                    {
+                      "id": "T1057",
+                      "name": "Process Discovery",
+                      "display_name": "T1057 - Process Discovery"
+                    },
+                    {
+                      "id": "T1071",
+                      "name": "Application Layer Protocol",
+                      "display_name": "T1071 - Application Layer Protocol"
+                    },
+                    {
+                      "id": "T1105",
+                      "name": "Ingress Tool Transfer",
+                      "display_name": "T1105 - Ingress Tool Transfer"
+                    },
+                    {
+                      "id": "T1129",
+                      "name": "Shared Modules",
+                      "display_name": "T1129 - Shared Modules"
+                    },
+                    {
+                      "id": "T1480",
+                      "name": "Execution Guardrails",
+                      "display_name": "T1480 - Execution Guardrails"
+                    },
+                    {
+                      "id": "T1518",
+                      "name": "Software Discovery",
+                      "display_name": "T1518 - Software Discovery"
+                    },
+                    {
+                      "id": "T1553",
+                      "name": "Subvert Trust Controls",
+                      "display_name": "T1553 - Subvert Trust Controls"
+                    },
+                    {
+                      "id": "T1568",
+                      "name": "Dynamic Resolution",
+                      "display_name": "T1568 - Dynamic Resolution"
+                    },
+                    {
+                      "id": "T1583",
+                      "name": "Acquire Infrastructure",
+                      "display_name": "T1583 - Acquire Infrastructure"
+                    }
+                  ],
+                  "industries": [
+                    "Education",
+                    "Technology",
+                    "Healthcare",
+                    "Government"
+                  ],
+                  "TLP": "white",
+                  "cloned_from": null,
+                  "export_count": 56,
+                  "upvotes_count": 0,
+                  "downvotes_count": 0,
+                  "votes_count": 0,
+                  "locked": false,
+                  "pulse_source": "web",
+                  "validator_count": 0,
+                  "comment_count": 0,
+                  "follower_count": 0,
+                  "vote": 0,
+                  "author": {
+                    "username": "Disable_Duck",
+                    "id": "244325",
+                    "avatar_url": "/otxapi/users/avatar_image/media/avatars/user_244325/resized/80/avatar_3b9c358f36.png",
+                    "is_subscribed": false,
+                    "is_following": false
+                  },
+                  "indicator_type_counts": {
+                    "FileHash-MD5": 219,
+                    "FileHash-SHA1": 203,
+                    "FileHash-SHA256": 530,
+                    "SSLCertFingerprint": 10,
+                    "email": 3,
+                    "hostname": 76,
+                    "URL": 164,
+                    "domain": 153
+                  },
+                  "indicator_count": 1358,
+                  "is_author": false,
+                  "is_subscribing": null,
+                  "subscriber_count": 131,
+                  "modified_text": "309 days ago ",
+                  "is_modified": true,
+                  "groups": [],
+                  "in_group": false,
+                  "threat_hunter_scannable": true,
+                  "threat_hunter_has_agents": 1,
+                  "related_indicator_type": "URL",
+                  "related_indicator_is_active": 1
+                },
+                {
+                  "id": "684225925f1a076ce3039b55",
+                  "name": "hxxps://github[.]com/CocoaPods - 06.05.25",
+                  "description": "Github CocoaPods",
+                  "modified": "2025-07-05T23:04:57.997000",
+                  "created": "2025-06-05T23:17:38.255000",
+                  "tags": [
+                    "sandbox",
+                    "malware",
+                    "analysis",
+                    "online",
+                    "submit",
+                    "vxstream",
+                    "sample",
+                    "download",
+                    "trojan",
+                    "apt",
+                    "prefetch8 ansi",
+                    "ansi",
+                    "date",
+                    "threat level",
+                    "show process",
+                    "sha256",
+                    "hash seen",
+                    "pcap",
+                    "pcap processing",
+                    "command decode",
+                    "suspicious",
+                    "hybrid",
+                    "comspec",
+                    "close",
+                    "click",
+                    "hosts",
+                    "june",
+                    "general",
+                    "path",
+                    "model",
+                    "strings",
+                    "contact",
+                    "community",
+                    "results",
+                    "switch",
+                    "inquest labs",
+                    "resources api",
+                    "notes supported",
+                    "cve list",
+                    "drop your",
+                    "file",
+                    "service",
+                    "virus",
+                    "ransomware",
+                    "static",
+                    "indicator of compromise",
+                    "ioc",
+                    "extraction",
+                    "emulation",
+                    "platform",
+                    "please",
+                    "javascript",
+                    "url",
+                    "scanner",
+                    "reputation",
+                    "phishing",
+                    "fastly",
+                    "accept",
+                    "sectigo limited",
+                    "gmt file",
+                    "windows nt",
+                    "win64",
+                    "http2",
+                    "url get",
+                    "fingerprint",
+                    "ascii text",
+                    "write"
+                  ],
+                  "references": [
+                    "https://www.hybrid-analysis.com/sample/2df0978d569e55b6c2176959734d9a6a776eab8c11e2742d7b0cde7a7fb72011/68422003376961f119095141",
+                    "https://metadefender.com/results/url/aHR0cHM6Ly9naXRodWIuY29tL0NvY29hUG9kcw==",
+                    "https://www.filescan.io/uploads/68421f7dfd02ed5e059acb43/reports/6eb07c34-b325-4107-8652-fe9503ca076e/overview",
+                    "https://www.virustotal.com/gui/file/9054fc526befddddb30e9df6dade3c405327951f2cd2add9cb27effd4e64ebc7?nocache=1",
+                    "https://urlquery.net/report/ae80c540-8c9b-48e4-a6e1-b18cb4426dbf"
+                  ],
+                  "public": 1,
+                  "adversary": "",
+                  "targeted_countries": [
+                    "United States of America",
+                    "Canada",
+                    "Netherlands"
+                  ],
+                  "malware_families": [],
+                  "attack_ids": [
+                    {
+                      "id": "T1027",
+                      "name": "Obfuscated Files or Information",
+                      "display_name": "T1027 - Obfuscated Files or Information"
+                    },
+                    {
+                      "id": "T1057",
+                      "name": "Process Discovery",
+                      "display_name": "T1057 - Process Discovery"
+                    },
+                    {
+                      "id": "T1071",
+                      "name": "Application Layer Protocol",
+                      "display_name": "T1071 - Application Layer Protocol"
+                    },
+                    {
+                      "id": "T1129",
+                      "name": "Shared Modules",
+                      "display_name": "T1129 - Shared Modules"
+                    },
+                    {
+                      "id": "T1480",
+                      "name": "Execution Guardrails",
+                      "display_name": "T1480 - Execution Guardrails"
+                    },
+                    {
+                      "id": "T1518",
+                      "name": "Software Discovery",
+                      "display_name": "T1518 - Software Discovery"
+                    },
+                    {
+                      "id": "T1553",
+                      "name": "Subvert Trust Controls",
+                      "display_name": "T1553 - Subvert Trust Controls"
+                    },
+                    {
+                      "id": "T1568",
+                      "name": "Dynamic Resolution",
+                      "display_name": "T1568 - Dynamic Resolution"
+                    },
+                    {
+                      "id": "T1583",
+                      "name": "Acquire Infrastructure",
+                      "display_name": "T1583 - Acquire Infrastructure"
+                    },
+                    {
+                      "id": "T1590",
+                      "name": "Gather Victim Network Information",
+                      "display_name": "T1590 - Gather Victim Network Information"
+                    }
+                  ],
+                  "industries": [
+                    "Technology"
+                  ],
+                  "TLP": "white",
+                  "cloned_from": null,
+                  "export_count": 36,
+                  "upvotes_count": 0,
+                  "downvotes_count": 0,
+                  "votes_count": 0,
+                  "locked": false,
+                  "pulse_source": "web",
+                  "validator_count": 0,
+                  "comment_count": 0,
+                  "follower_count": 0,
+                  "vote": 0,
+                  "author": {
+                    "username": "Disable_Duck",
+                    "id": "244325",
+                    "avatar_url": "/otxapi/users/avatar_image/media/avatars/user_244325/resized/80/avatar_3b9c358f36.png",
+                    "is_subscribed": false,
+                    "is_following": false
+                  },
+                  "indicator_type_counts": {
+                    "FileHash-MD5": 182,
+                    "FileHash-SHA1": 267,
+                    "FileHash-SHA256": 187,
+                    "SSLCertFingerprint": 12,
+                    "URL": 297,
+                    "email": 4,
+                    "hostname": 80,
+                    "domain": 13
+                  },
+                  "indicator_count": 1042,
+                  "is_author": false,
+                  "is_subscribing": null,
+                  "subscriber_count": 131,
+                  "modified_text": "350 days ago ",
+                  "is_modified": true,
+                  "groups": [],
+                  "in_group": false,
+                  "threat_hunter_scannable": true,
+                  "threat_hunter_has_agents": 1,
+                  "related_indicator_type": "URL",
+                  "related_indicator_is_active": 1
+                },
+                {
+                  "id": "68364f8e872b25238d4b9825",
+                  "name": "URLHaus data - 27-05-2025",
+                  "description": "",
+                  "modified": "2025-06-26T23:04:46.238000",
+                  "created": "2025-05-27T23:49:34.153000",
+                  "tags": [
+                    "c2-monitor-auto",
+                    "telnet",
+                    "unknown",
+                    "32-bit",
+                    "elf",
+                    "mips",
+                    "Mozi",
+                    "arm",
+                    "mirai",
+                    "hajime",
+                    "opendir",
+                    "WsgiDAV",
+                    "xml-opendir",
+                    "censys",
+                    "CobaltStrike",
+                    "backdoor",
+                    "sshdkit",
+                    "dropped-by-amadey",
+                    "RemcosRAT",
+                    "ua-wget",
+                    "gafgyt",
+                    "sh",
+                    "ascii",
+                    "Encoded",
+                    "DarkVisionRAT",
+                    "GuLoader",
+                    "rat",
+                    "exe",
+                    "vbs",
+                    "CoinMiner",
+                    "Formbook",
+                    "StealeriumStealer",
+                    "AgentTesla",
+                    "RedLineStealer",
+                    "MassLogger",
+                    "a310Logger",
+                    "powershell",
+                    "ps1",
+                    "VIPKeylogger",
+                    "Vidar",
+                    "rev-base64-loader",
+                    "jpg-base64-loader",
+                    "LummaStealer",
+                    "encrypted",
+                    "PureLogStealer",
+                    "donutloader",
+                    "NetSupport",
+                    "stego",
+                    "AsyncRAT",
+                    "DarkCloud",
+                    "xworm",
+                    "dcrat",
+                    "base64-loader",
+                    "PowerPC",
+                    "Adwind",
+                    "js",
+                    "zip",
+                    "hta",
+                    "AgentTestla",
+                    "ClickFix",
+                    "P2Pinfect",
+                    "x86-32",
+                    "connectwise"
+                  ],
+                  "references": [
+                    "https://urlhaus.abuse.ch/browse/"
+                  ],
+                  "public": 1,
+                  "adversary": "",
+                  "targeted_countries": [],
+                  "malware_families": [],
+                  "attack_ids": [],
+                  "industries": [],
+                  "TLP": "green",
+                  "cloned_from": null,
+                  "export_count": 66,
+                  "upvotes_count": 0,
+                  "downvotes_count": 0,
+                  "votes_count": 0,
+                  "locked": false,
+                  "pulse_source": "api",
+                  "validator_count": 0,
+                  "comment_count": 0,
+                  "follower_count": 0,
+                  "vote": 0,
+                  "author": {
+                    "username": "CyberHunterAutoFeed",
+                    "id": "182496",
+                    "avatar_url": "/otxapi/users/avatar_image/media/avatars/user_182496/resized/80/avatar_3b9c358f36.png",
+                    "is_subscribed": false,
+                    "is_following": false
+                  },
+                  "indicator_type_counts": {
+                    "URL": 1000,
+                    "hostname": 28,
+                    "domain": 28
+                  },
+                  "indicator_count": 1056,
+                  "is_author": false,
+                  "is_subscribing": null,
+                  "subscriber_count": 1635,
+                  "modified_text": "359 days ago ",
+                  "is_modified": true,
+                  "groups": [],
+                  "in_group": false,
+                  "threat_hunter_scannable": false,
+                  "threat_hunter_has_agents": 1,
+                  "related_indicator_type": "URL",
+                  "related_indicator_is_active": 1
+                },
+                {
+                  "id": "67dfbeec0e4cfd59cca3ac61",
+                  "name": "hxxps://github[.]com/imaya/zlib.js/tree/master - 03.22.25 (Un-Enriched)",
+                  "description": "hxxps://github[.]com/imaya/zlib.js/tree/master - 03.22.25",
+                  "modified": "2025-04-22T07:00:01.273000",
+                  "created": "2025-03-23T07:57:32.130000",
+                  "tags": [
+                    "sandbox",
+                    "malware",
+                    "analysis",
+                    "online",
+                    "submit",
+                    "vxstream",
+                    "sample",
+                    "download",
+                    "trojan",
+                    "apt",
+                    "ansi",
+                    "prefetch8 ansi",
+                    "date",
+                    "threat level",
+                    "show process",
+                    "hash seen",
+                    "sha256",
+                    "pcap processing",
+                    "pcap",
+                    "command decode",
+                    "suspicious",
+                    "hybrid",
+                    "comspec",
+                    "close",
+                    "click",
+                    "hosts",
+                    "general",
+                    "path",
+                    "model",
+                    "strings",
+                    "contact",
+                    "threat intelligence",
+                    "feed",
+                    "ioc",
+                    "change theme",
+                    "contact us",
+                    "intelligence",
+                    "threats api",
+                    "analyze api",
+                    "overview",
+                    "threats explore",
+                    "rate limits",
+                    "stixtaxii",
+                    "bulk export",
+                    "please",
+                    "javascript",
+                    "virus",
+                    "ransomware",
+                    "static",
+                    "indicator of compromise",
+                    "extraction",
+                    "emulation",
+                    "platform",
+                    "entity"
+                  ],
+                  "references": [
+                    "https://hybrid-analysis.com/sample/8ee2ed5f3080354e6c8974fbebdc448c8d289a3f05e3bfedefadd5e2a9084376/67dfb4135d3987c5750301fc",
+                    "https://pulsedive.com/indicator/?iid=68381634",
+                    "https://www.virustotal.com/gui/url/76078f83edcd46bd9b83a87a39731cbe45da33b30a7c4a628223a4959c97ce0f",
+                    "https://www.filescan.io/uploads/67dfbaf7a175d317734568e1/reports/83bd2446-c34b-4ce3-9de6-7f9685941d28/overview",
+                    "https://www.filescan.io/uploads/67dfbaf7a175d317734568e1/reports/83bd2446-c34b-4ce3-9de6-7f9685941d28/ioc",
+                    "https://www.virustotal.com/graph/embed/g8d4be90062df462fbc7be3ba1cca3ec26c9964a0684742ea8ca73e36810d5810?theme=dark"
+                  ],
+                  "public": 1,
+                  "adversary": "",
+                  "targeted_countries": [
+                    "United States of America",
+                    "Canada"
+                  ],
+                  "malware_families": [],
+                  "attack_ids": [
+                    {
+                      "id": "T1027",
+                      "name": "Obfuscated Files or Information",
+                      "display_name": "T1027 - Obfuscated Files or Information"
+                    },
+                    {
+                      "id": "T1057",
+                      "name": "Process Discovery",
+                      "display_name": "T1057 - Process Discovery"
+                    },
+                    {
+                      "id": "T1071",
+                      "name": "Application Layer Protocol",
+                      "display_name": "T1071 - Application Layer Protocol"
+                    },
+                    {
+                      "id": "T1105",
+                      "name": "Ingress Tool Transfer",
+                      "display_name": "T1105 - Ingress Tool Transfer"
+                    },
+                    {
+                      "id": "T1129",
+                      "name": "Shared Modules",
+                      "display_name": "T1129 - Shared Modules"
+                    },
+                    {
+                      "id": "T1480",
+                      "name": "Execution Guardrails",
+                      "display_name": "T1480 - Execution Guardrails"
+                    },
+                    {
+                      "id": "T1518",
+                      "name": "Software Discovery",
+                      "display_name": "T1518 - Software Discovery"
+                    },
+                    {
+                      "id": "T1553",
+                      "name": "Subvert Trust Controls",
+                      "display_name": "T1553 - Subvert Trust Controls"
+                    },
+                    {
+                      "id": "T1568",
+                      "name": "Dynamic Resolution",
+                      "display_name": "T1568 - Dynamic Resolution"
+                    },
+                    {
+                      "id": "T1583",
+                      "name": "Acquire Infrastructure",
+                      "display_name": "T1583 - Acquire Infrastructure"
+                    }
+                  ],
+                  "industries": [
+                    "Education",
+                    "Healthcare",
+                    "Government",
+                    "Technology"
+                  ],
+                  "TLP": "white",
+                  "cloned_from": null,
+                  "export_count": 22,
+                  "upvotes_count": 0,
+                  "downvotes_count": 0,
+                  "votes_count": 0,
+                  "locked": false,
+                  "pulse_source": "web",
+                  "validator_count": 0,
+                  "comment_count": 3,
+                  "follower_count": 0,
+                  "vote": 0,
+                  "author": {
+                    "username": "Disable_Duck",
+                    "id": "244325",
+                    "avatar_url": "/otxapi/users/avatar_image/media/avatars/user_244325/resized/80/avatar_3b9c358f36.png",
+                    "is_subscribed": false,
+                    "is_following": false
+                  },
+                  "indicator_type_counts": {
+                    "FileHash-MD5": 91,
+                    "FileHash-SHA1": 91,
+                    "FileHash-SHA256": 190,
+                    "SSLCertFingerprint": 13,
+                    "domain": 75,
+                    "email": 4,
+                    "hostname": 47,
+                    "URL": 136
+                  },
+                  "indicator_count": 647,
+                  "is_author": false,
+                  "is_subscribing": null,
+                  "subscriber_count": 131,
+                  "modified_text": "425 days ago ",
+                  "is_modified": true,
+                  "groups": [],
+                  "in_group": false,
+                  "threat_hunter_scannable": true,
+                  "threat_hunter_has_agents": 1,
+                  "related_indicator_type": "URL",
+                  "related_indicator_is_active": 1
+                }
+              ],
+              "references": [
+                "https://report.netcraft.com/submission/OAoeOZfDFap5UPDTF52Uy5Q754Z5Fctm?tab=urls",
+                "https://www.filescan.io/uploads/68421f7dfd02ed5e059acb43/reports/6eb07c34-b325-4107-8652-fe9503ca076e/overview",
+                "https://www.virustotal.com/gui/collection/78cac7a60cb9ea18ed98d5529491d4351d031634dfe7de0088a3054fba1e53be/iocs",
+                "https://viz.greynoise.io/tags/georgia-tech-research-scanner?days=10",
+                "https://urlquery.net/report/ae80c540-8c9b-48e4-a6e1-b18cb4426dbf",
+                "https://pulsedive.com/indicator/?iid=68381634",
+                "https://www.virustotal.com/graph/embed/g4928995ad74946e184fceac08d1c9ec4b891ca72d6c84eb08fc776c915c99e60?theme=dark",
+                "https://www.virustotal.com/gui/collection/78cac7a60cb9ea18ed98d5529491d4351d031634dfe7de0088a3054fba1e53be/summary",
+                "https://www.filescan.io/uploads/685b8c3dcf2af157111779ff/reports/69c49cb3-aef0-4a32-b382-6b38ec8187d0/overview",
+                "http://hybrid-analysis.com/sample/f62e99ffe34a3f0c186ac31d151d22dd940884f79bbaafcc6061a2a9387f45a8",
+                "https://www.hybrid-analysis.com/sample/2df0978d569e55b6c2176959734d9a6a776eab8c11e2742d7b0cde7a7fb72011/68422003376961f119095141",
+                "https://www.virustotal.com/gui/url/bc0fe9233e19654c54cc439e9f3e06491556867cde40e25c8589dbee265f3f2f/details",
+                "https://hybrid-analysis.com/sample/c801e05a1ee3423572349377ea9bdc3846b62e949611679e81c3d6cddcde77e5/67dde11e816206bd720dc9a0",
+                "https://metadefender.com/results/url/aHR0cHM6Ly9naXRodWIuY29tL0NvY29hUG9kcw==",
+                "https://www.filescan.io/uploads/66f6fe25f71b9c224c13bdf7/reports/b95801f7-d70e-4cc6-b967-b1cc8ad56fc9/overview",
+                "https://app.any.run/tasks/53605645-2825-4d09-95ff-183a59b25518 - 08.07.25",
+                "https://www.filescan.io/uploads/67df8925a175d31773454fd7/reports/d000025d-8403-4b03-8f76-a3b74d9b821f/overview",
+                "https://www.virustotal.com/graph/embed/g8d4be90062df462fbc7be3ba1cca3ec26c9964a0684742ea8ca73e36810d5810?theme=dark",
+                "https://tria.ge/250717-f744tavxcy/behavioral1",
+                "https://www.filescan.io/uploads/67dfbaf7a175d317734568e1/reports/83bd2446-c34b-4ce3-9de6-7f9685941d28/ioc",
+                "https://www.virustotal.com/gui/file/9054fc526befddddb30e9df6dade3c405327951f2cd2add9cb27effd4e64ebc7?nocache=1",
+                "https://www.virustotal.com/gui/url/76078f83edcd46bd9b83a87a39731cbe45da33b30a7c4a628223a4959c97ce0f",
+                "http://hybrid-analysis.com/sample/f62e99ffe34a3f0c186ac31d151d22dd940884f79bbaafcc6061a2a9387f45a8/6941e0586df20223a505d490",
+                "https://www.virustotal.com/gui/collection/5967f31c865dce02efd16cebad1e75bd838298965361912987dd932a513f9212/summary",
+                "https://www.virustotal.com/graph/embed/g0e28b9d656774e73b987b563164f4c51556d897677ed4a78920d44a0715390e6?theme=dark",
+                "https://app.threat.zone/submission/12b7b619-0e5a-4996-9bb5-493ef98f2803/url-analysis-report",
+                "https://www.virustotal.com/gui/collection/f5259d2e7f82856773d9a0867206fe5b571627740209eb72652fd2c04b099a16",
+                "https://tria.ge/240401-v8bafsaf71/behavioral1",
+                "http://www.hybrid-analysis.com/sample/e1a88d17a7c013cf623d01c2105e6233e2debb67a9c3fd0eb73b286091c82917/660af3e16e24fdbb100e03d9",
+                "https://hybrid-analysis.com/sample/8ee2ed5f3080354e6c8974fbebdc448c8d289a3f05e3bfedefadd5e2a9084376/67dfb4135d3987c5750301fc",
+                "https://pulsedive.com/indicator/?iid=68355616",
+                "https://www.filescan.io/uploads/6941e02584afa5547b586bac/reports/a23ea43a-ad21-4306-9f47-1a8deaa129c0/ioc",
+                "https://urlhaus.abuse.ch/browse/",
+                "https://www.virustotal.com/graph/embed/ga577e541c45f4ef3b8c2ee0e464a4264caf5439148f941db8c2615f1b83baebe?theme=dark",
+                "https://www.filescan.io/uploads/67dfbaf7a175d317734568e1/reports/83bd2446-c34b-4ce3-9de6-7f9685941d28/overview",
+                "https://www.virustotal.com/gui/collection/f5259d2e7f82856773d9a0867206fe5b571627740209eb72652fd2c04b099a16/iocs",
+                "https://app.any.run/tasks/2f11fff7-a2bc-4744-af91-279753100630",
+                "https://app.threat.zone/submission/2514e91a-4ad4-4c54-bee3-276c86dcc970/overview",
+                "https://polyswarm.network/scan/results/url/bc0fe9233e19654c54cc439e9f3e06491556867cde40e25c8589dbee265f3f2f",
+                "https://tria.ge/250807-vg754scn6t/behavioral1 - 08.07.25",
+                "https://app.threat.zone/submission/ef652ac5-bc19-43e4-a603-e2d2ccae55ff/static-scan-report/strings",
+                "https://www.virustotal.com/gui/collection/5967f31c865dce02efd16cebad1e75bd838298965361912987dd932a513f9212/iocs"
+              ],
+              "related": {
+                "alienvault": {
+                  "adversary": [],
+                  "malware_families": [],
+                  "industries": [],
+                  "unique_indicators": 0
+                },
+                "other": {
+                  "adversary": [],
+                  "malware_families": [],
+                  "industries": [
+                    "Telecommunications",
+                    "Technology",
+                    "Education",
+                    "Healthcare",
+                    "Government"
+                  ],
+                  "unique_indicators": 4835
+                }
+              }
+            },
+            "false_positive": [],
+            "alexa": "http://www.alexa.com/siteinfo/github.com",
+            "whois": "http://whois.domaintools.com/github.com",
+            "domain": "github.com",
+            "hostname": "Unavailable"
+          }
+        },
+        "AbuseIPDB": {
+          "status": "unsupported_ioc_type_or_no_data",
+          "is_malicious": false
+        },
+        "URLhaus": {
+          "status": "unsupported_ioc_type_or_no_data",
+          "is_malicious": false
+        },
+        "PhishTank": {
+          "status": "unsupported_ioc_type_or_no_data",
+          "is_malicious": false
+        },
+        "OpenPhish": {
+          "error": "'Settings' object has no attribute 'OPENPHISH_FEED_URL'",
+          "is_malicious": false
+        }
+      },
+      "evidence": null
+    }
+  ],
+  "attachment_analyses": [],
+  "ai_analysis": {
+    "id": "86a1a981-366a-4fc0-9019-4dfdabdccd5c",
+    "model_used": "llama3.1:8b",
+    "attack_classification": "bec",
+    "confidence_score": 0.83,
+    "severity_level": "medium",
+    "reasoning": "Based on the analysis, we have detected a Business Email Compromise (BEC) attack. The threat intelligence providers flagged the URL as malicious, and the URLhaus status indicates that it is not supported or has no data.",
+    "tactics_detected": [
+      {
+        "tactic": "Urgency",
+        "description": "The email created a sense of urgency to prompt the recipient into taking action.",
+        "confidence": 0.9,
+        "evidence": "The email stated that the recipient's account would be suspended if they did not take action immediately."
+      },
+      {
+        "tactic": "Social Engineering",
+        "description": "The attacker used social engineering tactics to trick the recipient into divulging sensitive information.",
+        "confidence": 0.8,
+        "evidence": "The email asked the recipient to verify their account credentials, which is a common tactic used by attackers."
+      }
+    ],
+    "structured_output": {
+      "attack_classification": "bec",
+      "confidence_score": 0.83,
+      "severity_level": "medium",
+      "reasoning": "Based on the analysis, we have detected a Business Email Compromise (BEC) attack. The threat intelligence providers flagged the URL as malicious, and the URLhaus status indicates that it is not supported or has no data.",
+      "tactics_detected": [
+        {
+          "tactic": "Urgency",
+          "description": "The email created a sense of urgency to prompt the recipient into taking action.",
+          "confidence": 0.9,
+          "evidence": "The email stated that the recipient's account would be suspended if they did not take action immediately."
+        },
+        {
+          "tactic": "Social Engineering",
+          "description": "The attacker used social engineering tactics to trick the recipient into divulging sensitive information.",
+          "confidence": 0.8,
+          "evidence": "The email asked the recipient to verify their account credentials, which is a common tactic used by attackers."
+        }
+      ]
+    },
+    "evidence": null,
+    "ioc_summary": null,
+    "investigation_summary": "",
+    "executive_summary": "",
+    "recommended_actions": null
+  },
+  "iocs": [
+    {
+      "id": "dcefba6b-cb35-409d-8ff8-75df20847050",
+      "ioc_type": "email",
+      "value": "newsletter@github.com",
+      "threat_score": 0.0,
+      "reputation_data": {
+        "AlienVault OTX": {
+          "is_malicious": false,
+          "pulses": 0
+        },
+        "AbuseIPDB": {
+          "status": "unsupported_ioc_type_or_no_data",
+          "is_malicious": false
+        },
+        "URLhaus": {
+          "status": "unsupported_ioc_type_or_no_data",
+          "is_malicious": false
+        },
+        "PhishTank": {
+          "status": "unsupported_ioc_type_or_no_data",
+          "is_malicious": false
+        },
+        "OpenPhish": {
+          "status": "unsupported_ioc_type_or_no_data",
+          "is_malicious": false
+        }
+      }
+    },
+    {
+      "id": "5327d4e4-e4e9-436c-a5c4-04dc775b83fe",
+      "ioc_type": "sender_domain",
+      "value": "github.com",
+      "threat_score": 0.0,
+      "reputation_data": {
+        "AlienVault OTX": {
+          "status": "unsupported_ioc_type_or_no_data",
+          "is_malicious": false
+        },
+        "AbuseIPDB": {
+          "status": "unsupported_ioc_type_or_no_data",
+          "is_malicious": false
+        },
+        "URLhaus": {
+          "status": "unsupported_ioc_type_or_no_data",
+          "is_malicious": false
+        },
+        "PhishTank": {
+          "status": "unsupported_ioc_type_or_no_data",
+          "is_malicious": false
+        },
+        "OpenPhish": {
+          "status": "unsupported_ioc_type_or_no_data",
+          "is_malicious": false
+        }
+      }
+    },
+    {
+      "id": "77a2c1af-dba7-4e97-8677-953f6830bc0e",
+      "ioc_type": "url",
+      "value": "https://github.com/trending",
+      "threat_score": 80.0,
+      "reputation_data": {
+        "AlienVault OTX": {
+          "pulses": 6,
+          "reputation": 0,
+          "is_malicious": true,
+          "raw_data": {
+            "sections": [
+              "general",
+              "url_list",
+              "http_scans",
+              "screenshot"
+            ],
+            "indicator": "https://github.com/trending",
+            "type": "url",
+            "type_title": "URL",
+            "validation": [
+              {
+                "source": "alexa",
+                "message": "Alexa rank: #87",
+                "name": "Listed on Alexa"
+              },
+              {
+                "source": "akamai",
+                "message": "Akamai rank: #560",
+                "name": "Akamai Popular Domain"
+              },
+              {
+                "source": "whitelist",
+                "message": "Whitelisted domain github.com",
+                "name": "Whitelisted domain"
+              },
+              {
+                "source": "majestic",
+                "message": "Whitelisted domain github.com",
+                "name": "Whitelisted domain"
+              }
+            ],
+            "base_indicator": {
+              "id": 3983514941,
+              "indicator": "https://github.com/trending",
+              "type": "URL",
+              "title": "",
+              "description": "",
+              "content": "",
+              "access_type": "public",
+              "access_reason": ""
+            },
+            "pulse_info": {
+              "count": 6,
+              "pulses": [
+                {
+                  "id": "6941e87912ebb7843300906d",
+                  "name": "Telus Github",
+                  "description": "Telus has a Github. They are one of Canada's 'big 3' ISPs. They are compromised.",
+                  "modified": "2026-01-15T23:03:27.378000",
+                  "created": "2025-12-16T23:17:13.020000",
+                  "tags": [
+                    "type",
+                    "path",
+                    "secure",
+                    "date",
+                    "accept",
+                    "self",
+                    "httponly",
+                    "samesitelax",
+                    "expireswed",
+                    "updated",
+                    "sandbox",
+                    "malware",
+                    "analysis",
+                    "online",
+                    "submit",
+                    "vxstream",
+                    "sample",
+                    "download",
+                    "trojan",
+                    "apt",
+                    "prefetch8 ansi",
+                    "ansi",
+                    "show process",
+                    "hash seen",
+                    "threat level",
+                    "pcap",
+                    "sha256",
+                    "pcap processing",
+                    "ck id",
+                    "suspicious",
+                    "hybrid",
+                    "comspec",
+                    "close",
+                    "click",
+                    "hosts",
+                    "general",
+                    "model",
+                    "strings",
+                    "contact",
+                    "hybrid analysis",
+                    "api key",
+                    "vetting process",
+                    "please note",
+                    "please",
+                    "virus",
+                    "ransomware",
+                    "static",
+                    "indicator of compromise",
+                    "ioc",
+                    "extraction",
+                    "emulation",
+                    "platform",
+                    "javascript",
+                    "static analyzer",
+                    "analyzer"
+                  ],
+                  "references": [
+                    "http://hybrid-analysis.com/sample/f62e99ffe34a3f0c186ac31d151d22dd940884f79bbaafcc6061a2a9387f45a8/6941e0586df20223a505d490",
+                    "http://hybrid-analysis.com/sample/f62e99ffe34a3f0c186ac31d151d22dd940884f79bbaafcc6061a2a9387f45a8",
+                    "https://www.filescan.io/uploads/6941e02584afa5547b586bac/reports/a23ea43a-ad21-4306-9f47-1a8deaa129c0/ioc",
+                    "https://www.virustotal.com/gui/collection/5967f31c865dce02efd16cebad1e75bd838298965361912987dd932a513f9212/iocs",
+                    "https://www.virustotal.com/gui/collection/5967f31c865dce02efd16cebad1e75bd838298965361912987dd932a513f9212/summary",
+                    "https://app.threat.zone/submission/12b7b619-0e5a-4996-9bb5-493ef98f2803/url-analysis-report"
+                  ],
+                  "public": 1,
+                  "adversary": "",
+                  "targeted_countries": [
+                    "Canada",
+                    "United States of America"
+                  ],
+                  "malware_families": [],
+                  "attack_ids": [
+                    {
+                      "id": "T1027",
+                      "name": "Obfuscated Files or Information",
+                      "display_name": "T1027 - Obfuscated Files or Information"
+                    },
+                    {
+                      "id": "T1057",
+                      "name": "Process Discovery",
+                      "display_name": "T1057 - Process Discovery"
+                    },
+                    {
+                      "id": "T1071",
+                      "name": "Application Layer Protocol",
+                      "display_name": "T1071 - Application Layer Protocol"
+                    },
+                    {
+                      "id": "T1105",
+                      "name": "Ingress Tool Transfer",
+                      "display_name": "T1105 - Ingress Tool Transfer"
+                    },
+                    {
+                      "id": "T1129",
+                      "name": "Shared Modules",
+                      "display_name": "T1129 - Shared Modules"
+                    },
+                    {
+                      "id": "T1518",
+                      "name": "Software Discovery",
+                      "display_name": "T1518 - Software Discovery"
+                    },
+                    {
+                      "id": "T1553",
+                      "name": "Subvert Trust Controls",
+                      "display_name": "T1553 - Subvert Trust Controls"
+                    },
+                    {
+                      "id": "T1568",
+                      "name": "Dynamic Resolution",
+                      "display_name": "T1568 - Dynamic Resolution"
+                    },
+                    {
+                      "id": "T1590",
+                      "name": "Gather Victim Network Information",
+                      "display_name": "T1590 - Gather Victim Network Information"
+                    }
+                  ],
+                  "industries": [
+                    "Telecommunications",
+                    "Technology",
+                    "Healthcare",
+                    "Education"
+                  ],
+                  "TLP": "white",
+                  "cloned_from": null,
+                  "export_count": 3,
+                  "upvotes_count": 0,
+                  "downvotes_count": 0,
+                  "votes_count": 0,
+                  "locked": false,
+                  "pulse_source": "web",
+                  "validator_count": 0,
+                  "comment_count": 0,
+                  "follower_count": 0,
+                  "vote": 0,
+                  "author": {
+                    "username": "Disable_Duck",
+                    "id": "244325",
+                    "avatar_url": "/otxapi/users/avatar_image/media/avatars/user_244325/resized/80/avatar_3b9c358f36.png",
+                    "is_subscribed": false,
+                    "is_following": false
+                  },
+                  "indicator_type_counts": {
+                    "FileHash-MD5": 32,
+                    "FileHash-SHA1": 31,
+                    "FileHash-SHA256": 31,
+                    "SSLCertFingerprint": 11,
+                    "URL": 197,
+                    "domain": 27,
+                    "email": 2,
+                    "hostname": 101
+                  },
+                  "indicator_count": 432,
+                  "is_author": false,
+                  "is_subscribing": null,
+                  "subscriber_count": 133,
+                  "modified_text": "156 days ago ",
+                  "is_modified": true,
+                  "groups": [],
+                  "in_group": false,
+                  "threat_hunter_scannable": true,
+                  "threat_hunter_has_agents": 1,
+                  "related_indicator_type": "URL",
+                  "related_indicator_is_active": 1
+                },
+                {
+                  "id": "660afeb0c9812049de87dec1",
+                  "name": "hxxps://github[.]com/MSUDenverSystemsEngineering/Salt-Instructional-18/tree/master/AppDeployToolkit",
+                  "description": "hxxps://github.com/MSUDenverSystemsEngineering/Salt-Instructional-18/tree/master/AppDeployToolkit\n\nSomething I figured worth looking into - present on several University of Alberta documents on devices sampled from several labs\n\nIOCs (04.01.24): parsed using IOC parser on IOCs (behavioral) derived from: Tri.age Analysis: https://tria.ge/240401-v8bafsaf71/behavioral1 and Hybrid Analysis: http://www.hybrid-analysis.com/sample/e1a88d17a7c013cf623d01c2105e6233e2debb67a9c3fd0eb73b286091c82917/660af3e16e24fdbb100e03d9\n-IOCs submitted to URLscan.io\nUpdate: 09.27.24 -> Present in a word document on Uni Computers (All)",
+                  "modified": "2025-09-06T17:02:07.070000",
+                  "created": "2024-04-01T18:36:32.583000",
+                  "tags": [
+                    "please",
+                    "javascript",
+                    "triage",
+                    "malware",
+                    "analysis",
+                    "report",
+                    "reported",
+                    "analyze",
+                    "sandbox",
+                    "download submit",
+                    "sha256",
+                    "sha1",
+                    "sha512",
+                    "prefetch1",
+                    "iocs",
+                    "suspicious use",
+                    "prefetch8",
+                    "ck v13",
+                    "monitor",
+                    "general",
+                    "config",
+                    "copy",
+                    "target",
+                    "score",
+                    "entity",
+                    "domain",
+                    "ipv6",
+                    "mitreatt",
+                    "macaddress",
+                    "filename"
+                  ],
+                  "references": [
+                    "https://www.virustotal.com/gui/collection/78cac7a60cb9ea18ed98d5529491d4351d031634dfe7de0088a3054fba1e53be/iocs",
+                    "https://tria.ge/240401-v8bafsaf71/behavioral1",
+                    "https://www.virustotal.com/gui/collection/78cac7a60cb9ea18ed98d5529491d4351d031634dfe7de0088a3054fba1e53be/summary",
+                    "https://www.virustotal.com/graph/embed/g0e28b9d656774e73b987b563164f4c51556d897677ed4a78920d44a0715390e6?theme=dark",
+                    "http://www.hybrid-analysis.com/sample/e1a88d17a7c013cf623d01c2105e6233e2debb67a9c3fd0eb73b286091c82917/660af3e16e24fdbb100e03d9",
+                    "https://viz.greynoise.io/tags/georgia-tech-research-scanner?days=10",
+                    "https://www.virustotal.com/graph/embed/g4928995ad74946e184fceac08d1c9ec4b891ca72d6c84eb08fc776c915c99e60?theme=dark",
+                    "https://www.filescan.io/uploads/66f6fe25f71b9c224c13bdf7/reports/b95801f7-d70e-4cc6-b967-b1cc8ad56fc9/overview",
+                    "https://tria.ge/250807-vg754scn6t/behavioral1 - 08.07.25",
+                    "https://app.any.run/tasks/53605645-2825-4d09-95ff-183a59b25518 - 08.07.25"
+                  ],
+                  "public": 1,
+                  "adversary": "",
+                  "targeted_countries": [
+                    "Canada",
+                    "United States of America"
+                  ],
+                  "malware_families": [],
+                  "attack_ids": [
+                    {
+                      "id": "T1012",
+                      "name": "Query Registry",
+                      "display_name": "T1012 - Query Registry"
+                    },
+                    {
+                      "id": "T1082",
+                      "name": "System Information Discovery",
+                      "display_name": "T1082 - System Information Discovery"
+                    },
+                    {
+                      "id": "T1553",
+                      "name": "Subvert Trust Controls",
+                      "display_name": "T1553 - Subvert Trust Controls"
+                    },
+                    {
+                      "id": "T1105",
+                      "name": "Ingress Tool Transfer",
+                      "display_name": "T1105 - Ingress Tool Transfer"
+                    },
+                    {
+                      "id": "T1568",
+                      "name": "Dynamic Resolution",
+                      "display_name": "T1568 - Dynamic Resolution"
+                    },
+                    {
+                      "id": "T1071",
+                      "name": "Application Layer Protocol",
+                      "display_name": "T1071 - Application Layer Protocol"
+                    }
+                  ],
+                  "industries": [
+                    "Education",
+                    "Technology",
+                    "Government"
+                  ],
+                  "TLP": "white",
+                  "cloned_from": null,
+                  "export_count": 59,
+                  "upvotes_count": 0,
+                  "downvotes_count": 0,
+                  "votes_count": 0,
+                  "locked": false,
+                  "pulse_source": "web",
+                  "validator_count": 0,
+                  "comment_count": 0,
+                  "follower_count": 0,
+                  "vote": 0,
+                  "author": {
+                    "username": "Disable_Duck",
+                    "id": "244325",
+                    "avatar_url": "/otxapi/users/avatar_image/media/avatars/user_244325/resized/80/avatar_3b9c358f36.png",
+                    "is_subscribed": false,
+                    "is_following": false
+                  },
+                  "indicator_type_counts": {
+                    "FileHash-MD5": 103,
+                    "FileHash-SHA1": 105,
+                    "FileHash-SHA256": 495,
+                    "URL": 613,
+                    "hostname": 109,
+                    "CVE": 4,
+                    "domain": 122,
+                    "email": 10
+                  },
+                  "indicator_count": 1561,
+                  "is_author": false,
+                  "is_subscribing": null,
+                  "subscriber_count": 135,
+                  "modified_text": "287 days ago ",
+                  "is_modified": true,
+                  "groups": [],
+                  "in_group": false,
+                  "threat_hunter_scannable": true,
+                  "threat_hunter_has_agents": 1,
+                  "related_indicator_type": "URL",
+                  "related_indicator_is_active": 1
+                },
+                {
+                  "id": "67df904daf96180003ff1e14",
+                  "name": "hxxps://github[.]com/Cn33liz/p0wnedShell - 07.15.25 (Un-Enriched)",
+                  "description": "Yara Rules Triggered:\n\n9b0e9dce190e3dcf83b697ba2a08c9031aa2de00a6d3a3db9c86e2a8b4bc7bc0\np0wnedShell\n\nMatches rule Base64_Encoded_URL from ruleset Base64_Encoded_URL at https://github.com/InQuest/yara-rules-vt by InQuest Labs\nThis signature fires on the presence of Base64 encoded URI prefixes (http:// and https://) across any file. The simple presence of such strings is not inherently an indicator of malicious content, but is worth further investigation. - a moment ago\n View Ruleset\nMatches rule Hacktool_Strings_p0wnedShell from ruleset gen_p0wnshell at https://github.com/Neo23x0/signature-base by Florian Roth\nDetects strings found in Runspace Post Exploitation Toolkit - a moment ago\nMatches rule p0wnedPotato from ruleset gen_p0wnshell at https://github.com/Neo23x0/signature-base by Florian Roth (Nextron Systems)\np0wnedShell Runspace Post Exploitation Toolkit - file p0wnedPotato.cs - a moment ago",
+                  "modified": "2025-08-16T05:00:22.327000",
+                  "created": "2025-03-23T04:38:37.512000",
+                  "tags": [
+                    "sandbox",
+                    "malware",
+                    "analysis",
+                    "online",
+                    "submit",
+                    "vxstream",
+                    "sample",
+                    "download",
+                    "trojan",
+                    "apt",
+                    "ansi",
+                    "prefetch8 ansi",
+                    "date",
+                    "threat level",
+                    "show process",
+                    "sha256",
+                    "hash seen",
+                    "pcap processing",
+                    "command decode",
+                    "pcap",
+                    "suspicious",
+                    "hybrid",
+                    "comspec",
+                    "close",
+                    "click",
+                    "hosts",
+                    "general",
+                    "path",
+                    "model",
+                    "strings",
+                    "contact",
+                    "threat intelligence",
+                    "feed",
+                    "ioc",
+                    "change theme",
+                    "contact us",
+                    "intelligence",
+                    "threats api",
+                    "analyze api",
+                    "overview",
+                    "threats explore",
+                    "rate limits",
+                    "stixtaxii",
+                    "bulk export",
+                    "please",
+                    "javascript",
+                    "virus",
+                    "ransomware",
+                    "static",
+                    "indicator of compromise",
+                    "extraction",
+                    "emulation",
+                    "platform",
+                    "entity",
+                    "report phishing",
+                    "suspicious urls",
+                    "error",
+                    "sorry"
+                  ],
+                  "references": [
+                    "https://hybrid-analysis.com/sample/c801e05a1ee3423572349377ea9bdc3846b62e949611679e81c3d6cddcde77e5/67dde11e816206bd720dc9a0",
+                    "https://pulsedive.com/indicator/?iid=68355616",
+                    "https://www.virustotal.com/gui/url/bc0fe9233e19654c54cc439e9f3e06491556867cde40e25c8589dbee265f3f2f/details",
+                    "https://www.filescan.io/uploads/67df8925a175d31773454fd7/reports/d000025d-8403-4b03-8f76-a3b74d9b821f/overview",
+                    "https://www.virustotal.com/graph/embed/ga577e541c45f4ef3b8c2ee0e464a4264caf5439148f941db8c2615f1b83baebe?theme=dark",
+                    "https://www.virustotal.com/gui/collection/f5259d2e7f82856773d9a0867206fe5b571627740209eb72652fd2c04b099a16",
+                    "https://www.virustotal.com/gui/collection/f5259d2e7f82856773d9a0867206fe5b571627740209eb72652fd2c04b099a16/iocs",
+                    "https://report.netcraft.com/submission/OAoeOZfDFap5UPDTF52Uy5Q754Z5Fctm?tab=urls",
+                    "https://app.threat.zone/submission/ef652ac5-bc19-43e4-a603-e2d2ccae55ff/static-scan-report/strings",
+                    "https://www.filescan.io/uploads/685b8c3dcf2af157111779ff/reports/69c49cb3-aef0-4a32-b382-6b38ec8187d0/overview",
+                    "https://app.any.run/tasks/2f11fff7-a2bc-4744-af91-279753100630",
+                    "https://app.threat.zone/submission/2514e91a-4ad4-4c54-bee3-276c86dcc970/overview",
+                    "https://polyswarm.network/scan/results/url/bc0fe9233e19654c54cc439e9f3e06491556867cde40e25c8589dbee265f3f2f",
+                    "https://tria.ge/250717-f744tavxcy/behavioral1"
+                  ],
+                  "public": 1,
+                  "adversary": "",
+                  "targeted_countries": [
+                    "United States of America",
+                    "Canada"
+                  ],
+                  "malware_families": [],
+                  "attack_ids": [
+                    {
+                      "id": "T1027",
+                      "name": "Obfuscated Files or Information",
+                      "display_name": "T1027 - Obfuscated Files or Information"
+                    },
+                    {
+                      "id": "T1057",
+                      "name": "Process Discovery",
+                      "display_name": "T1057 - Process Discovery"
+                    },
+                    {
+                      "id": "T1071",
+                      "name": "Application Layer Protocol",
+                      "display_name": "T1071 - Application Layer Protocol"
+                    },
+                    {
+                      "id": "T1105",
+                      "name": "Ingress Tool Transfer",
+                      "display_name": "T1105 - Ingress Tool Transfer"
+                    },
+                    {
+                      "id": "T1129",
+                      "name": "Shared Modules",
+                      "display_name": "T1129 - Shared Modules"
+                    },
+                    {
+                      "id": "T1480",
+                      "name": "Execution Guardrails",
+                      "display_name": "T1480 - Execution Guardrails"
+                    },
+                    {
+                      "id": "T1518",
+                      "name": "Software Discovery",
+                      "display_name": "T1518 - Software Discovery"
+                    },
+                    {
+                      "id": "T1553",
+                      "name": "Subvert Trust Controls",
+                      "display_name": "T1553 - Subvert Trust Controls"
+                    },
+                    {
+                      "id": "T1568",
+                      "name": "Dynamic Resolution",
+                      "display_name": "T1568 - Dynamic Resolution"
+                    },
+                    {
+                      "id": "T1583",
+                      "name": "Acquire Infrastructure",
+                      "display_name": "T1583 - Acquire Infrastructure"
+                    }
+                  ],
+                  "industries": [
+                    "Education",
+                    "Technology",
+                    "Healthcare",
+                    "Government"
+                  ],
+                  "TLP": "white",
+                  "cloned_from": null,
+                  "export_count": 56,
+                  "upvotes_count": 0,
+                  "downvotes_count": 0,
+                  "votes_count": 0,
+                  "locked": false,
+                  "pulse_source": "web",
+                  "validator_count": 0,
+                  "comment_count": 0,
+                  "follower_count": 0,
+                  "vote": 0,
+                  "author": {
+                    "username": "Disable_Duck",
+                    "id": "244325",
+                    "avatar_url": "/otxapi/users/avatar_image/media/avatars/user_244325/resized/80/avatar_3b9c358f36.png",
+                    "is_subscribed": false,
+                    "is_following": false
+                  },
+                  "indicator_type_counts": {
+                    "FileHash-MD5": 219,
+                    "FileHash-SHA1": 203,
+                    "FileHash-SHA256": 530,
+                    "SSLCertFingerprint": 10,
+                    "email": 3,
+                    "hostname": 76,
+                    "URL": 164,
+                    "domain": 153
+                  },
+                  "indicator_count": 1358,
+                  "is_author": false,
+                  "is_subscribing": null,
+                  "subscriber_count": 131,
+                  "modified_text": "309 days ago ",
+                  "is_modified": true,
+                  "groups": [],
+                  "in_group": false,
+                  "threat_hunter_scannable": true,
+                  "threat_hunter_has_agents": 1,
+                  "related_indicator_type": "URL",
+                  "related_indicator_is_active": 1
+                },
+                {
+                  "id": "684225925f1a076ce3039b55",
+                  "name": "hxxps://github[.]com/CocoaPods - 06.05.25",
+                  "description": "Github CocoaPods",
+                  "modified": "2025-07-05T23:04:57.997000",
+                  "created": "2025-06-05T23:17:38.255000",
+                  "tags": [
+                    "sandbox",
+                    "malware",
+                    "analysis",
+                    "online",
+                    "submit",
+                    "vxstream",
+                    "sample",
+                    "download",
+                    "trojan",
+                    "apt",
+                    "prefetch8 ansi",
+                    "ansi",
+                    "date",
+                    "threat level",
+                    "show process",
+                    "sha256",
+                    "hash seen",
+                    "pcap",
+                    "pcap processing",
+                    "command decode",
+                    "suspicious",
+                    "hybrid",
+                    "comspec",
+                    "close",
+                    "click",
+                    "hosts",
+                    "june",
+                    "general",
+                    "path",
+                    "model",
+                    "strings",
+                    "contact",
+                    "community",
+                    "results",
+                    "switch",
+                    "inquest labs",
+                    "resources api",
+                    "notes supported",
+                    "cve list",
+                    "drop your",
+                    "file",
+                    "service",
+                    "virus",
+                    "ransomware",
+                    "static",
+                    "indicator of compromise",
+                    "ioc",
+                    "extraction",
+                    "emulation",
+                    "platform",
+                    "please",
+                    "javascript",
+                    "url",
+                    "scanner",
+                    "reputation",
+                    "phishing",
+                    "fastly",
+                    "accept",
+                    "sectigo limited",
+                    "gmt file",
+                    "windows nt",
+                    "win64",
+                    "http2",
+                    "url get",
+                    "fingerprint",
+                    "ascii text",
+                    "write"
+                  ],
+                  "references": [
+                    "https://www.hybrid-analysis.com/sample/2df0978d569e55b6c2176959734d9a6a776eab8c11e2742d7b0cde7a7fb72011/68422003376961f119095141",
+                    "https://metadefender.com/results/url/aHR0cHM6Ly9naXRodWIuY29tL0NvY29hUG9kcw==",
+                    "https://www.filescan.io/uploads/68421f7dfd02ed5e059acb43/reports/6eb07c34-b325-4107-8652-fe9503ca076e/overview",
+                    "https://www.virustotal.com/gui/file/9054fc526befddddb30e9df6dade3c405327951f2cd2add9cb27effd4e64ebc7?nocache=1",
+                    "https://urlquery.net/report/ae80c540-8c9b-48e4-a6e1-b18cb4426dbf"
+                  ],
+                  "public": 1,
+                  "adversary": "",
+                  "targeted_countries": [
+                    "United States of America",
+                    "Canada",
+                    "Netherlands"
+                  ],
+                  "malware_families": [],
+                  "attack_ids": [
+                    {
+                      "id": "T1027",
+                      "name": "Obfuscated Files or Information",
+                      "display_name": "T1027 - Obfuscated Files or Information"
+                    },
+                    {
+                      "id": "T1057",
+                      "name": "Process Discovery",
+                      "display_name": "T1057 - Process Discovery"
+                    },
+                    {
+                      "id": "T1071",
+                      "name": "Application Layer Protocol",
+                      "display_name": "T1071 - Application Layer Protocol"
+                    },
+                    {
+                      "id": "T1129",
+                      "name": "Shared Modules",
+                      "display_name": "T1129 - Shared Modules"
+                    },
+                    {
+                      "id": "T1480",
+                      "name": "Execution Guardrails",
+                      "display_name": "T1480 - Execution Guardrails"
+                    },
+                    {
+                      "id": "T1518",
+                      "name": "Software Discovery",
+                      "display_name": "T1518 - Software Discovery"
+                    },
+                    {
+                      "id": "T1553",
+                      "name": "Subvert Trust Controls",
+                      "display_name": "T1553 - Subvert Trust Controls"
+                    },
+                    {
+                      "id": "T1568",
+                      "name": "Dynamic Resolution",
+                      "display_name": "T1568 - Dynamic Resolution"
+                    },
+                    {
+                      "id": "T1583",
+                      "name": "Acquire Infrastructure",
+                      "display_name": "T1583 - Acquire Infrastructure"
+                    },
+                    {
+                      "id": "T1590",
+                      "name": "Gather Victim Network Information",
+                      "display_name": "T1590 - Gather Victim Network Information"
+                    }
+                  ],
+                  "industries": [
+                    "Technology"
+                  ],
+                  "TLP": "white",
+                  "cloned_from": null,
+                  "export_count": 36,
+                  "upvotes_count": 0,
+                  "downvotes_count": 0,
+                  "votes_count": 0,
+                  "locked": false,
+                  "pulse_source": "web",
+                  "validator_count": 0,
+                  "comment_count": 0,
+                  "follower_count": 0,
+                  "vote": 0,
+                  "author": {
+                    "username": "Disable_Duck",
+                    "id": "244325",
+                    "avatar_url": "/otxapi/users/avatar_image/media/avatars/user_244325/resized/80/avatar_3b9c358f36.png",
+                    "is_subscribed": false,
+                    "is_following": false
+                  },
+                  "indicator_type_counts": {
+                    "FileHash-MD5": 182,
+                    "FileHash-SHA1": 267,
+                    "FileHash-SHA256": 187,
+                    "SSLCertFingerprint": 12,
+                    "URL": 297,
+                    "email": 4,
+                    "hostname": 80,
+                    "domain": 13
+                  },
+                  "indicator_count": 1042,
+                  "is_author": false,
+                  "is_subscribing": null,
+                  "subscriber_count": 131,
+                  "modified_text": "350 days ago ",
+                  "is_modified": true,
+                  "groups": [],
+                  "in_group": false,
+                  "threat_hunter_scannable": true,
+                  "threat_hunter_has_agents": 1,
+                  "related_indicator_type": "URL",
+                  "related_indicator_is_active": 1
+                },
+                {
+                  "id": "68364f8e872b25238d4b9825",
+                  "name": "URLHaus data - 27-05-2025",
+                  "description": "",
+                  "modified": "2025-06-26T23:04:46.238000",
+                  "created": "2025-05-27T23:49:34.153000",
+                  "tags": [
+                    "c2-monitor-auto",
+                    "telnet",
+                    "unknown",
+                    "32-bit",
+                    "elf",
+                    "mips",
+                    "Mozi",
+                    "arm",
+                    "mirai",
+                    "hajime",
+                    "opendir",
+                    "WsgiDAV",
+                    "xml-opendir",
+                    "censys",
+                    "CobaltStrike",
+                    "backdoor",
+                    "sshdkit",
+                    "dropped-by-amadey",
+                    "RemcosRAT",
+                    "ua-wget",
+                    "gafgyt",
+                    "sh",
+                    "ascii",
+                    "Encoded",
+                    "DarkVisionRAT",
+                    "GuLoader",
+                    "rat",
+                    "exe",
+                    "vbs",
+                    "CoinMiner",
+                    "Formbook",
+                    "StealeriumStealer",
+                    "AgentTesla",
+                    "RedLineStealer",
+                    "MassLogger",
+                    "a310Logger",
+                    "powershell",
+                    "ps1",
+                    "VIPKeylogger",
+                    "Vidar",
+                    "rev-base64-loader",
+                    "jpg-base64-loader",
+                    "LummaStealer",
+                    "encrypted",
+                    "PureLogStealer",
+                    "donutloader",
+                    "NetSupport",
+                    "stego",
+                    "AsyncRAT",
+                    "DarkCloud",
+                    "xworm",
+                    "dcrat",
+                    "base64-loader",
+                    "PowerPC",
+                    "Adwind",
+                    "js",
+                    "zip",
+                    "hta",
+                    "AgentTestla",
+                    "ClickFix",
+                    "P2Pinfect",
+                    "x86-32",
+                    "connectwise"
+                  ],
+                  "references": [
+                    "https://urlhaus.abuse.ch/browse/"
+                  ],
+                  "public": 1,
+                  "adversary": "",
+                  "targeted_countries": [],
+                  "malware_families": [],
+                  "attack_ids": [],
+                  "industries": [],
+                  "TLP": "green",
+                  "cloned_from": null,
+                  "export_count": 66,
+                  "upvotes_count": 0,
+                  "downvotes_count": 0,
+                  "votes_count": 0,
+                  "locked": false,
+                  "pulse_source": "api",
+                  "validator_count": 0,
+                  "comment_count": 0,
+                  "follower_count": 0,
+                  "vote": 0,
+                  "author": {
+                    "username": "CyberHunterAutoFeed",
+                    "id": "182496",
+                    "avatar_url": "/otxapi/users/avatar_image/media/avatars/user_182496/resized/80/avatar_3b9c358f36.png",
+                    "is_subscribed": false,
+                    "is_following": false
+                  },
+                  "indicator_type_counts": {
+                    "URL": 1000,
+                    "hostname": 28,
+                    "domain": 28
+                  },
+                  "indicator_count": 1056,
+                  "is_author": false,
+                  "is_subscribing": null,
+                  "subscriber_count": 1635,
+                  "modified_text": "359 days ago ",
+                  "is_modified": true,
+                  "groups": [],
+                  "in_group": false,
+                  "threat_hunter_scannable": false,
+                  "threat_hunter_has_agents": 1,
+                  "related_indicator_type": "URL",
+                  "related_indicator_is_active": 1
+                },
+                {
+                  "id": "67dfbeec0e4cfd59cca3ac61",
+                  "name": "hxxps://github[.]com/imaya/zlib.js/tree/master - 03.22.25 (Un-Enriched)",
+                  "description": "hxxps://github[.]com/imaya/zlib.js/tree/master - 03.22.25",
+                  "modified": "2025-04-22T07:00:01.273000",
+                  "created": "2025-03-23T07:57:32.130000",
+                  "tags": [
+                    "sandbox",
+                    "malware",
+                    "analysis",
+                    "online",
+                    "submit",
+                    "vxstream",
+                    "sample",
+                    "download",
+                    "trojan",
+                    "apt",
+                    "ansi",
+                    "prefetch8 ansi",
+                    "date",
+                    "threat level",
+                    "show process",
+                    "hash seen",
+                    "sha256",
+                    "pcap processing",
+                    "pcap",
+                    "command decode",
+                    "suspicious",
+                    "hybrid",
+                    "comspec",
+                    "close",
+                    "click",
+                    "hosts",
+                    "general",
+                    "path",
+                    "model",
+                    "strings",
+                    "contact",
+                    "threat intelligence",
+                    "feed",
+                    "ioc",
+                    "change theme",
+                    "contact us",
+                    "intelligence",
+                    "threats api",
+                    "analyze api",
+                    "overview",
+                    "threats explore",
+                    "rate limits",
+                    "stixtaxii",
+                    "bulk export",
+                    "please",
+                    "javascript",
+                    "virus",
+                    "ransomware",
+                    "static",
+                    "indicator of compromise",
+                    "extraction",
+                    "emulation",
+                    "platform",
+                    "entity"
+                  ],
+                  "references": [
+                    "https://hybrid-analysis.com/sample/8ee2ed5f3080354e6c8974fbebdc448c8d289a3f05e3bfedefadd5e2a9084376/67dfb4135d3987c5750301fc",
+                    "https://pulsedive.com/indicator/?iid=68381634",
+                    "https://www.virustotal.com/gui/url/76078f83edcd46bd9b83a87a39731cbe45da33b30a7c4a628223a4959c97ce0f",
+                    "https://www.filescan.io/uploads/67dfbaf7a175d317734568e1/reports/83bd2446-c34b-4ce3-9de6-7f9685941d28/overview",
+                    "https://www.filescan.io/uploads/67dfbaf7a175d317734568e1/reports/83bd2446-c34b-4ce3-9de6-7f9685941d28/ioc",
+                    "https://www.virustotal.com/graph/embed/g8d4be90062df462fbc7be3ba1cca3ec26c9964a0684742ea8ca73e36810d5810?theme=dark"
+                  ],
+                  "public": 1,
+                  "adversary": "",
+                  "targeted_countries": [
+                    "United States of America",
+                    "Canada"
+                  ],
+                  "malware_families": [],
+                  "attack_ids": [
+                    {
+                      "id": "T1027",
+                      "name": "Obfuscated Files or Information",
+                      "display_name": "T1027 - Obfuscated Files or Information"
+                    },
+                    {
+                      "id": "T1057",
+                      "name": "Process Discovery",
+                      "display_name": "T1057 - Process Discovery"
+                    },
+                    {
+                      "id": "T1071",
+                      "name": "Application Layer Protocol",
+                      "display_name": "T1071 - Application Layer Protocol"
+                    },
+                    {
+                      "id": "T1105",
+                      "name": "Ingress Tool Transfer",
+                      "display_name": "T1105 - Ingress Tool Transfer"
+                    },
+                    {
+                      "id": "T1129",
+                      "name": "Shared Modules",
+                      "display_name": "T1129 - Shared Modules"
+                    },
+                    {
+                      "id": "T1480",
+                      "name": "Execution Guardrails",
+                      "display_name": "T1480 - Execution Guardrails"
+                    },
+                    {
+                      "id": "T1518",
+                      "name": "Software Discovery",
+                      "display_name": "T1518 - Software Discovery"
+                    },
+                    {
+                      "id": "T1553",
+                      "name": "Subvert Trust Controls",
+                      "display_name": "T1553 - Subvert Trust Controls"
+                    },
+                    {
+                      "id": "T1568",
+                      "name": "Dynamic Resolution",
+                      "display_name": "T1568 - Dynamic Resolution"
+                    },
+                    {
+                      "id": "T1583",
+                      "name": "Acquire Infrastructure",
+                      "display_name": "T1583 - Acquire Infrastructure"
+                    }
+                  ],
+                  "industries": [
+                    "Education",
+                    "Healthcare",
+                    "Government",
+                    "Technology"
+                  ],
+                  "TLP": "white",
+                  "cloned_from": null,
+                  "export_count": 22,
+                  "upvotes_count": 0,
+                  "downvotes_count": 0,
+                  "votes_count": 0,
+                  "locked": false,
+                  "pulse_source": "web",
+                  "validator_count": 0,
+                  "comment_count": 3,
+                  "follower_count": 0,
+                  "vote": 0,
+                  "author": {
+                    "username": "Disable_Duck",
+                    "id": "244325",
+                    "avatar_url": "/otxapi/users/avatar_image/media/avatars/user_244325/resized/80/avatar_3b9c358f36.png",
+                    "is_subscribed": false,
+                    "is_following": false
+                  },
+                  "indicator_type_counts": {
+                    "FileHash-MD5": 91,
+                    "FileHash-SHA1": 91,
+                    "FileHash-SHA256": 190,
+                    "SSLCertFingerprint": 13,
+                    "domain": 75,
+                    "email": 4,
+                    "hostname": 47,
+                    "URL": 136
+                  },
+                  "indicator_count": 647,
+                  "is_author": false,
+                  "is_subscribing": null,
+                  "subscriber_count": 131,
+                  "modified_text": "425 days ago ",
+                  "is_modified": true,
+                  "groups": [],
+                  "in_group": false,
+                  "threat_hunter_scannable": true,
+                  "threat_hunter_has_agents": 1,
+                  "related_indicator_type": "URL",
+                  "related_indicator_is_active": 1
+                }
+              ],
+              "references": [
+                "https://report.netcraft.com/submission/OAoeOZfDFap5UPDTF52Uy5Q754Z5Fctm?tab=urls",
+                "https://www.filescan.io/uploads/68421f7dfd02ed5e059acb43/reports/6eb07c34-b325-4107-8652-fe9503ca076e/overview",
+                "https://www.virustotal.com/gui/collection/78cac7a60cb9ea18ed98d5529491d4351d031634dfe7de0088a3054fba1e53be/iocs",
+                "https://viz.greynoise.io/tags/georgia-tech-research-scanner?days=10",
+                "https://urlquery.net/report/ae80c540-8c9b-48e4-a6e1-b18cb4426dbf",
+                "https://pulsedive.com/indicator/?iid=68381634",
+                "https://www.virustotal.com/graph/embed/g4928995ad74946e184fceac08d1c9ec4b891ca72d6c84eb08fc776c915c99e60?theme=dark",
+                "https://www.virustotal.com/gui/collection/78cac7a60cb9ea18ed98d5529491d4351d031634dfe7de0088a3054fba1e53be/summary",
+                "https://www.filescan.io/uploads/685b8c3dcf2af157111779ff/reports/69c49cb3-aef0-4a32-b382-6b38ec8187d0/overview",
+                "http://hybrid-analysis.com/sample/f62e99ffe34a3f0c186ac31d151d22dd940884f79bbaafcc6061a2a9387f45a8",
+                "https://www.hybrid-analysis.com/sample/2df0978d569e55b6c2176959734d9a6a776eab8c11e2742d7b0cde7a7fb72011/68422003376961f119095141",
+                "https://www.virustotal.com/gui/url/bc0fe9233e19654c54cc439e9f3e06491556867cde40e25c8589dbee265f3f2f/details",
+                "https://hybrid-analysis.com/sample/c801e05a1ee3423572349377ea9bdc3846b62e949611679e81c3d6cddcde77e5/67dde11e816206bd720dc9a0",
+                "https://metadefender.com/results/url/aHR0cHM6Ly9naXRodWIuY29tL0NvY29hUG9kcw==",
+                "https://www.filescan.io/uploads/66f6fe25f71b9c224c13bdf7/reports/b95801f7-d70e-4cc6-b967-b1cc8ad56fc9/overview",
+                "https://app.any.run/tasks/53605645-2825-4d09-95ff-183a59b25518 - 08.07.25",
+                "https://www.filescan.io/uploads/67df8925a175d31773454fd7/reports/d000025d-8403-4b03-8f76-a3b74d9b821f/overview",
+                "https://www.virustotal.com/graph/embed/g8d4be90062df462fbc7be3ba1cca3ec26c9964a0684742ea8ca73e36810d5810?theme=dark",
+                "https://tria.ge/250717-f744tavxcy/behavioral1",
+                "https://www.filescan.io/uploads/67dfbaf7a175d317734568e1/reports/83bd2446-c34b-4ce3-9de6-7f9685941d28/ioc",
+                "https://www.virustotal.com/gui/file/9054fc526befddddb30e9df6dade3c405327951f2cd2add9cb27effd4e64ebc7?nocache=1",
+                "https://www.virustotal.com/gui/url/76078f83edcd46bd9b83a87a39731cbe45da33b30a7c4a628223a4959c97ce0f",
+                "http://hybrid-analysis.com/sample/f62e99ffe34a3f0c186ac31d151d22dd940884f79bbaafcc6061a2a9387f45a8/6941e0586df20223a505d490",
+                "https://www.virustotal.com/gui/collection/5967f31c865dce02efd16cebad1e75bd838298965361912987dd932a513f9212/summary",
+                "https://www.virustotal.com/graph/embed/g0e28b9d656774e73b987b563164f4c51556d897677ed4a78920d44a0715390e6?theme=dark",
+                "https://app.threat.zone/submission/12b7b619-0e5a-4996-9bb5-493ef98f2803/url-analysis-report",
+                "https://www.virustotal.com/gui/collection/f5259d2e7f82856773d9a0867206fe5b571627740209eb72652fd2c04b099a16",
+                "https://tria.ge/240401-v8bafsaf71/behavioral1",
+                "http://www.hybrid-analysis.com/sample/e1a88d17a7c013cf623d01c2105e6233e2debb67a9c3fd0eb73b286091c82917/660af3e16e24fdbb100e03d9",
+                "https://hybrid-analysis.com/sample/8ee2ed5f3080354e6c8974fbebdc448c8d289a3f05e3bfedefadd5e2a9084376/67dfb4135d3987c5750301fc",
+                "https://pulsedive.com/indicator/?iid=68355616",
+                "https://www.filescan.io/uploads/6941e02584afa5547b586bac/reports/a23ea43a-ad21-4306-9f47-1a8deaa129c0/ioc",
+                "https://urlhaus.abuse.ch/browse/",
+                "https://www.virustotal.com/graph/embed/ga577e541c45f4ef3b8c2ee0e464a4264caf5439148f941db8c2615f1b83baebe?theme=dark",
+                "https://www.filescan.io/uploads/67dfbaf7a175d317734568e1/reports/83bd2446-c34b-4ce3-9de6-7f9685941d28/overview",
+                "https://www.virustotal.com/gui/collection/f5259d2e7f82856773d9a0867206fe5b571627740209eb72652fd2c04b099a16/iocs",
+                "https://app.any.run/tasks/2f11fff7-a2bc-4744-af91-279753100630",
+                "https://app.threat.zone/submission/2514e91a-4ad4-4c54-bee3-276c86dcc970/overview",
+                "https://polyswarm.network/scan/results/url/bc0fe9233e19654c54cc439e9f3e06491556867cde40e25c8589dbee265f3f2f",
+                "https://tria.ge/250807-vg754scn6t/behavioral1 - 08.07.25",
+                "https://app.threat.zone/submission/ef652ac5-bc19-43e4-a603-e2d2ccae55ff/static-scan-report/strings",
+                "https://www.virustotal.com/gui/collection/5967f31c865dce02efd16cebad1e75bd838298965361912987dd932a513f9212/iocs"
+              ],
+              "related": {
+                "alienvault": {
+                  "adversary": [],
+                  "malware_families": [],
+                  "industries": [],
+                  "unique_indicators": 0
+                },
+                "other": {
+                  "adversary": [],
+                  "malware_families": [],
+                  "industries": [
+                    "Telecommunications",
+                    "Technology",
+                    "Education",
+                    "Healthcare",
+                    "Government"
+                  ],
+                  "unique_indicators": 4835
+                }
+              }
+            },
+            "false_positive": [],
+            "alexa": "http://www.alexa.com/siteinfo/github.com",
+            "whois": "http://whois.domaintools.com/github.com",
+            "domain": "github.com",
+            "hostname": "Unavailable"
+          }
+        },
+        "AbuseIPDB": {
+          "status": "unsupported_ioc_type_or_no_data",
+          "is_malicious": false
+        },
+        "URLhaus": {
+          "status": "unsupported_ioc_type_or_no_data",
+          "is_malicious": false
+        },
+        "PhishTank": {
+          "status": "unsupported_ioc_type_or_no_data",
+          "is_malicious": false
+        },
+        "OpenPhish": {
+          "error": "'Settings' object has no attribute 'OPENPHISH_FEED_URL'",
+          "is_malicious": false
+        }
+      }
+    },
+    {
+      "id": "035f3909-2341-4ead-ac76-db3764408b22",
+      "ioc_type": "ip",
+      "value": "192.30.252.1",
+      "threat_score": 0.0,
+      "reputation_data": {
+        "AlienVault OTX": {
+          "pulses": 0,
+          "reputation": 0,
+          "is_malicious": false,
+          "raw_data": {
+            "whois": "http://whois.domaintools.com/192.30.252.1",
+            "reputation": 0,
+            "indicator": "192.30.252.1",
+            "type": "IPv4",
+            "type_title": "IPv4",
+            "base_indicator": {},
+            "pulse_info": {
+              "count": 0,
+              "pulses": [],
+              "references": [],
+              "related": {
+                "alienvault": {
+                  "adversary": [],
+                  "malware_families": [],
+                  "industries": []
+                },
+                "other": {
+                  "adversary": [],
+                  "malware_families": [],
+                  "industries": []
+                }
+              }
+            },
+            "false_positive": [],
+            "validation": [
+              {
+                "source": "whitelist",
+                "message": "contained in whitelisted prefix",
+                "name": "Whitelisted IP"
+              }
+            ],
+            "asn": "AS36459 github  inc.",
+            "city_data": true,
+            "city": null,
+            "region": null,
+            "continent_code": "NA",
+            "country_code3": "USA",
+            "country_code2": "US",
+            "subdivision": null,
+            "latitude": 37.751,
+            "postal_code": null,
+            "longitude": -97.822,
+            "accuracy_radius": 1000,
+            "country_code": "US",
+            "country_name": "United States of America",
+            "dma_code": 0,
+            "charset": 0,
+            "area_code": 0,
+            "flag_url": "/assets/images/flags/us.png",
+            "flag_title": "United States of America",
+            "sections": [
+              "general",
+              "geo",
+              "reputation",
+              "url_list",
+              "passive_dns",
+              "malware",
+              "nids_list",
+              "http_scans"
+            ]
+          }
+        },
+        "AbuseIPDB": {
+          "abuse_confidence_score": 0,
+          "total_reports": 0,
+          "is_malicious": false,
+          "raw_data": {
+            "ipAddress": "192.30.252.1",
+            "isPublic": true,
+            "ipVersion": 4,
+            "isWhitelisted": true,
+            "abuseConfidenceScore": 0,
+            "countryCode": "US",
+            "usageType": "Data Center/Web Hosting/Transit",
+            "isp": "GitHub, Inc.",
+            "domain": "github.com",
+            "hostnames": [],
+            "isTor": false,
+            "totalReports": 0,
+            "numDistinctUsers": 0,
+            "lastReportedAt": null
+          }
+        },
+        "URLhaus": {
+          "status": "unsupported_ioc_type_or_no_data",
+          "is_malicious": false
+        },
+        "PhishTank": {
+          "status": "unsupported_ioc_type_or_no_data",
+          "is_malicious": false
+        },
+        "OpenPhish": {
+          "status": "unsupported_ioc_type_or_no_data",
+          "is_malicious": false
+        }
+      }
+    },
+    {
+      "id": "84b0217e-2fdb-43b0-9462-627bd03b4cf9",
+      "ioc_type": "message_id",
+      "value": "<1234567890.valid@github.com>",
+      "threat_score": 0.0,
+      "reputation_data": {
+        "AlienVault OTX": {
+          "status": "unsupported_ioc_type_or_no_data",
+          "is_malicious": false
+        },
+        "AbuseIPDB": {
+          "status": "unsupported_ioc_type_or_no_data",
+          "is_malicious": false
+        },
+        "URLhaus": {
+          "status": "unsupported_ioc_type_or_no_data",
+          "is_malicious": false
+        },
+        "PhishTank": {
+          "status": "unsupported_ioc_type_or_no_data",
+          "is_malicious": false
+        },
+        "OpenPhish": {
+          "status": "unsupported_ioc_type_or_no_data",
+          "is_malicious": false
+        }
+      }
+    }
+  ]
+}

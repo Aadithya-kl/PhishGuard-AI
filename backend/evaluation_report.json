@@ -1,0 +1,10 @@
+{
+    "global_metrics": {
+        "Accuracy": 100.0,
+        "Precision": 100.0,
+        "Recall": 100.0,
+        "F1": 10000.0,
+        "False_Positive_Rate": 0.0,
+        "Hybrid_Coverage": 100.0
+    }
+}

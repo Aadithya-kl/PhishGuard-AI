@@ -1,0 +1,12 @@
+Subject: Google: Security alert
+From: no-reply@accounts.google.com
+To: you@company.com
+Message-ID: <eeeacc25-6169-4fd8-a6c6-ba799cf3be6e@accounts.google.com>
+Date: Sun, 21 Jun 2026 17:41:33 +0530
+Authentication-Results: spf=pass dkim=pass dmarc=pass
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+
+A new sign-in from Chrome on Windows was detected. If this was you, ignore th=
+is email.

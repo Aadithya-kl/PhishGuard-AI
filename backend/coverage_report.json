@@ -1,0 +1,250 @@
+[
+  {
+    "SampleName": "Credential Harvesting",
+    "ScanID": "c228eb7e-ea01-456c-a3cf-4267a9f0f224",
+    "RiskLevel": "low",
+    "OverallRiskScore": 13.75,
+    "DetectionsTriggered": [
+      "Brand Impersonation",
+      "Credential Harvesting Attempt"
+    ],
+    "EvidenceCount": 3,
+    "RiskContribution": 45.0,
+    "MitreTechniques": [
+      "T1566",
+      "T1036",
+      "T1566.002",
+      "T1040"
+    ]
+  },
+  {
+    "SampleName": "Business Email Compromise",
+    "ScanID": "799b5673-2d67-4bfe-9321-eb30363ff905",
+    "RiskLevel": "low",
+    "OverallRiskScore": 12.5,
+    "DetectionsTriggered": [
+      "Business Email Compromise (BEC)"
+    ],
+    "EvidenceCount": 5,
+    "RiskContribution": 40.0,
+    "MitreTechniques": [
+      "T1586",
+      "T1566.004"
+    ]
+  },
+  {
+    "SampleName": "Invoice Fraud",
+    "ScanID": "c5d68d8e-9a7d-46f6-a8f7-38b95aa29db6",
+    "RiskLevel": "low",
+    "OverallRiskScore": 8.75,
+    "DetectionsTriggered": [
+      "Invoice Fraud Attempt"
+    ],
+    "EvidenceCount": 3,
+    "RiskContribution": 25.0,
+    "MitreTechniques": [
+      "T1566"
+    ]
+  },
+  {
+    "SampleName": "Malware Delivery",
+    "ScanID": "55baba9a-0849-4198-8dc3-77771540d808",
+    "RiskLevel": "low",
+    "OverallRiskScore": 13.75,
+    "DetectionsTriggered": [
+      "Malware Delivery"
+    ],
+    "EvidenceCount": 2,
+    "RiskContribution": 45.0,
+    "MitreTechniques": [
+      "T1566.001",
+      "T1204.002"
+    ]
+  },
+  {
+    "SampleName": "QR Phishing",
+    "ScanID": "b9164129-130d-4b63-9f3e-e16254ac44cb",
+    "RiskLevel": "low",
+    "OverallRiskScore": 11.25,
+    "DetectionsTriggered": [
+      "QR Code Phishing (Quishing)"
+    ],
+    "EvidenceCount": 1,
+    "RiskContribution": 35.0,
+    "MitreTechniques": [
+      "T1566"
+    ]
+  },
+  {
+    "SampleName": "OAuth Consent",
+    "ScanID": "9d7be884-abf8-445d-baa0-8b2346254c6b",
+    "RiskLevel": "low",
+    "OverallRiskScore": 11.25,
+    "DetectionsTriggered": [
+      "OAuth Consent Phishing"
+    ],
+    "EvidenceCount": 3,
+    "RiskContribution": 35.0,
+    "MitreTechniques": [
+      "T1528"
+    ]
+  },
+  {
+    "SampleName": "MFA Fatigue",
+    "ScanID": "0f472e65-fb83-4fa1-a92c-ef4d687f8c88",
+    "RiskLevel": "low",
+    "OverallRiskScore": 10.0,
+    "DetectionsTriggered": [
+      "MFA Fatigue / Push Spam"
+    ],
+    "EvidenceCount": 2,
+    "RiskContribution": 30.0,
+    "MitreTechniques": [
+      "T1621"
+    ]
+  },
+  {
+    "SampleName": "Cryptocurrency Scam",
+    "ScanID": "a0f40617-b790-42f9-89aa-967443fe5d08",
+    "RiskLevel": "low",
+    "OverallRiskScore": 7.5,
+    "DetectionsTriggered": [
+      "Cryptocurrency Extortion / Scam"
+    ],
+    "EvidenceCount": 2,
+    "RiskContribution": 20.0,
+    "MitreTechniques": [
+      "T1498",
+      "T1566"
+    ]
+  },
+  {
+    "SampleName": "Fake Recruiting",
+    "ScanID": "54254cb2-5ff2-46aa-8ce5-245c864c4398",
+    "RiskLevel": "low",
+    "OverallRiskScore": 6.25,
+    "DetectionsTriggered": [
+      "Fake Recruiting Campaign"
+    ],
+    "EvidenceCount": 1,
+    "RiskContribution": 15.0,
+    "MitreTechniques": [
+      "T1566.002"
+    ]
+  },
+  {
+    "SampleName": "Brand Impersonation",
+    "ScanID": "b38080e2-88ea-4f50-947b-773d62137679",
+    "RiskLevel": "low",
+    "OverallRiskScore": 2.5,
+    "DetectionsTriggered": [],
+    "EvidenceCount": 0,
+    "RiskContribution": 0,
+    "MitreTechniques": []
+  },
+  {
+    "SampleName": "Benign Newsletter 1",
+    "ScanID": "648eecc7-5718-4d57-b3fb-3d7da2f9d78f",
+    "RiskLevel": "low",
+    "OverallRiskScore": 2.5,
+    "DetectionsTriggered": [],
+    "EvidenceCount": 0,
+    "RiskContribution": 0,
+    "MitreTechniques": []
+  },
+  {
+    "SampleName": "Benign Meeting Invite",
+    "ScanID": "52c721d4-c8dd-4a73-8dfa-2d54c6c12f7a",
+    "RiskLevel": "low",
+    "OverallRiskScore": 2.5,
+    "DetectionsTriggered": [],
+    "EvidenceCount": 0,
+    "RiskContribution": 0,
+    "MitreTechniques": []
+  },
+  {
+    "SampleName": "Benign Lunch Plans",
+    "ScanID": "2ee35d31-60ba-4d74-ab3a-f28950776b77",
+    "RiskLevel": "low",
+    "OverallRiskScore": 2.5,
+    "DetectionsTriggered": [],
+    "EvidenceCount": 0,
+    "RiskContribution": 0,
+    "MitreTechniques": []
+  },
+  {
+    "SampleName": "Benign HR Update",
+    "ScanID": "0151b09e-aa89-45c8-81f2-864653e2e1b3",
+    "RiskLevel": "low",
+    "OverallRiskScore": 2.5,
+    "DetectionsTriggered": [],
+    "EvidenceCount": 0,
+    "RiskContribution": 0,
+    "MitreTechniques": []
+  },
+  {
+    "SampleName": "Benign Code Review",
+    "ScanID": "ae0deba0-02b2-4661-8ccc-89aa5f462fbf",
+    "RiskLevel": "low",
+    "OverallRiskScore": 2.5,
+    "DetectionsTriggered": [],
+    "EvidenceCount": 0,
+    "RiskContribution": 0,
+    "MitreTechniques": []
+  },
+  {
+    "SampleName": "Benign Vendor Follow-up",
+    "ScanID": "56fd3d1b-f929-4e9c-afd8-a63469cb330d",
+    "RiskLevel": "low",
+    "OverallRiskScore": 2.5,
+    "DetectionsTriggered": [],
+    "EvidenceCount": 0,
+    "RiskContribution": 0,
+    "MitreTechniques": []
+  },
+  {
+    "SampleName": "Benign Out of Office",
+    "ScanID": "29c769f7-772d-4d86-b414-69f04801e680",
+    "RiskLevel": "low",
+    "OverallRiskScore": 12.5,
+    "DetectionsTriggered": [
+      "Business Email Compromise (BEC)"
+    ],
+    "EvidenceCount": 1,
+    "RiskContribution": 40.0,
+    "MitreTechniques": [
+      "T1586",
+      "T1566.004"
+    ]
+  },
+  {
+    "SampleName": "Benign Server Alert",
+    "ScanID": "7926847d-13e7-4b65-adce-95950a5f82f0",
+    "RiskLevel": "low",
+    "OverallRiskScore": 2.5,
+    "DetectionsTriggered": [],
+    "EvidenceCount": 0,
+    "RiskContribution": 0,
+    "MitreTechniques": []
+  },
+  {
+    "SampleName": "Benign Jira Notification",
+    "ScanID": "5b16b3e0-99ac-4ac4-870e-8d5c1124c9cb",
+    "RiskLevel": "low",
+    "OverallRiskScore": 2.5,
+    "DetectionsTriggered": [],
+    "EvidenceCount": 0,
+    "RiskContribution": 0,
+    "MitreTechniques": []
+  },
+  {
+    "SampleName": "Benign Social Update",
+    "ScanID": "c141a343-0cee-43cf-ad6b-c40ed07e40e3",
+    "RiskLevel": "low",
+    "OverallRiskScore": 2.5,
+    "DetectionsTriggered": [],
+    "EvidenceCount": 0,
+    "RiskContribution": 0,
+    "MitreTechniques": []
+  }
+]

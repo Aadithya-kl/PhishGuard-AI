@@ -1,0 +1,662 @@
+{
+    "Adv_BEC_1.eml": {
+        "type": "phishing",
+        "expected_category": "Business Email Compromise",
+        "expected_rules": []
+    },
+    "Adv_BEC_2.eml": {
+        "type": "phishing",
+        "expected_category": "Business Email Compromise",
+        "expected_rules": []
+    },
+    "Adv_BEC_3.eml": {
+        "type": "phishing",
+        "expected_category": "Business Email Compromise",
+        "expected_rules": []
+    },
+    "Adv_Cred_1.eml": {
+        "type": "phishing",
+        "expected_category": "Credential Harvesting",
+        "expected_rules": []
+    },
+    "Adv_Cred_2.eml": {
+        "type": "phishing",
+        "expected_category": "Credential Harvesting",
+        "expected_rules": []
+    },
+    "Adv_Cred_3.eml": {
+        "type": "phishing",
+        "expected_category": "Credential Harvesting",
+        "expected_rules": []
+    },
+    "Adv_Brand_1.eml": {
+        "type": "phishing",
+        "expected_category": "Brand Impersonation",
+        "expected_rules": []
+    },
+    "Adv_Brand_2.eml": {
+        "type": "phishing",
+        "expected_category": "Brand Impersonation",
+        "expected_rules": []
+    },
+    "Adv_Brand_3.eml": {
+        "type": "phishing",
+        "expected_category": "Brand Impersonation",
+        "expected_rules": []
+    },
+    "Adv_Inv_1.eml": {
+        "type": "phishing",
+        "expected_category": "Invoice Fraud",
+        "expected_rules": []
+    },
+    "Adv_Inv_2.eml": {
+        "type": "phishing",
+        "expected_category": "Invoice Fraud",
+        "expected_rules": []
+    },
+    "Hybrid_1.eml": {
+        "type": "phishing",
+        "expected_category": null,
+        "expected_rules": [
+            "Business Email Compromise",
+            "Credential Harvesting"
+        ]
+    },
+    "Hybrid_2.eml": {
+        "type": "phishing",
+        "expected_category": null,
+        "expected_rules": [
+            "Invoice Fraud",
+            "Malware Delivery"
+        ]
+    },
+    "Hybrid_3.eml": {
+        "type": "phishing",
+        "expected_category": null,
+        "expected_rules": [
+            "Brand Impersonation",
+            "OAuth Consent"
+        ]
+    },
+    "Hybrid_4.eml": {
+        "type": "phishing",
+        "expected_category": null,
+        "expected_rules": [
+            "QR Phishing",
+            "Credential Harvesting"
+        ]
+    },
+    "Hybrid_5.eml": {
+        "type": "phishing",
+        "expected_category": null,
+        "expected_rules": [
+            "Crypto Scam",
+            "Business Email Compromise"
+        ]
+    },
+    "Hybrid_6.eml": {
+        "type": "phishing",
+        "expected_category": null,
+        "expected_rules": [
+            "MFA Fatigue",
+            "Brand Impersonation"
+        ]
+    },
+    "Hybrid_7.eml": {
+        "type": "phishing",
+        "expected_category": null,
+        "expected_rules": [
+            "Fake Recruiting",
+            "Malware Delivery"
+        ]
+    },
+    "Hybrid_8.eml": {
+        "type": "phishing",
+        "expected_category": null,
+        "expected_rules": [
+            "Invoice Fraud",
+            "Credential Harvesting"
+        ]
+    },
+    "Hybrid_9.eml": {
+        "type": "phishing",
+        "expected_category": null,
+        "expected_rules": [
+            "OAuth Consent",
+            "MFA Fatigue"
+        ]
+    },
+    "Hybrid_10.eml": {
+        "type": "phishing",
+        "expected_category": null,
+        "expected_rules": [
+            "Business Email Compromise",
+            "Malware Delivery"
+        ]
+    },
+    "Adv_Phish_11.eml": {
+        "type": "phishing",
+        "expected_category": "Credential Harvesting",
+        "expected_rules": []
+    },
+    "Adv_Phish_12.eml": {
+        "type": "phishing",
+        "expected_category": "Credential Harvesting",
+        "expected_rules": []
+    },
+    "Adv_Phish_13.eml": {
+        "type": "phishing",
+        "expected_category": "Credential Harvesting",
+        "expected_rules": []
+    },
+    "Adv_Phish_14.eml": {
+        "type": "phishing",
+        "expected_category": "Credential Harvesting",
+        "expected_rules": []
+    },
+    "Adv_Phish_15.eml": {
+        "type": "phishing",
+        "expected_category": "Credential Harvesting",
+        "expected_rules": []
+    },
+    "Adv_Phish_16.eml": {
+        "type": "phishing",
+        "expected_category": "Credential Harvesting",
+        "expected_rules": []
+    },
+    "Adv_Phish_17.eml": {
+        "type": "phishing",
+        "expected_category": "Credential Harvesting",
+        "expected_rules": []
+    },
+    "Adv_Phish_18.eml": {
+        "type": "phishing",
+        "expected_category": "Credential Harvesting",
+        "expected_rules": []
+    },
+    "Adv_Phish_19.eml": {
+        "type": "phishing",
+        "expected_category": "Credential Harvesting",
+        "expected_rules": []
+    },
+    "Adv_Phish_20.eml": {
+        "type": "phishing",
+        "expected_category": "Credential Harvesting",
+        "expected_rules": []
+    },
+    "Adv_Phish_21.eml": {
+        "type": "phishing",
+        "expected_category": "Credential Harvesting",
+        "expected_rules": []
+    },
+    "Adv_Phish_22.eml": {
+        "type": "phishing",
+        "expected_category": "Credential Harvesting",
+        "expected_rules": []
+    },
+    "Adv_Phish_23.eml": {
+        "type": "phishing",
+        "expected_category": "Credential Harvesting",
+        "expected_rules": []
+    },
+    "Adv_Phish_24.eml": {
+        "type": "phishing",
+        "expected_category": "Credential Harvesting",
+        "expected_rules": []
+    },
+    "Adv_Phish_25.eml": {
+        "type": "phishing",
+        "expected_category": "Credential Harvesting",
+        "expected_rules": []
+    },
+    "Adv_Phish_26.eml": {
+        "type": "phishing",
+        "expected_category": "Credential Harvesting",
+        "expected_rules": []
+    },
+    "Adv_Phish_27.eml": {
+        "type": "phishing",
+        "expected_category": "Credential Harvesting",
+        "expected_rules": []
+    },
+    "Adv_Phish_28.eml": {
+        "type": "phishing",
+        "expected_category": "Credential Harvesting",
+        "expected_rules": []
+    },
+    "Adv_Phish_29.eml": {
+        "type": "phishing",
+        "expected_category": "Credential Harvesting",
+        "expected_rules": []
+    },
+    "Adv_Phish_30.eml": {
+        "type": "phishing",
+        "expected_category": "Credential Harvesting",
+        "expected_rules": []
+    },
+    "Adv_Phish_31.eml": {
+        "type": "phishing",
+        "expected_category": "Credential Harvesting",
+        "expected_rules": []
+    },
+    "Adv_Phish_32.eml": {
+        "type": "phishing",
+        "expected_category": "Credential Harvesting",
+        "expected_rules": []
+    },
+    "Adv_Phish_33.eml": {
+        "type": "phishing",
+        "expected_category": "Credential Harvesting",
+        "expected_rules": []
+    },
+    "Adv_Phish_34.eml": {
+        "type": "phishing",
+        "expected_category": "Credential Harvesting",
+        "expected_rules": []
+    },
+    "Adv_Phish_35.eml": {
+        "type": "phishing",
+        "expected_category": "Credential Harvesting",
+        "expected_rules": []
+    },
+    "Adv_Phish_36.eml": {
+        "type": "phishing",
+        "expected_category": "Credential Harvesting",
+        "expected_rules": []
+    },
+    "Adv_Phish_37.eml": {
+        "type": "phishing",
+        "expected_category": "Credential Harvesting",
+        "expected_rules": []
+    },
+    "Adv_Phish_38.eml": {
+        "type": "phishing",
+        "expected_category": "Credential Harvesting",
+        "expected_rules": []
+    },
+    "Adv_Phish_39.eml": {
+        "type": "phishing",
+        "expected_category": "Credential Harvesting",
+        "expected_rules": []
+    },
+    "Adv_Phish_40.eml": {
+        "type": "phishing",
+        "expected_category": "Credential Harvesting",
+        "expected_rules": []
+    },
+    "Benign_Edge_1.eml": {
+        "type": "benign",
+        "expected_category": null,
+        "expected_rules": []
+    },
+    "Benign_Edge_2.eml": {
+        "type": "benign",
+        "expected_category": null,
+        "expected_rules": []
+    },
+    "Benign_Edge_3.eml": {
+        "type": "benign",
+        "expected_category": null,
+        "expected_rules": []
+    },
+    "Benign_Edge_4.eml": {
+        "type": "benign",
+        "expected_category": null,
+        "expected_rules": []
+    },
+    "Benign_Edge_5.eml": {
+        "type": "benign",
+        "expected_category": null,
+        "expected_rules": []
+    },
+    "Benign_Edge_6.eml": {
+        "type": "benign",
+        "expected_category": null,
+        "expected_rules": []
+    },
+    "Benign_Edge_7.eml": {
+        "type": "benign",
+        "expected_category": null,
+        "expected_rules": []
+    },
+    "Benign_Edge_8.eml": {
+        "type": "benign",
+        "expected_category": null,
+        "expected_rules": []
+    },
+    "Benign_Edge_9.eml": {
+        "type": "benign",
+        "expected_category": null,
+        "expected_rules": []
+    },
+    "Benign_Edge_10.eml": {
+        "type": "benign",
+        "expected_category": null,
+        "expected_rules": []
+    },
+    "Benign_Edge_11.eml": {
+        "type": "benign",
+        "expected_category": null,
+        "expected_rules": []
+    },
+    "Benign_Edge_12.eml": {
+        "type": "benign",
+        "expected_category": null,
+        "expected_rules": []
+    },
+    "Benign_Edge_13.eml": {
+        "type": "benign",
+        "expected_category": null,
+        "expected_rules": []
+    },
+    "Benign_Edge_14.eml": {
+        "type": "benign",
+        "expected_category": null,
+        "expected_rules": []
+    },
+    "Benign_Edge_15.eml": {
+        "type": "benign",
+        "expected_category": null,
+        "expected_rules": []
+    },
+    "Benign_Edge_16.eml": {
+        "type": "benign",
+        "expected_category": null,
+        "expected_rules": []
+    },
+    "Benign_Edge_17.eml": {
+        "type": "benign",
+        "expected_category": null,
+        "expected_rules": []
+    },
+    "Benign_Edge_18.eml": {
+        "type": "benign",
+        "expected_category": null,
+        "expected_rules": []
+    },
+    "Benign_Edge_19.eml": {
+        "type": "benign",
+        "expected_category": null,
+        "expected_rules": []
+    },
+    "Benign_Edge_20.eml": {
+        "type": "benign",
+        "expected_category": null,
+        "expected_rules": []
+    },
+    "Benign_Edge_21.eml": {
+        "type": "benign",
+        "expected_category": null,
+        "expected_rules": []
+    },
+    "Benign_Edge_22.eml": {
+        "type": "benign",
+        "expected_category": null,
+        "expected_rules": []
+    },
+    "Benign_Edge_23.eml": {
+        "type": "benign",
+        "expected_category": null,
+        "expected_rules": []
+    },
+    "Benign_Edge_24.eml": {
+        "type": "benign",
+        "expected_category": null,
+        "expected_rules": []
+    },
+    "Benign_Edge_25.eml": {
+        "type": "benign",
+        "expected_category": null,
+        "expected_rules": []
+    },
+    "Benign_Edge_26.eml": {
+        "type": "benign",
+        "expected_category": null,
+        "expected_rules": []
+    },
+    "Benign_Edge_27.eml": {
+        "type": "benign",
+        "expected_category": null,
+        "expected_rules": []
+    },
+    "Benign_Edge_28.eml": {
+        "type": "benign",
+        "expected_category": null,
+        "expected_rules": []
+    },
+    "Benign_Edge_29.eml": {
+        "type": "benign",
+        "expected_category": null,
+        "expected_rules": []
+    },
+    "Benign_Edge_30.eml": {
+        "type": "benign",
+        "expected_category": null,
+        "expected_rules": []
+    },
+    "Benign_Edge_31.eml": {
+        "type": "benign",
+        "expected_category": null,
+        "expected_rules": []
+    },
+    "Benign_Edge_32.eml": {
+        "type": "benign",
+        "expected_category": null,
+        "expected_rules": []
+    },
+    "Benign_Edge_33.eml": {
+        "type": "benign",
+        "expected_category": null,
+        "expected_rules": []
+    },
+    "Benign_Edge_34.eml": {
+        "type": "benign",
+        "expected_category": null,
+        "expected_rules": []
+    },
+    "Benign_Edge_35.eml": {
+        "type": "benign",
+        "expected_category": null,
+        "expected_rules": []
+    },
+    "Benign_Edge_36.eml": {
+        "type": "benign",
+        "expected_category": null,
+        "expected_rules": []
+    },
+    "Benign_Edge_37.eml": {
+        "type": "benign",
+        "expected_category": null,
+        "expected_rules": []
+    },
+    "Benign_Edge_38.eml": {
+        "type": "benign",
+        "expected_category": null,
+        "expected_rules": []
+    },
+    "Benign_Edge_39.eml": {
+        "type": "benign",
+        "expected_category": null,
+        "expected_rules": []
+    },
+    "Benign_Edge_40.eml": {
+        "type": "benign",
+        "expected_category": null,
+        "expected_rules": []
+    },
+    "Benign_Edge_41.eml": {
+        "type": "benign",
+        "expected_category": null,
+        "expected_rules": []
+    },
+    "Benign_Edge_42.eml": {
+        "type": "benign",
+        "expected_category": null,
+        "expected_rules": []
+    },
+    "Benign_Edge_43.eml": {
+        "type": "benign",
+        "expected_category": null,
+        "expected_rules": []
+    },
+    "Benign_Edge_44.eml": {
+        "type": "benign",
+        "expected_category": null,
+        "expected_rules": []
+    },
+    "Benign_Edge_45.eml": {
+        "type": "benign",
+        "expected_category": null,
+        "expected_rules": []
+    },
+    "Benign_Edge_46.eml": {
+        "type": "benign",
+        "expected_category": null,
+        "expected_rules": []
+    },
+    "Benign_Edge_47.eml": {
+        "type": "benign",
+        "expected_category": null,
+        "expected_rules": []
+    },
+    "Benign_Edge_48.eml": {
+        "type": "benign",
+        "expected_category": null,
+        "expected_rules": []
+    },
+    "Benign_Edge_49.eml": {
+        "type": "benign",
+        "expected_category": null,
+        "expected_rules": []
+    },
+    "Benign_Edge_50.eml": {
+        "type": "benign",
+        "expected_category": null,
+        "expected_rules": []
+    },
+    "Gray_1.eml": {
+        "type": "gray",
+        "expected_category": null,
+        "expected_rules": []
+    },
+    "Gray_2.eml": {
+        "type": "gray",
+        "expected_category": null,
+        "expected_rules": []
+    },
+    "Gray_3.eml": {
+        "type": "gray",
+        "expected_category": null,
+        "expected_rules": []
+    },
+    "Gray_4.eml": {
+        "type": "gray",
+        "expected_category": null,
+        "expected_rules": []
+    },
+    "Gray_5.eml": {
+        "type": "gray",
+        "expected_category": null,
+        "expected_rules": []
+    },
+    "Gray_6.eml": {
+        "type": "gray",
+        "expected_category": null,
+        "expected_rules": []
+    },
+    "Gray_7.eml": {
+        "type": "gray",
+        "expected_category": null,
+        "expected_rules": []
+    },
+    "Gray_8.eml": {
+        "type": "gray",
+        "expected_category": null,
+        "expected_rules": []
+    },
+    "Gray_9.eml": {
+        "type": "gray",
+        "expected_category": null,
+        "expected_rules": []
+    },
+    "Gray_10.eml": {
+        "type": "gray",
+        "expected_category": null,
+        "expected_rules": []
+    },
+    "Gray_11.eml": {
+        "type": "gray",
+        "expected_category": null,
+        "expected_rules": []
+    },
+    "Gray_12.eml": {
+        "type": "gray",
+        "expected_category": null,
+        "expected_rules": []
+    },
+    "Gray_13.eml": {
+        "type": "gray",
+        "expected_category": null,
+        "expected_rules": []
+    },
+    "Gray_14.eml": {
+        "type": "gray",
+        "expected_category": null,
+        "expected_rules": []
+    },
+    "Gray_15.eml": {
+        "type": "gray",
+        "expected_category": null,
+        "expected_rules": []
+    },
+    "Gray_16.eml": {
+        "type": "gray",
+        "expected_category": null,
+        "expected_rules": []
+    },
+    "Gray_17.eml": {
+        "type": "gray",
+        "expected_category": null,
+        "expected_rules": []
+    },
+    "Gray_18.eml": {
+        "type": "gray",
+        "expected_category": null,
+        "expected_rules": []
+    },
+    "Gray_19.eml": {
+        "type": "gray",
+        "expected_category": null,
+        "expected_rules": []
+    },
+    "Gray_20.eml": {
+        "type": "gray",
+        "expected_category": null,
+        "expected_rules": []
+    },
+    "Gray_21.eml": {
+        "type": "gray",
+        "expected_category": null,
+        "expected_rules": []
+    },
+    "Gray_22.eml": {
+        "type": "gray",
+        "expected_category": null,
+        "expected_rules": []
+    },
+    "Gray_23.eml": {
+        "type": "gray",
+        "expected_category": null,
+        "expected_rules": []
+    },
+    "Gray_24.eml": {
+        "type": "gray",
+        "expected_category": null,
+        "expected_rules": []
+    },
+    "Gray_25.eml": {
+        "type": "gray",
+        "expected_category": null,
+        "expected_rules": []
+    }
+}

