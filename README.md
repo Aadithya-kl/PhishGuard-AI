@@ -10,7 +10,9 @@
 
 ---
 
-![Mission Control](docs/images/mission-control.png)
+<p align="center">
+  <img src="docs/images/mission-control.png" alt="Mission Control" width="700" />
+</p>
 
 ## Overview
 
@@ -131,7 +133,9 @@ npm run dev
 ### 📧 Email Analysis
 Upload `.eml`/`.msg` files, paste email content, or submit raw headers for comprehensive analysis.
 
-![Email Analysis & Active Response](docs/images/active-response.png)
+<p align="center">
+  <img src="docs/images/active-response.png" alt="Email Analysis & Active Response" width="700" />
+</p>
 
 ### 🔍 Multi-Agent Threat Analysis
 Six specialized AI agents analyze emails independently:
@@ -152,12 +156,16 @@ Real-time threat intelligence dashboard with:
 ### 🕸️ Security Knowledge Graph
 Interactive graph visualization connecting emails, domains, senders, URLs, and campaigns.
 
-![Security Knowledge Graph](docs/images/knowledge-graph.png)
+<p align="center">
+  <img src="docs/images/knowledge-graph.png" alt="Security Knowledge Graph" width="700" />
+</p>
 
 ### 🤖 AI Security Copilot
 Chat-based investigation assistant that explains findings, answers questions, and generates incident response plans.
 
-![AI Security Copilot](docs/images/copilot.png)
+<p align="center">
+  <img src="docs/images/copilot.png" alt="AI Security Copilot" width="700" />
+</p>
 
 ### 📋 Executive Reporting
 Generate professional reports (PDF/JSON/HTML) in four formats:
@@ -166,12 +174,16 @@ Generate professional reports (PDF/JSON/HTML) in four formats:
 - Incident Response Report
 - Compliance Report
 
-![Executive Dashboard](docs/images/executive-dashboard.png)
+<p align="center">
+  <img src="docs/images/executive-dashboard.png" alt="Executive Dashboard" width="700" />
+</p>
 
 ### 🔎 Threat Hunting
 Advanced search across all historical scans with complex filtering by sender, domain, risk level, attack type, and date range.
 
-![Threat Hunting](docs/images/threat-hunting.png)
+<p align="center">
+  <img src="docs/images/threat-hunting.png" alt="Threat Hunting" width="700" />
+</p>
 
 ## API Documentation
 
