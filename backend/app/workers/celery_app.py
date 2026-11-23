@@ -1,32 +1,38 @@
-import os
+# Worker containers must set PHISHGUARD_WORKER=1 so app.database uses NullPool
+# (each task runs in a fresh event loop). See docker-compose.yml.
 from celery import Celery
 
-# Get Redis URL from environment or use a default
-broker_url = os.environ.get("CELERY_BROKER_URL", "redis://redis:6379/1")
-result_backend = os.environ.get("CELERY_RESULT_BACKEND", "redis://redis:6379/2")
+from app.config import get_settings
+
+_settings = get_settings()
 
 celery_app = Celery(
     "phishguard",
-    broker=broker_url,
-    backend=result_backend,
-    include=["app.workers.scan_tasks", "app.workers.report_tasks"]
+    broker=_settings.CELERY_BROKER_URL,
+    backend=_settings.CELERY_RESULT_BACKEND,
+    include=["app.workers.scan_tasks", "app.workers.report_tasks"],
 )
 
 celery_app.conf.update(
     task_serializer="json",
     accept_content=["json"],
     result_serializer="json",
+    result_expires=86400,
     timezone="UTC",
     enable_utc=True,
     task_track_started=True,
-    task_time_limit=3600,
+    task_time_limit=900,
+    task_soft_time_limit=840,
+    task_acks_late=True,
+    task_reject_on_worker_lost=True,
+    worker_prefetch_multiplier=1,
+    worker_max_tasks_per_child=200,
+    broker_connection_retry_on_startup=True,
     task_default_queue="default",
+    task_routes={
+        "app.workers.scan_tasks.*": {"queue": "scans"},
+        "app.workers.report_tasks.*": {"queue": "reports"},
+    },
 )
 
-# Optional: setup periodic tasks
-celery_app.conf.beat_schedule = {
-    # 'sample-task': {
-    #     'task': 'app.workers.scan_tasks.sample_task',
-    #     'schedule': 3600.0,
-    # },
-}
+celery_app.conf.beat_schedule = {}

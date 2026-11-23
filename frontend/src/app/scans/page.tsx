@@ -1,121 +1,209 @@
-"use client"
+"use client";
 
-import { useState, useRef } from "react"
-import { useRouter } from "next/navigation"
-import { Card } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { UploadCloud, FileText, Code, Loader2 } from "lucide-react"
-import { api } from "@/lib/api"
-import { toast } from "sonner"
+import Link from "next/link";
+import { useRouter, useSearchParams } from "next/navigation";
+import { Suspense, useEffect, useRef, useState } from "react";
+import { toast } from "sonner";
+import { Button, Dialog, Empty, ErrorNote, Input, Loading, PageHeader, Panel, RiskTag, Select, Spinner, Textarea } from "@/components/ui";
+import { IconUpload } from "@/components/icons";
+import { api } from "@/lib/api";
+import { ago, cx } from "@/lib/format";
+import { useSession } from "@/lib/session";
+import type { RiskLevel } from "@/lib/types";
+import { useLoad } from "@/lib/use-load";
 
-export default function NewScanPage() {
-  const router = useRouter()
-  const [activeTab, setActiveTab] = useState("upload")
-  const [loading, setLoading] = useState(false)
-  const [pastedContent, setPastedContent] = useState("")
-  const fileInputRef = useRef<HTMLInputElement>(null)
+function NewScan({ open, onClose }: { open: boolean; onClose: () => void }) {
+  const router = useRouter();
+  const [mode, setMode] = useState<"file" | "paste">("file");
+  const [raw, setRaw] = useState("");
+  const [busy, setBusy] = useState(false);
+  const [drag, setDrag] = useState(false);
+  const [error, setError] = useState<unknown>(null);
+  const fileRef = useRef<HTMLInputElement>(null);
 
-  const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0]
-    if (!file) return
-
-    setLoading(true)
+  async function go(p: Promise<{ id: string }>) {
+    setBusy(true);
+    setError(null);
     try {
-      const res = await api.scans.upload(file)
-      toast.success("File uploaded successfully! Starting analysis...")
-      router.push(`/scan/${res.id}`)
-    } catch (err: any) {
-      toast.error(err.message || "Failed to upload file")
-      setLoading(false)
+      const { id } = await p;
+      toast.success("Email queued for analysis");
+      onClose();
+      router.push(`/scans/${id}`);
+    } catch (e) {
+      setError(e);
+    } finally {
+      setBusy(false);
     }
   }
 
-  const handlePasteSubmit = async () => {
-    if (!pastedContent.trim()) {
-      toast.error("Please paste some content first")
-      return
+  function pick(file: File | undefined) {
+    if (!file) return;
+    if (!/\.(eml|msg|txt)$/i.test(file.name)) {
+      setError(new Error("Choose an .eml, .msg or .txt file."));
+      return;
     }
-
-    setLoading(true)
-    try {
-      const res = await api.scans.paste(pastedContent)
-      toast.success("Content submitted! Starting analysis...")
-      router.push(`/scan/${res.id}`)
-    } catch (err: any) {
-      toast.error(err.message || "Failed to submit content")
-      setLoading(false)
-    }
+    go(api.scans.upload(file));
   }
 
   return (
-    <div className="max-w-4xl mx-auto mt-10">
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold text-slate-100 mb-2">New Email Scan</h1>
-        <p className="text-slate-400">Analyze an email for phishing indicators, malicious URLs, and social engineering.</p>
+    <Dialog open={open} onClose={onClose} title="Scan an email" wide>
+      <div role="tablist" className="mb-4 flex gap-1 rounded-[var(--radius-ctl)] bg-sunk p-1 text-sm">
+        {(["file", "paste"] as const).map((m) => (
+          <button
+            key={m}
+            role="tab"
+            aria-selected={mode === m}
+            onClick={() => setMode(m)}
+            className={cx("flex-1 rounded px-3 py-1.5", mode === m ? "bg-panel text-ink" : "text-mute hover:text-ink")}
+          >
+            {m === "file" ? "Upload a file" : "Paste the source"}
+          </button>
+        ))}
       </div>
 
-      <div className="flex gap-4 mb-6">
-        <TabButton active={activeTab === "upload"} onClick={() => setActiveTab("upload")} icon={UploadCloud} label="File Upload" disabled={loading} />
-        <TabButton active={activeTab === "paste"} onClick={() => setActiveTab("paste")} icon={FileText} label="Paste Email" disabled={loading} />
-        <TabButton active={activeTab === "headers"} onClick={() => setActiveTab("headers")} icon={Code} label="Raw Headers" disabled={loading} />
-      </div>
-
-      <Card className="p-8 bg-[#12121a]/80 backdrop-blur border-slate-800 shadow-xl min-h-[400px] flex flex-col relative overflow-hidden">
-        {loading && (
-          <div className="absolute inset-0 bg-[#0a0a0f]/80 backdrop-blur-sm z-10 flex flex-col items-center justify-center">
-            <Loader2 className="w-12 h-12 text-cyan-400 animate-spin mb-4" />
-            <h3 className="text-lg font-medium text-white">Initializing Analysis Pipeline...</h3>
-            <p className="text-sm text-slate-400 mt-2">Uploading and parsing email contents</p>
-          </div>
-        )}
-
-        {activeTab === "upload" && (
-          <div className="flex-1 flex flex-col items-center justify-center border-2 border-dashed border-slate-700 rounded-lg bg-[#0a0a0f]/50 hover:border-cyan-500/50 hover:bg-cyan-950/10 transition-colors cursor-pointer group" onClick={() => fileInputRef.current?.click()}>
-            <input type="file" ref={fileInputRef} className="hidden" accept=".eml,.msg,text/plain" onChange={handleFileUpload} />
-            <div className="p-4 rounded-full bg-slate-800/50 group-hover:bg-cyan-900/30 mb-4 transition-colors">
-              <UploadCloud className="w-12 h-12 text-slate-400 group-hover:text-cyan-400 transition-colors" />
-            </div>
-            <h3 className="text-lg font-medium text-slate-200 mb-1">Drag & drop your email file</h3>
-            <p className="text-sm text-slate-500 mb-6">Supports .eml and .msg files up to 25MB</p>
-            <Button onClick={(e) => { e.stopPropagation(); fileInputRef.current?.click(); }} disabled={loading} className="bg-cyan-600 hover:bg-cyan-500 text-white shadow-[0_0_15px_rgba(8,145,178,0.4)] transition-all">
-              Browse Files
+      {mode === "file" ? (
+        <div
+          onDragOver={(e) => { e.preventDefault(); setDrag(true); }}
+          onDragLeave={() => setDrag(false)}
+          onDrop={(e) => { e.preventDefault(); setDrag(false); pick(e.dataTransfer.files[0]); }}
+          className={cx(
+            "flex flex-col items-center gap-3 rounded-[var(--radius-panel)] border border-dashed px-6 py-12 text-center",
+            drag ? "border-ice bg-ice/5" : "border-line-strong",
+          )}
+        >
+          {busy ? <Spinner size={28} /> : <IconUpload className="h-7 w-7 text-mute" />}
+          <p>Drop an exported email here</p>
+          <p className="t-small text-faint">.eml, .msg or .txt, up to 10 MB. In Outlook use File, Save As; in Gmail use Download message.</p>
+          <input ref={fileRef} type="file" accept=".eml,.msg,.txt,message/rfc822" className="sr-only" onChange={(e) => pick(e.target.files?.[0])} />
+          <Button onClick={() => fileRef.current?.click()} disabled={busy}>Choose file</Button>
+        </div>
+      ) : (
+        <div className="space-y-3">
+          <Textarea
+            value={raw}
+            onChange={(e) => setRaw(e.target.value)}
+            placeholder={"Paste the full message source, headers included.\n\nFrom: ...\nSubject: ...\n\n..."}
+            className="mono min-h-72"
+            aria-label="Email source"
+          />
+          <div className="flex justify-end">
+            <Button variant="primary" busy={busy} disabled={raw.trim().length < 10} onClick={() => go(api.scans.paste(raw))}>
+              Analyse email
             </Button>
           </div>
-        )}
-
-        {(activeTab === "paste" || activeTab === "headers") && (
-          <div className="flex-1 flex flex-col h-full">
-            <textarea 
-              value={pastedContent}
-              onChange={(e) => setPastedContent(e.target.value)}
-              disabled={loading}
-              className="flex-1 w-full p-4 bg-[#0a0a0f] border border-slate-700 rounded-md text-slate-300 font-mono text-sm focus:outline-none focus:border-cyan-500/50 resize-none"
-              placeholder={activeTab === "paste" ? "Paste raw email content including headers here..." : "Paste only the email headers here to analyze routing and authentication..."}
-            />
-            <div className="mt-4 flex justify-end">
-              <Button onClick={handlePasteSubmit} disabled={loading} className="bg-cyan-600 hover:bg-cyan-500 text-white shadow-[0_0_15px_rgba(8,145,178,0.4)]">
-                {activeTab === "paste" ? "Analyze Content" : "Analyze Headers"}
-              </Button>
-            </div>
-          </div>
-        )}
-      </Card>
-    </div>
-  )
+        </div>
+      )}
+      <div className="mt-4"><ErrorNote error={error} /></div>
+    </Dialog>
+  );
 }
 
-function TabButton({ active, onClick, icon: Icon, label }: any) {
+function ScansInner() {
+  const params = useSearchParams();
+  const router = useRouter();
+  const { can } = useSession();
+  const [page, setPage] = useState(1);
+  const [risk, setRisk] = useState<RiskLevel | "">((params.get("risk_level") as RiskLevel) || "");
+  const [q, setQ] = useState("");
+  const [query, setQuery] = useState("");
+  const [open, setOpen] = useState(params.get("new") === "1");
+
+  useEffect(() => {
+    const t = setTimeout(() => { setQuery(q); setPage(1); }, 300);
+    return () => clearTimeout(t);
+  }, [q]);
+
+  const list = useLoad(
+    () => api.scans.list({ page, risk_level: risk, q: query }),
+    [page, risk, query],
+    (d) => !!d?.items.some((s) => s.status === "pending" || s.status === "analyzing"),
+    4000,
+  );
+
   return (
-    <button
-      onClick={onClick}
-      className={`flex items-center px-6 py-3 rounded-t-lg transition-colors font-medium ${
-        active 
-          ? "bg-[#12121a] text-cyan-400 border-t border-l border-r border-slate-800 shadow-[0_-4px_10px_rgba(0,0,0,0.2)]" 
-          : "bg-[#0a0a0f] text-slate-500 hover:text-slate-300 border-b border-slate-800"
-      }`}
-    >
-      <Icon className="w-5 h-5 mr-2" />
-      {label}
-    </button>
-  )
+    <div className="mx-auto max-w-[1280px]">
+      <PageHeader
+        title="Scans"
+        lede="Every email submitted for analysis, newest first."
+        actions={can("upload") ? <Button variant="primary" onClick={() => setOpen(true)}>Scan an email</Button> : null}
+      />
+
+      <div className="mb-4 flex flex-wrap gap-3">
+        <Input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search subject or sender" className="max-w-xs" aria-label="Search scans" />
+        <Select value={risk} onChange={(e) => { setRisk(e.target.value as RiskLevel | ""); setPage(1); }} className="max-w-[12rem]" aria-label="Filter by verdict">
+          <option value="">All verdicts</option>
+          <option value="high">Malicious</option>
+          <option value="suspicious">Suspicious</option>
+          <option value="low">Low risk</option>
+          <option value="safe">Safe</option>
+        </Select>
+      </div>
+
+      <ErrorNote error={list.error} />
+      <Panel flush>
+        {list.loading && !list.data ? (
+          <Loading label="Loading scans" />
+        ) : !list.data || list.data.items.length === 0 ? (
+          <Empty
+            title={query || risk ? "No scans match these filters" : "No emails scanned yet"}
+            action={can("upload") && !query && !risk ? <Button variant="primary" onClick={() => setOpen(true)}>Scan your first email</Button> : undefined}
+          >
+            {query || risk ? "Clear the search or verdict filter to see everything." : "Upload a suspicious email or paste its source to get a verdict with evidence."}
+          </Empty>
+        ) : (
+          <div className="overflow-x-auto">
+            <table className="grid-table">
+              <thead>
+                <tr><th>Subject</th><th>From</th><th>Verdict</th><th>Classification</th><th>Received</th></tr>
+              </thead>
+              <tbody>
+                {list.data.items.map((s) => (
+                  <tr key={s.id} className="cursor-pointer" onClick={() => router.push(`/scans/${s.id}`)}>
+                    <td className="max-w-[26rem]">
+                      <Link href={`/scans/${s.id}`} className="block truncate hover:text-ice" onClick={(e) => e.stopPropagation()}>{s.subject || "(no subject)"}</Link>
+                    </td>
+                    <td className="max-w-[16rem]">
+                      <span className="block truncate">{s.sender_display_name || s.sender_address}</span>
+                      {s.sender_display_name && <span className="mono block truncate text-faint">{s.sender_address}</span>}
+                    </td>
+                    <td>
+                      {s.status === "completed" ? (
+                        <RiskTag level={s.risk_level} score={s.overall_risk_score} />
+                      ) : s.status === "failed" ? (
+                        <span className="text-sm text-high">Analysis failed</span>
+                      ) : (
+                        <span className="flex items-center gap-2 text-sm text-mute"><Spinner size={12} /> Analysing</span>
+                      )}
+                    </td>
+                    <td className="text-mute">{s.attack_type ?? ""}</td>
+                    <td className="whitespace-nowrap text-mute">{ago(s.scanned_at)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+      </Panel>
+
+      {list.data && list.data.pages > 1 && (
+        <nav className="mt-4 flex items-center justify-between text-sm text-mute" aria-label="Pagination">
+          <span>Page {list.data.page} of {list.data.pages}, {list.data.total.toLocaleString()} scans</span>
+          <div className="flex gap-2">
+            <Button disabled={page <= 1} onClick={() => setPage((p) => p - 1)}>Previous</Button>
+            <Button disabled={page >= list.data.pages} onClick={() => setPage((p) => p + 1)}>Next</Button>
+          </div>
+        </nav>
+      )}
+
+      <NewScan open={open} onClose={() => setOpen(false)} />
+    </div>
+  );
+}
+
+export default function ScansPage() {
+  return (
+    <Suspense>
+      <ScansInner />
+    </Suspense>
+  );
 }

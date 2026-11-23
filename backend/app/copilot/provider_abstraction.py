@@ -105,7 +105,7 @@ class OpenRouterProvider(BaseProvider):
         if not settings.OPENROUTER_API_KEY:
             raise ValueError("OPENROUTER_API_KEY not configured")
             
-        async with httpx.AsyncClient() as client:
+        async with httpx.AsyncClient(timeout=60.0) as client:
             res = await client.post(
                 "https://openrouter.ai/api/v1/chat/completions",
                 headers={
@@ -136,7 +136,7 @@ class OpenRouterProvider(BaseProvider):
 
 class OllamaProvider(BaseProvider):
     async def chat(self, messages: List[Dict[str, str]], tools: List[Any], context_data: Dict[str, Any] = None) -> CopilotResponse:
-        async with httpx.AsyncClient() as client:
+        async with httpx.AsyncClient(timeout=60.0) as client:
             res = await client.post(
                 f"{settings.OLLAMA_BASE_URL}/api/chat",
                 json={
@@ -172,11 +172,28 @@ class MockProvider(BaseProvider):
         )
 
 
+class OfflineProvider(BaseProvider):
+    """Used when no LLM is configured: explains how to enable Copilot instead of failing."""
+
+    async def chat(self, messages: List[Dict[str, str]], tools: List[Any], context_data: Dict[str, Any] = None) -> CopilotResponse:
+        return CopilotResponse(
+            answer=(
+                "Copilot is running in offline mode because no language model is configured. "
+                "Set GEMINI_API_KEY or OPENROUTER_API_KEY (or LLM_PROVIDER=ollama with a reachable Ollama server) "
+                "in the backend environment to enable conversational analysis. Scan verdicts, detections and "
+                "threat-hunting views work without it."
+            ),
+            tools_used=[],
+            sources=[],
+            confidence=0,
+        )
+
+
 class ProviderFactory:
     @staticmethod
     def get_provider() -> BaseProvider:
         if settings.LLM_PROVIDER == "mock":
-            if settings.ENVIRONMENT == "production":
+            if settings.is_production:
                 raise ValueError("MockProvider cannot be used in production environments.")
             logger.info("Initializing Mock Copilot Provider")
             return MockProvider()
@@ -187,6 +204,8 @@ class ProviderFactory:
         elif settings.OPENROUTER_API_KEY:
             logger.info("Initializing OpenRouter Copilot Provider")
             return OpenRouterProvider()
-        else:
-            logger.info("Initializing Ollama Copilot Provider (Fallback)")
+        elif settings.LLM_PROVIDER.lower() == "ollama":
+            logger.info("Initializing Ollama Copilot Provider")
             return OllamaProvider()
+        logger.info("No LLM configured — Copilot in offline mode")
+        return OfflineProvider()

@@ -1,16 +1,13 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, Query
 from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy import select, func, desc, case
+from sqlalchemy import select, func, case
 from datetime import datetime, timezone, timedelta
-from typing import Any
 
 from app.database import get_db
-from app.models.user import User
 from app.core.tenant_context import TenantContext, requires_permission, Permission
 from app.models.scan import EmailScan, RiskLevel, UrlAnalysis
 from app.schemas.dashboard import (
     DashboardStats, 
-    RiskDistribution, 
     TrendsResponse, 
     TrendPoint,
     AttackCategoriesResponse,
@@ -96,7 +93,7 @@ async def get_stats(db: AsyncSession = Depends(get_db), tenant: TenantContext = 
     )
 
 @router.get("/trends", response_model=TrendsResponse)
-async def get_trends(days: int = 7, db: AsyncSession = Depends(get_db), tenant: TenantContext = Depends(requires_permission(Permission.VIEW_SCANS))):
+async def get_trends(days: int = Query(7, ge=1, le=365), db: AsyncSession = Depends(get_db), tenant: TenantContext = Depends(requires_permission(Permission.VIEW_SCANS))):
     now = datetime.now(timezone.utc)
     start_date = now - timedelta(days=days)
     
@@ -135,8 +132,8 @@ async def get_attack_categories(db: AsyncSession = Depends(get_db), tenant: Tena
     categories = []
     for row in result.all():
         categories.append(AttackCategory(
-            name=row.attack_type,
-            count=row.count
+            name=row[0],
+            count=int(row[1])
         ))
         
     return AttackCategoriesResponse(categories=categories)
@@ -170,10 +167,10 @@ async def get_top_domains(db: AsyncSession = Depends(get_db), tenant: TenantCont
     
     domains = []
     for row in result.all():
-        if row.domain:
+        if row[0]:
             domains.append(TopDomain(
-                domain=row.domain,
-                count=row.count
+                domain=row[0],
+                count=int(row[1])
             ))
             
     return TopDomainsResponse(domains=domains)
@@ -182,7 +179,6 @@ async def get_top_domains(db: AsyncSession = Depends(get_db), tenant: TenantCont
 @router.get("/automation-metrics", response_model=AutomationMetricsResponse)
 async def get_automation_metrics(db: AsyncSession = Depends(get_db), tenant: TenantContext = Depends(requires_permission(Permission.VIEW_SCANS))):
     from app.models.recommendation_feedback import PlaybookPerformanceMetrics
-    from app.models.playbook import ActionRecommendation
     
     result = await db.execute(
         select(PlaybookPerformanceMetrics)

@@ -30,17 +30,26 @@ class AttachmentAnalyzer:
             sha1_hash = ""
             sha256_hash = ""
             
-            if att.get("payload") and isinstance(att["payload"], bytes):
-                payload = att["payload"]
+            payload = att.get("payload") if isinstance(att.get("payload"), bytes) else None
+            if payload:
                 md5_hash = hashlib.md5(payload).hexdigest()
                 sha1_hash = hashlib.sha1(payload).hexdigest()
                 sha256_hash = hashlib.sha256(payload).hexdigest()
-                
+            else:
+                # Hashes pre-computed at upload time (payload itself is not persisted)
+                md5_hash = att.get("md5", "") or ""
+                sha1_hash = att.get("sha1", "") or ""
+                sha256_hash = att.get("sha256", "") or ""
+
+            head = payload[:2048] if payload else att.get("head")
+            if isinstance(head, bytes) and head:
                 if magic:
                     try:
-                        mime_type = magic.from_buffer(payload[:2048], mime=True)
+                        mime_type = magic.from_buffer(head, mime=True)
                     except Exception:
                         pass
+                elif head.startswith(b"MZ"):
+                    mime_type = "application/x-dosexec"
                         
             # Override is_executable if magic detects it
             if "executable" in mime_type or "x-dosexec" in mime_type or "x-msdownload" in mime_type:

@@ -1,240 +1,120 @@
-<p align="center">
-  <h1 align="center">🛡️ PhishGuard AI</h1>
-  <p align="center">
-    <strong>AI-Powered Email Threat Intelligence & Investigation Platform</strong>
-  </p>
-  <p align="center">
-    Enterprise-grade phishing detection • Multi-agent AI analysis • Real-time threat intelligence
-  </p>
-</p>
+# PhishGuard AI
 
----
+Email threat analysis for security operations teams. Drop in a reported email and
+PhishGuard reads its headers, links, attachments and language together, returns a
+0–100 risk verdict, and shows the evidence behind it. Indicators are stored per
+organization, so analysts can pivot across every email the team has seen, group
+campaigns, open investigations and export PDF reports.
 
-<p align="center">
-  <img src="docs/images/mission-control.png" alt="Mission Control" width="700" />
-</p>
+## What's in the box
 
-## Overview
-
-PhishGuard AI is a production-grade cybersecurity SaaS platform that detects phishing, business email compromise (BEC), spoofing attacks, malicious URLs, credential theft attempts, malware delivery, and social engineering attacks using a hybrid AI + threat intelligence architecture.
-
-### Key Capabilities
-
-- **Multi-Agent Threat Analysis** — Specialized AI agents (Header, URL, Attachment, Social Engineering, Correlation, Incident Response) perform independent analysis orchestrated by a central engine
-- **Explainable AI** — Every detection includes evidence, reasoning, and confidence scores
-- **Security Knowledge Graph** — Interactive graph visualization connecting emails, domains, senders, URLs, campaigns, and threat actors
-- **Autonomous Investigation** — Automated SOC-style investigation with full report generation
-- **Real-Time Monitoring** — WebSocket-powered live scan updates and threat feeds
-- **Threat Intelligence Correlation** — Identify recurring campaigns, attacker infrastructure reuse, and threat clusters
-- **AI Security Copilot** — Chat with analyzed emails to understand threats and get incident response guidance
+| Area | What it does |
+|------|--------------|
+| **Scans** | Upload `.eml` / `.msg` / `.txt` or paste a message source. SPF/DKIM/DMARC and spoofing checks, URL heuristics plus threat-intel feeds, attachment hashing and type detection, 11 detection rules (BEC, credential harvesting, QR phishing, MFA fatigue, OAuth consent, invoice fraud and more), and an LLM or offline heuristic classifier. |
+| **Safe preview** | The email body is sanitised server-side and rendered in a sandboxed, script-less, network-less frame. |
+| **Threat hunting** | Tenant-scoped search over indicators and emails, an IOC pivot page, and campaign clustering by shared infrastructure. |
+| **Entity graph** | Senders, domains, IPs, links and file hashes linked across emails. |
+| **Investigations** | Cases with evidence, notes, a timeline and PDF reports. |
+| **Response** | Playbook recommendations that need analyst approval. Destructive actions are simulated while `OBSERVATION_MODE` is on. |
+| **Copilot** | Chat about a scan or your recent threats, using read-only, tenant-scoped tools. |
+| **Team & API** | Invite-only onboarding, five roles, TOTP two-step sign-in, scoped and expiring API keys. |
 
 ## Architecture
 
 ```
-┌─────────────────┐     ┌──────────────────┐     ┌─────────────────┐
-│   Next.js UI    │────▶│  FastAPI Server   │────▶│   PostgreSQL    │
-│   (Port 3000)   │     │   (Port 8000)     │     │   (Port 5432)   │
-└─────────────────┘     └──────────────────┘     └─────────────────┘
-                              │       │
-                              │       │
-                        ┌─────▼───┐   │
-                        │  Redis  │   │
-                        │ (6379)  │   │
-                        └─────────┘   │
-                              │       │
-                    ┌─────────▼───────▼──────────┐
-                    │     Celery Workers          │
-                    │  ┌─────────────────────┐    │
-                    │  │ Multi-Agent Engine   │    │
-                    │  │ ┌───┐ ┌───┐ ┌───┐   │    │
-                    │  │ │HDR│ │URL│ │ATT│   │    │
-                    │  │ └───┘ └───┘ └───┘   │    │
-                    │  │ ┌───┐ ┌───┐ ┌───┐   │    │
-                    │  │ │SOC│ │COR│ │INC│   │    │
-                    │  │ └───┘ └───┘ └───┘   │    │
-                    │  └─────────────────────┘    │
-                    └─────────────────────────────┘
-                              │
-                    ┌─────────▼──────────┐
-                    │  Threat Intel APIs  │
-                    │  VT │ GSB │ ABUSE   │
-                    └────────────────────┘
+browser ──HTTPS──▶ frontend (Next.js, :3000) ──/api/* proxy──▶ backend (FastAPI)
+                                                                 │
+                               private network (no internet) ────┤
+                                                                 ├── PostgreSQL 16
+                                                                 ├── Redis 7 (queue, rate limits, token store)
+                                                                 └── worker (Celery) ──▶ threat-intel / LLM APIs
 ```
 
-## Tech Stack
+The browser only ever talks to one origin. The refresh token is an HttpOnly
+cookie, and the access token lives in memory. See [SECURITY_AUDIT.md](SECURITY_AUDIT.md)
+for the threat model and the hardening applied.
 
-| Layer | Technology |
-|-------|-----------|
-| **Frontend** | Next.js, TypeScript, Tailwind CSS, ShadCN UI, Recharts, React Flow |
-| **Backend** | FastAPI, Python 3.11, SQLAlchemy 2.0, Pydantic V2 |
-| **Database** | PostgreSQL 16 |
-| **Cache/Broker** | Redis 7 |
-| **Background Jobs** | Celery 5.x |
-| **AI/ML** | OpenAI GPT-4o, Ollama (local), scikit-learn, Rule Engine |
-| **Deployment** | Docker, Docker Compose |
-| **Threat Intel** | VirusTotal, Google Safe Browsing, AbuseIPDB, PhishTank |
-
-## Quick Start
-
-### Prerequisites
-
-- Docker & Docker Compose
-- Node.js 20+ (for local frontend dev)
-- Python 3.11+ (for local backend dev)
-
-### 1. Clone & Configure
+## Quick start (Docker)
 
 ```bash
-git clone <repository-url>
-cd cybersecurity
 cp .env.example .env
-# Edit .env with your API keys (optional - works without them in mock mode)
+# Fill in SECRET_KEY, POSTGRES_PASSWORD and REDIS_PASSWORD, e.g.
+python3 -c "import secrets; print(secrets.token_urlsafe(48))"
+
+docker compose up -d --build
+docker compose exec backend python -m app.cli create-admin --org "Acme SOC"
 ```
 
-### 2. Start with Docker Compose
+Open http://localhost:3000 and sign in. Invite teammates from **Settings → Team**.
+Each invite produces a one-time link that you send to the person.
+
+Try it with the samples in [`samples/`](samples).
+
+Optional:
+* `LLM_PROVIDER=gemini` plus `GEMINI_API_KEY` (or `ollama`) for model-based classification and Copilot. The default `heuristic` provider works fully offline.
+* Threat-intel keys (`VIRUSTOTAL_API_KEY`, `ABUSEIPDB_API_KEY`, `OTX_API_KEY`, …) enrich URL and IP verdicts.
+* `docker compose --profile monitoring up -d flower` (requires `FLOWER_BASIC_AUTH`).
+
+For anything beyond localhost, put a TLS reverse proxy in front of port 3000 and
+set `PUBLIC_URL` to the HTTPS address.
+
+## Local development
 
 ```bash
-docker-compose up --build
-```
+# infrastructure only
+docker compose up -d postgres redis   # or run them natively
 
-This starts all services:
-- **Frontend**: http://localhost:3000
-- **Backend API**: http://localhost:8000
-- **API Docs**: http://localhost:8000/docs
-- **Flower** (Celery monitoring): http://localhost:5555 (with `--profile monitoring`)
-
-### 3. Default Credentials
-
-```
-Admin:   admin@phishguard.ai / PhishGuard@2024!
-Analyst: analyst@phishguard.ai / PhishGuard@2024!
-```
-
-### Local Development
-
-**Backend:**
-```bash
+# backend
 cd backend
-python -m venv venv
-venv\Scripts\activate  # Windows
-pip install -r requirements.txt
-uvicorn app.main:app --reload --port 8000
+python -m venv .venv && source .venv/bin/activate
+pip install -r requirements-dev.txt
+export ENVIRONMENT=development DATABASE_URL=postgresql+asyncpg://phishguard:<pw>@localhost:5432/phishguard
+python -m app.cli migrate && python -m app.cli create-admin
+uvicorn app.main:app --reload                         # http://localhost:8000/docs
+PHISHGUARD_WORKER=1 celery -A app.workers.celery_app worker -Q default,scans,reports -l info
+
+# frontend
+cd frontend && npm ci && npm run dev                  # http://localhost:3000
 ```
 
-**Frontend:**
+In development `COOKIE_SECURE` defaults to false and the API docs are enabled.
+
+## Tests and checks
+
 ```bash
-cd frontend
-npm install
-npm run dev
+cd backend && ruff check app tests && pytest
+cd frontend && npm run typecheck && npm run lint && npm run build
 ```
 
-## Features
+CI (`.github/workflows/ci.yml`) runs all of the above, plus dependency audits and Docker builds.
 
-### 📧 Email Analysis
-Upload `.eml`/`.msg` files, paste email content, or submit raw headers for comprehensive analysis.
+## API
 
-<p align="center">
-  <img src="docs/images/active-response.png" alt="Email Analysis & Active Response" width="700" />
-</p>
+Every endpoint lives under `/api/v1`. Authenticate with `Authorization: Bearer <access token or pg_ API key>`.
+A typical integration from a mail gateway:
 
-### 🔍 Multi-Agent Threat Analysis
-Six specialized AI agents analyze emails independently:
-- **Header Analysis Agent** — SPF/DKIM/DMARC validation, sender spoofing detection
-- **URL Intelligence Agent** — Domain reputation, redirect chains, typosquatting
-- **Attachment Analysis Agent** — Malware detection, macro analysis, file signature checks
-- **Social Engineering Agent** — Urgency/fear tactics, impersonation, credential harvesting
-- **Threat Correlation Agent** — Campaign identification, infrastructure reuse
-- **Incident Response Agent** — Automated response recommendations
-
-### 📊 SOC Dashboard
-Real-time threat intelligence dashboard with:
-- Threat trends and risk distributions
-- Attack category breakdowns
-- Top malicious domains
-- Recent scan activity feed
-
-### 🕸️ Security Knowledge Graph
-Interactive graph visualization connecting emails, domains, senders, URLs, and campaigns.
-
-<p align="center">
-  <img src="docs/images/knowledge-graph.png" alt="Security Knowledge Graph" width="700" />
-</p>
-
-### 🤖 AI Security Copilot
-Chat-based investigation assistant that explains findings, answers questions, and generates incident response plans.
-
-<p align="center">
-  <img src="docs/images/copilot.png" alt="AI Security Copilot" width="700" />
-</p>
-
-### 📋 Executive Reporting
-Generate professional reports (PDF/JSON/HTML) in four formats:
-- Executive Summary
-- Technical SOC Report
-- Incident Response Report
-- Compliance Report
-
-<p align="center">
-  <img src="docs/images/executive-dashboard.png" alt="Executive Dashboard" width="700" />
-</p>
-
-### 🔎 Threat Hunting
-Advanced search across all historical scans with complex filtering by sender, domain, risk level, attack type, and date range.
-
-<p align="center">
-  <img src="docs/images/threat-hunting.png" alt="Threat Hunting" width="700" />
-</p>
-
-## API Documentation
-
-Interactive API docs available at `http://localhost:8000/docs` (Swagger UI) and `http://localhost:8000/redoc` (ReDoc).
-
-## Project Structure
-
-```
-cybersecurity/
-├── docker-compose.yml          # Multi-service orchestration
-├── .env.example                # Environment template
-├── backend/                    # FastAPI backend
-│   ├── app/
-│   │   ├── api/                # API route handlers
-│   │   ├── core/               # Auth, RBAC, security
-│   │   ├── ml/                 # ML models & AI engine
-│   │   ├── models/             # SQLAlchemy ORM models
-│   │   ├── schemas/            # Pydantic schemas
-│   │   ├── services/           # Business logic layer
-│   │   ├── workers/            # Celery background tasks
-│   │   ├── seed/               # Seed data
-│   │   └── main.py             # FastAPI application
-│   ├── tests/                  # Test suite
-│   └── Dockerfile
-├── frontend/                   # Next.js frontend
-│   ├── src/
-│   │   ├── app/                # Next.js pages (App Router)
-│   │   ├── components/         # React components
-│   │   ├── lib/                # API client, utilities
-│   │   ├── hooks/              # Custom React hooks
-│   │   └── types/              # TypeScript definitions
-│   └── Dockerfile
-└── docs/                       # Documentation
+```bash
+curl -X POST https://phishguard.example.com/api/v1/scans/upload \
+  -H "Authorization: Bearer pg_xxxxxxxx" -F file=@reported.eml
+curl https://phishguard.example.com/api/v1/scans/<id> -H "Authorization: Bearer pg_xxxxxxxx"
 ```
 
-## Security
+Interactive docs are at `/docs` in development (or with `ENABLE_API_DOCS=true`).
 
-- JWT authentication with refresh tokens
-- Role-based access control (Admin, Analyst, Viewer)
-- Redis-backed rate limiting
-- Complete audit logging
-- Encrypted storage
-- OWASP best practices
-- API key management
+## Roles
 
-## License
+| Role | Can |
+|------|-----|
+| Read Only Analyst | View scans and the graph |
+| SOC Analyst | Plus submit scans, investigations, reports, Copilot |
+| SOC Manager | Plus delete scans, export |
+| Organization Admin | Plus manage members, invites and API keys |
+| Platform Admin | Everything (created only through the CLI) |
 
-MIT License — see [LICENSE](LICENSE) for details.
+## Repository layout
 
----
-
-<p align="center">
-  Built with ❤️ for the cybersecurity community
-</p>
+```
+backend/   FastAPI app (app/), Alembic migrations, unit tests, research tools (tools/, not shipped)
+frontend/  Next.js App Router console
+samples/   Example emails for trying the pipeline
+```

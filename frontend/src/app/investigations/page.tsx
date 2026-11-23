@@ -1,125 +1,111 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { api } from "@/lib/api";
 import Link from "next/link";
-import { 
-  BriefcaseIcon, 
-  ExclamationTriangleIcon, 
-  ClockIcon, 
-  CheckCircleIcon,
-  PlusIcon,
-  MagnifyingGlassIcon
-} from "@heroicons/react/24/outline";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { Button, Dialog, Empty, ErrorNote, Field, Input, Loading, PageHeader, Panel, Select, Textarea } from "@/components/ui";
+import { api } from "@/lib/api";
+import { ago } from "@/lib/format";
+import type { Investigation } from "@/lib/types";
+import { useLoad } from "@/lib/use-load";
 
-export default function InvestigationsDashboard() {
-  const [investigations, setInvestigations] = useState<any[]>([]);
-  const [loading, setLoading] = useState(true);
+const LEVEL_TONE: Record<Investigation["severity"], string> = {
+  Low: "var(--color-low)",
+  Medium: "var(--color-suspicious)",
+  High: "var(--color-high)",
+  Critical: "var(--color-high)",
+};
 
-  useEffect(() => {
-    async function load() {
-      try {
-        const data = await api.investigations.list();
-        setInvestigations(data || []);
-      } catch (err) {
-        console.error(err);
-      } finally {
-        setLoading(false);
-      }
-    }
-    load();
-  }, []);
+const STATUS_ORDER: Investigation["status"][] = ["Escalated", "Open", "In Progress", "Closed"];
 
-  const getStatusIcon = (status: string) => {
-    switch (status) {
-      case "Open": return <BriefcaseIcon className="w-5 h-5 text-blue-400" />;
-      case "In Progress": return <ClockIcon className="w-5 h-5 text-yellow-400" />;
-      case "Escalated": return <ExclamationTriangleIcon className="w-5 h-5 text-red-400" />;
-      case "Closed": return <CheckCircleIcon className="w-5 h-5 text-green-400" />;
-      default: return <BriefcaseIcon className="w-5 h-5 text-gray-400" />;
-    }
-  };
+export default function InvestigationsPage() {
+  const router = useRouter();
+  const list = useLoad(() => api.investigations.list());
+  const [open, setOpen] = useState(false);
+  const [form, setForm] = useState({ title: "", description: "", severity: "Medium", priority: "Medium" });
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState<unknown>(null);
+  const [filter, setFilter] = useState<"active" | "all">("active");
 
-  const createInvestigation = async () => {
-    const title = prompt("Enter investigation title:");
-    if (!title) return;
+  async function create(e: React.FormEvent) {
+    e.preventDefault();
+    setBusy(true);
+    setError(null);
     try {
-      const res = await api.investigations.create({ title });
-      window.location.href = `/investigations/${res.id}`;
+      const { id } = await api.investigations.create(form);
+      router.push(`/investigations/${id}`);
     } catch (err) {
-      alert("Failed to create investigation.");
+      setError(err);
+      setBusy(false);
     }
-  };
+  }
+
+  const rows = (list.data ?? [])
+    .filter((i) => filter === "all" || i.status !== "Closed")
+    .sort((a, b) => STATUS_ORDER.indexOf(a.status) - STATUS_ORDER.indexOf(b.status));
 
   return (
-    <div className="space-y-6">
-      <div className="flex justify-between items-center">
-        <div>
-          <h1 className="text-2xl font-bold text-white tracking-tight">Investigation Workbench</h1>
-          <p className="text-slate-400 text-sm mt-1">Manage active cases and threat intelligence collections.</p>
-        </div>
-        <button 
-          onClick={createInvestigation}
-          className="bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded-md flex items-center text-sm font-medium transition-colors"
-        >
-          <PlusIcon className="w-4 h-4 mr-2" />
-          New Investigation
-        </button>
+    <div className="mx-auto max-w-[1280px]">
+      <PageHeader
+        title="Investigations"
+        lede="Cases your team is working, with the emails and indicators behind them."
+        actions={<Button variant="primary" onClick={() => setOpen(true)}>Open investigation</Button>}
+      />
+      <div className="mb-4 flex gap-2 text-sm">
+        <Select value={filter} onChange={(e) => setFilter(e.target.value as "active" | "all")} className="max-w-[12rem]" aria-label="Show">
+          <option value="active">Active cases</option>
+          <option value="all">All cases</option>
+        </Select>
       </div>
+      <ErrorNote error={list.error} />
+      <Panel flush>
+        {list.loading ? <Loading /> : rows.length === 0 ? (
+          <Empty title={filter === "active" ? "No active investigations" : "No investigations yet"} action={<Button onClick={() => setOpen(true)}>Open investigation</Button>}>
+            Open one from a scan or an indicator, or start one here.
+          </Empty>
+        ) : (
+          <div className="overflow-x-auto">
+            <table className="grid-table">
+              <thead><tr><th>Case</th><th>Status</th><th>Severity</th><th>Priority</th><th>Updated</th></tr></thead>
+              <tbody>
+                {rows.map((i) => (
+                  <tr key={i.id}>
+                    <td className="max-w-[30rem]"><Link href={`/investigations/${i.id}`} className="block truncate hover:text-ice">{i.title}</Link></td>
+                    <td className={i.status === "Escalated" ? "text-high" : i.status === "Closed" ? "text-faint" : ""}>{i.status}</td>
+                    <td><span className="border-l-2 pl-2 text-sm" style={{ borderColor: LEVEL_TONE[i.severity] }}>{i.severity}</span></td>
+                    <td className="text-mute">{i.priority}</td>
+                    <td className="whitespace-nowrap text-mute">{ago(i.updated_at)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+      </Panel>
 
-      {loading ? (
-        <div className="text-center py-20 text-slate-400">Loading workbench...</div>
-      ) : investigations.length === 0 ? (
-        <div className="glass-panel p-12 text-center rounded-xl border border-slate-700/50">
-          <BriefcaseIcon className="w-12 h-12 text-slate-500 mx-auto mb-4" />
-          <h3 className="text-lg font-medium text-white mb-2">No active investigations</h3>
-          <p className="text-slate-400 text-sm mb-6">Create a new case to start collecting artifacts and notes.</p>
-          <button 
-            onClick={createInvestigation}
-            className="bg-slate-700 hover:bg-slate-600 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors"
-          >
-            Create Investigation
-          </button>
-        </div>
-      ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {investigations.map((inv) => (
-            <Link 
-              key={inv.id} 
-              href={`/investigations/${inv.id}`}
-              className="glass-panel p-5 rounded-xl border border-slate-700/50 hover:border-slate-500 transition-all group block"
-            >
-              <div className="flex justify-between items-start mb-4">
-                <div className="flex items-center space-x-2">
-                  {getStatusIcon(inv.status)}
-                  <span className="text-xs font-medium text-slate-300 uppercase tracking-wider">{inv.status}</span>
-                </div>
-                <span className={`text-xs px-2 py-1 rounded border ${
-                  inv.severity === 'Critical' ? 'bg-red-500/10 border-red-500/30 text-red-400' :
-                  inv.severity === 'High' ? 'bg-orange-500/10 border-orange-500/30 text-orange-400' :
-                  'bg-blue-500/10 border-blue-500/30 text-blue-400'
-                }`}>
-                  {inv.severity} Sev
-                </span>
-              </div>
-              
-              <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-blue-400 transition-colors">
-                {inv.title}
-              </h3>
-              
-              <div className="flex justify-between items-center mt-6 pt-4 border-t border-slate-700/50">
-                <span className="text-xs text-slate-500">
-                  {new Date(inv.created_at).toLocaleDateString()}
-                </span>
-                <span className="text-xs font-medium text-blue-400 flex items-center">
-                  Open Case
-                  <MagnifyingGlassIcon className="w-3 h-3 ml-1" />
-                </span>
-              </div>
-            </Link>
-          ))}
-        </div>
-      )}
+      <Dialog open={open} onClose={() => setOpen(false)} title="Open an investigation">
+        <form onSubmit={create} className="space-y-4">
+          <Field label="Title"><Input required maxLength={255} value={form.title} onChange={(e) => setForm({ ...form, title: e.target.value })} /></Field>
+          <Field label="What happened"><Textarea value={form.description} onChange={(e) => setForm({ ...form, description: e.target.value })} /></Field>
+          <div className="grid grid-cols-2 gap-3">
+            <Field label="Severity">
+              <Select value={form.severity} onChange={(e) => setForm({ ...form, severity: e.target.value })}>
+                {["Low", "Medium", "High", "Critical"].map((v) => <option key={v}>{v}</option>)}
+              </Select>
+            </Field>
+            <Field label="Priority">
+              <Select value={form.priority} onChange={(e) => setForm({ ...form, priority: e.target.value })}>
+                {["Low", "Medium", "High", "Critical"].map((v) => <option key={v}>{v}</option>)}
+              </Select>
+            </Field>
+          </div>
+          <ErrorNote error={error} />
+          <div className="flex justify-end gap-2">
+            <Button type="button" onClick={() => setOpen(false)}>Cancel</Button>
+            <Button type="submit" variant="primary" busy={busy} disabled={!form.title.trim()}>Open investigation</Button>
+          </div>
+        </form>
+      </Dialog>
     </div>
   );
 }

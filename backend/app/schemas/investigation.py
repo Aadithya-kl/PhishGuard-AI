@@ -6,17 +6,17 @@ from app.models.investigation import InvestigationPriority, InvestigationSeverit
 
 class ArtifactCreate(BaseModel):
     artifact_type: ArtifactType
-    artifact_value: str
+    artifact_value: str = Field(..., min_length=1, max_length=2048)
 
 class NoteCreate(BaseModel):
-    content: str
+    content: str = Field(..., min_length=1, max_length=10000)
     priority: Optional[InvestigationPriority] = None
     severity: Optional[InvestigationSeverity] = None
     status: Optional[InvestigationStatus] = None
 
 class InvestigationCreate(BaseModel):
-    title: str
-    description: str
+    title: str = Field(..., min_length=1, max_length=255)
+    description: Optional[str] = Field(default=None, max_length=10000)
     priority: InvestigationPriority = InvestigationPriority.medium
     severity: InvestigationSeverity = InvestigationSeverity.medium
 
@@ -42,8 +42,8 @@ class InvestigationTimelineEventResponse(BaseModel):
     id: uuid.UUID
     event_type: TimelineEventType
     description: str
-    created_at: datetime
-    user_id: uuid.UUID
+    timestamp: datetime
+    triggered_by: Optional[uuid.UUID] = None
     
     class Config:
         from_attributes = True
@@ -51,7 +51,7 @@ class InvestigationTimelineEventResponse(BaseModel):
 class InvestigationResponse(BaseModel):
     id: uuid.UUID
     title: str
-    description: str
+    description: Optional[str] = None
     priority: InvestigationPriority
     severity: InvestigationSeverity
     status: InvestigationStatus

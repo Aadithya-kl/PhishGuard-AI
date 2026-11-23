@@ -2,6 +2,7 @@ import uuid
 import base64
 import os
 import io
+import json
 from datetime import datetime
 from PIL import Image
 from fpdf import FPDF
@@ -12,10 +13,19 @@ from app.models.report import Report, ReportType, ReportStatus, ReportFormat
 from app.models.scan import EmailScan
 from app.models.investigation import Investigation
 
+# Core PDF fonts are Latin-1 only; attacker-controlled subjects often contain
+# emoji / homoglyphs that would crash rendering, so normalise everything.
+Image.MAX_IMAGE_PIXELS = 25_000_000  # decompression-bomb guard for graph snapshots
+MAX_SNAPSHOT_B64 = 8 * 1024 * 1024
+
+
+def _t(value) -> str:
+    return str(value if value is not None else "").encode("latin-1", "replace").decode("latin-1")
+
 class SOCReportPDF(FPDF):
     def __init__(self, title="Security Report"):
         super().__init__()
-        self.report_title = title
+        self.report_title = _t(title)
         self.set_auto_page_break(auto=True, margin=15)
         
     def header(self):
@@ -43,14 +53,14 @@ class SOCReportPDF(FPDF):
     def chapter_title(self, title):
         self.set_font('helvetica', 'B', 16)
         self.set_text_color(0, 51, 102)
-        self.cell(0, 10, title, 0, 1, 'L')
+        self.cell(0, 10, _t(title), 0, 1, 'L')
         self.line(self.get_x(), self.get_y(), self.get_x() + 190, self.get_y())
         self.ln(5)
 
     def chapter_body(self, body):
         self.set_font('helvetica', '', 11)
         self.set_text_color(0, 0, 0)
-        self.multi_cell(0, 7, body)
+        self.multi_cell(0, 7, _t(body))
         self.ln()
 
     def add_key_value(self, key, value):
@@ -59,12 +69,13 @@ class SOCReportPDF(FPDF):
         self.cell(50, 7, f"{key}:", border=0)
         self.set_font('helvetica', '', 11)
         self.set_text_color(0, 0, 0)
-        self.multi_cell(0, 7, str(value))
+        self.multi_cell(0, 7, _t(value))
 
 class ReportGeneratorService:
-    def __init__(self, db: Session):
+    def __init__(self, db: Session = None):
         self.db = db
-        self.reports_dir = "/app/reports" if os.path.exists("/app") else "./reports"
+        from app.config import settings as _settings
+        self.reports_dir = os.path.abspath(_settings.REPORT_DIR)
         os.makedirs(self.reports_dir, exist_ok=True)
 
     def fetch_scan_data(self, scan_id: uuid.UUID):
@@ -116,7 +127,7 @@ class ReportGeneratorService:
         pdf.set_font("helvetica", "B", 24)
         pdf.cell(0, 15, "Security Intelligence Report", 0, 1, "C")
         pdf.set_font("helvetica", "I", 14)
-        pdf.cell(0, 10, report_data.get("title", "Untitled"), 0, 1, "C")
+        pdf.cell(0, 10, _t(report_data.get("title", "Untitled"))[:90], 0, 1, "C")
         pdf.ln(20)
         pdf.set_font("helvetica", "", 12)
         pdf.cell(0, 10, f"Generated: {datetime.utcnow().strftime('%Y-%m-%d')}", 0, 1, "C")
@@ -153,16 +164,20 @@ class ReportGeneratorService:
                 # Remove data URI prefix if present
                 if "," in graph_b64:
                     graph_b64 = graph_b64.split(",")[1]
-                img_data = base64.b64decode(graph_b64)
+                if len(graph_b64) > MAX_SNAPSHOT_B64:
+                    raise ValueError("snapshot too large")
+                img_data = base64.b64decode(graph_b64, validate=True)
                 img = Image.open(io.BytesIO(img_data))
                 # Save temp image for FPDF
-                temp_img_path = f"/tmp/{uuid.uuid4().hex}.png"
+                img.verify()
+                img = Image.open(io.BytesIO(img_data)).convert("RGB")
+                temp_img_path = os.path.join(self.reports_dir, f".tmp_{uuid.uuid4().hex}.png")
                 img.save(temp_img_path)
                 # Add image, width 190mm
                 pdf.image(temp_img_path, w=190)
                 os.remove(temp_img_path)
             except Exception as e:
-                pdf.chapter_body(f"Error rendering graph snapshot: {str(e)}")
+                pdf.chapter_body("Graph snapshot could not be rendered.")
                 
         # Automation Intelligence Section
         if automation_data:

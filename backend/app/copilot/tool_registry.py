@@ -18,13 +18,21 @@ class ToolRegistry:
     async def execute(self, name: str, params: Dict[str, Any], session: AsyncSession, organization_id: str) -> Dict[str, Any]:
         if name not in self.tools:
             return {"error": f"Tool {name} not found"}
+        # Parameters come from model output (and therefore, indirectly, from email content):
+        # only plain string/number values are accepted and the tenant scope can never be overridden.
+        if not isinstance(params, dict):
+            params = {}
+        safe_params = {
+            str(k): (v[:2048] if isinstance(v, str) else v)
+            for k, v in params.items()
+            if k not in {"session", "organization_id", "kwargs"} and isinstance(v, (str, int, float, bool))
+        }
         try:
-            logger.info(f"Executing Copilot tool: {name} with params: {params}")
-            # Inject session and user_id into params if the tool needs it
-            return await self.tools[name](**params, session=session, organization_id=organization_id)
+            logger.info(f"Executing Copilot tool: {name}")
+            return await self.tools[name](**safe_params, session=session, organization_id=organization_id)
         except Exception as e:
             logger.error(f"Error executing tool {name}: {e}")
-            return {"error": str(e)}
+            return {"error": f"Tool {name} failed"}
 
     def get_tool_schemas(self) -> List[Dict[str, Any]]:
         # Used to inform the LLM what tools are available

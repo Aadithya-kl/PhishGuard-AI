@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, Query
 from sqlalchemy.ext.asyncio import AsyncSession
 from typing import Any
 
@@ -17,7 +17,7 @@ async def get_overview(db: AsyncSession = Depends(get_db), tenant: TenantContext
     return await ExecutiveMetricsEngine.get_overview_metrics(db, tenant.organization.id)
 
 @router.get("/threat-trends")
-async def get_threat_trends(days: int = 30, db: AsyncSession = Depends(get_db), tenant: TenantContext = Depends(requires_permission(Permission.VIEW_SCANS))) -> Any:
+async def get_threat_trends(days: int = Query(30, ge=1, le=365), db: AsyncSession = Depends(get_db), tenant: TenantContext = Depends(requires_permission(Permission.VIEW_SCANS))) -> Any:
     # Use the existing dashboard trends logic, but default to 30 days
     return await get_trends(days=days, db=db, tenant=tenant)
 
