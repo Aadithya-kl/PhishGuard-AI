@@ -37,8 +37,6 @@ export function AppShell({ children }: { children: React.ReactNode }) {
     }
   }, [state.status, isPublic, pathname, router]);
 
-  useEffect(() => setNavOpen(false), [pathname]);
-
   if (isPublic) return <>{children}</>;
 
   if (state.status !== "signed-in" || !state.session) {
@@ -82,6 +80,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
               <Link
                 key={href}
                 href={href}
+                onClick={() => setNavOpen(false)}
                 aria-current={active ? "page" : undefined}
                 className={cx(
                   "relative flex items-center gap-3 rounded-[var(--radius-ctl)] px-3 py-2 text-sm",

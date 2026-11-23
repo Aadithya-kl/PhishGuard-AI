@@ -2,39 +2,61 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 
-/** Minimal data loader: { data, error, loading, reload }. Optionally polls while `poll(data)` is true. */
-export function useLoad<T>(fn: () => Promise<T>, deps: unknown[] = [], poll?: (d: T | undefined) => boolean, intervalMs = 3000) {
-  const [data, setData] = useState<T>();
-  const [error, setError] = useState<unknown>(null);
-  const [loading, setLoading] = useState(true);
+type LoadState<T> = { key: string | null; data: T | undefined; error: unknown };
+
+/**
+ * Minimal data loader: { data, error, loading, reload }.
+ * Re-fetches when `deps` change; optionally polls while `poll(data)` is true.
+ * All state updates happen in async callbacks (never synchronously in an effect).
+ */
+export function useLoad<T>(
+  fn: () => Promise<T>,
+  deps: unknown[] = [],
+  poll?: (d: T | undefined) => boolean,
+  intervalMs = 3000,
+) {
+  const key = JSON.stringify(deps);
   const fnRef = useRef(fn);
+  const keyRef = useRef(key);
   useEffect(() => {
     fnRef.current = fn;
+    keyRef.current = key;
   });
 
+  const [state, setState] = useState<LoadState<T>>({ key: null, data: undefined, error: null });
+
+  // Fetch whenever the dependency key changes; ignore responses for stale keys.
+  useEffect(() => {
+    let cancelled = false;
+    fnRef.current().then(
+      (data) => {
+        if (!cancelled) setState({ key, data, error: null });
+      },
+      (error) => {
+        if (!cancelled) setState((s) => ({ key, data: s.data, error }));
+      },
+    );
+    return () => {
+      cancelled = true;
+    };
+  }, [key]);
+
   const reload = useCallback(async () => {
+    const k = keyRef.current;
     try {
-      const d = await fnRef.current();
-      setData(d);
-      setError(null);
-    } catch (e) {
-      setError(e);
-    } finally {
-      setLoading(false);
+      const data = await fnRef.current();
+      if (k === keyRef.current) setState({ key: k, data, error: null });
+    } catch (error) {
+      if (k === keyRef.current) setState((s) => ({ key: k, data: s.data, error }));
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, deps);
+  }, []);
 
+  const shouldPoll = !!poll && poll(state.data) && state.key === key;
   useEffect(() => {
-    setLoading(true);
-    reload();
-  }, [reload]);
-
-  useEffect(() => {
-    if (!poll || !poll(data)) return;
+    if (!shouldPoll) return;
     const t = setTimeout(reload, intervalMs);
     return () => clearTimeout(t);
-  }, [data, poll, reload, intervalMs]);
+  }, [shouldPoll, state, reload, intervalMs]);
 
-  return { data, error, loading, reload, setData };
+  return { data: state.data, error: state.error, loading: state.key !== key, reload };
 }
