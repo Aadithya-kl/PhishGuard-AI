@@ -1,188 +1,242 @@
-import { CopilotMessage, CopilotResponse, DashboardStats, RiskDistribution, TrendData, AttackCategory, TopDomain, EmailScan, AuditLogEntry, User, LoginRequest, RegisterRequest, LoginResponse, ApiKey, Notification, Report, GraphData } from '@/types';
+/**
+ * API client.
+ *
+ * Security model:
+ *  - The access token lives only in memory (this module). Nothing sensitive is
+ *    written to localStorage/sessionStorage, so an injected script cannot lift a
+ *    long-lived credential from storage.
+ *  - The refresh token is an HttpOnly cookie set by the backend; we just send
+ *    `credentials: "include"` to /auth/refresh.
+ *  - All requests are same-origin (/api is proxied by Next.js).
+ */
+import type {
+  ApiKey, Campaign, CopilotTurn, DashboardStats, GraphPayload, Investigation, InvestigationDetail,
+  Invite, IocDetail, LoginResult, Member, Paged, Recommendation, Report, RiskLevel, ScanDetail,
+  ScanSummary, SearchItem, Session, TrendPoint,
+} from "./types";
 
-const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+const BASE = "/api/v1";
 
-function getTokens() {
-  if (typeof window === 'undefined') return { access: null, refresh: null };
-  return {
-    access: localStorage.getItem('phishguard_token'),
-    refresh: localStorage.getItem('phishguard_refresh_token')
-  };
+let accessToken: string | null = null;
+let refreshing: Promise<Session | null> | null = null;
+let onSessionChange: ((s: Session | null) => void) | null = null;
+
+export function bindSessionListener(fn: (s: Session | null) => void) {
+  onSessionChange = fn;
 }
 
-function setTokens(access: string, refresh: string) {
-  if (typeof window === 'undefined') return;
-  localStorage.setItem('phishguard_token', access);
-  localStorage.setItem('phishguard_refresh_token', refresh);
+export class ApiError extends Error {
+  constructor(public status: number, message: string) {
+    super(message);
+  }
 }
 
-function clearTokens() {
-  if (typeof window === 'undefined') return;
-  localStorage.removeItem('phishguard_token');
-  localStorage.removeItem('phishguard_refresh_token');
+function setSession(s: Session | null) {
+  accessToken = s?.access_token ?? null;
+  onSessionChange?.(s);
 }
 
-function getUser(): User | null {
-  if (typeof window === 'undefined') return null;
-  const user = localStorage.getItem('phishguard_user');
-  return user ? JSON.parse(user) : null;
-}
-
-function setUser(user: User) {
-  if (typeof window === 'undefined') return;
-  localStorage.setItem('phishguard_user', JSON.stringify(user));
-}
-
-async function tryRefreshToken(): Promise<boolean> {
-  const { refresh } = getTokens();
-  if (!refresh) return false;
+async function readError(res: Response): Promise<string> {
   try {
-    const res = await fetch(`${API_BASE}/api/v1/auth/refresh`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ refresh_token: refresh }),
-    });
-    if (res.ok) {
-      const data = await res.json();
-      setTokens(data.access_token, data.refresh_token);
-      return true;
-    }
+    const body = await res.json();
+    if (typeof body?.detail === "string") return body.detail;
+    if (Array.isArray(body?.detail)) return body.detail.map((d: { msg?: string }) => d.msg).filter(Boolean).join("; ");
+    if (typeof body?.error === "string") return body.error;
   } catch {
-    // ignore
+    /* not JSON */
   }
-  return false;
+  if (res.status === 429) return "Too many requests. Wait a moment and try again.";
+  if (res.status >= 500) return "The server hit an error. Try again, and check the backend logs if it keeps happening.";
+  return `Request failed (${res.status})`;
 }
 
-async function apiFetch<T>(endpoint: string, options: RequestInit = {}): Promise<T> {
-  const { access } = getTokens();
-  const headers: Record<string, string> = {
-    'Content-Type': 'application/json',
-    ...(options.headers as Record<string, string> || {})
-  };
-  if (access) headers['Authorization'] = `Bearer ${access}`;
-
-  let res = await fetch(`${API_BASE}${endpoint}`, { ...options, headers });
-  if (res.status === 401) {
-    if (await tryRefreshToken()) {
-      const newAccess = getTokens().access;
-      headers['Authorization'] = `Bearer ${newAccess}`;
-      res = await fetch(`${API_BASE}${endpoint}`, { ...options, headers });
-    } else {
-      clearTokens();
-      if (typeof window !== 'undefined') window.location.href = '/';
-      throw new Error('Unauthorized');
-    }
-  }
-  if (!res.ok) throw new Error(`API error: ${res.status} ${res.statusText}`);
-  return res.json();
-}
-
-async function apiFetchFormData<T>(endpoint: string, formData: FormData): Promise<T> {
-  const { access } = getTokens();
-  const headers: Record<string, string> = {};
-  if (access) headers['Authorization'] = `Bearer ${access}`;
-
-  let res = await fetch(`${API_BASE}${endpoint}`, {
-    method: 'POST',
-    headers,
-    body: formData,
-  });
-  
-  if (res.status === 401) {
-    if (await tryRefreshToken()) {
-      const newAccess = getTokens().access;
-      headers['Authorization'] = `Bearer ${newAccess}`;
-      res = await fetch(`${API_BASE}${endpoint}`, {
-        method: 'POST',
-        headers,
-        body: formData,
+/** Exchange the HttpOnly refresh cookie for a fresh access token. De-duplicated. */
+export function refreshSession(): Promise<Session | null> {
+  if (!refreshing) {
+    refreshing = fetch(`${BASE}/auth/refresh`, { method: "POST", credentials: "include" })
+      .then(async (res) => {
+        if (!res.ok) {
+          setSession(null);
+          return null;
+        }
+        const s = (await res.json()) as Session;
+        setSession(s);
+        return s;
+      })
+      .catch(() => {
+        setSession(null);
+        return null;
+      })
+      .finally(() => {
+        refreshing = null;
       });
-    } else {
-      clearTokens();
-      if (typeof window !== 'undefined') window.location.href = '/';
-      throw new Error('Unauthorized');
-    }
   }
-  
-  if (!res.ok) throw new Error(`API error: ${res.status}`);
-  return res.json();
+  return refreshing;
 }
+
+type Opts = Omit<RequestInit, "body"> & { body?: unknown; raw?: boolean };
+
+async function request<T>(path: string, opts: Opts = {}, retried = false): Promise<T> {
+  const headers = new Headers(opts.headers);
+  let body: BodyInit | undefined;
+  if (opts.body instanceof FormData) body = opts.body;
+  else if (opts.body !== undefined) {
+    headers.set("Content-Type", "application/json");
+    body = JSON.stringify(opts.body);
+  }
+  if (accessToken) headers.set("Authorization", `Bearer ${accessToken}`);
+
+  const res = await fetch(`${BASE}${path}`, { ...opts, headers, body, credentials: "same-origin" });
+
+  if (res.status === 401 && !retried && !path.startsWith("/auth/login")) {
+    const s = await refreshSession();
+    if (s) return request<T>(path, opts, true);
+    throw new ApiError(401, "Your session has ended. Sign in again.");
+  }
+  if (!res.ok) throw new ApiError(res.status, await readError(res));
+  if (opts.raw) return res as unknown as T;
+  if (res.status === 204) return undefined as T;
+  return (await res.json()) as T;
+}
+
+const qs = (params: Record<string, string | number | undefined | null>) => {
+  const p = new URLSearchParams();
+  Object.entries(params).forEach(([k, v]) => {
+    if (v !== undefined && v !== null && v !== "") p.set(k, String(v));
+  });
+  const s = p.toString();
+  return s ? `?${s}` : "";
+};
 
 export const api = {
   auth: {
-    login: (creds: LoginRequest) => apiFetch<LoginResponse>('/api/v1/auth/login', { method: 'POST', body: JSON.stringify(creds) }),
-    register: (data: RegisterRequest) => apiFetch<LoginResponse>('/api/v1/auth/register', { method: 'POST', body: JSON.stringify(data) }),
-    getMe: () => apiFetch<User>('/api/v1/auth/me'),
-    createApiKey: (name: string) => apiFetch<ApiKey & { full_key: string }>('/api/v1/auth/api-keys', { method: 'POST', body: JSON.stringify({ name }) }),
-    listApiKeys: () => apiFetch<ApiKey[]>('/api/v1/auth/api-keys'),
-    deleteApiKey: (keyId: string) => apiFetch<void>(`/api/v1/auth/api-keys/${keyId}`, { method: 'DELETE' }),
-    logout: () => { clearTokens(); if (typeof window !== 'undefined') window.location.href = '/'; }
+    async login(email: string, password: string, mfa_code?: string): Promise<LoginResult> {
+      const res = await fetch(`${BASE}/auth/login`, {
+        method: "POST",
+        credentials: "include",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password, mfa_code: mfa_code || undefined }),
+      });
+      if (!res.ok) throw new ApiError(res.status, await readError(res));
+      const data = (await res.json()) as LoginResult;
+      if (!data.mfa_required && data.access_token) setSession(data as Session);
+      return data;
+    },
+    async logout() {
+      await fetch(`${BASE}/auth/logout`, { method: "POST", credentials: "include" }).catch(() => undefined);
+      setSession(null);
+    },
+    registerWithInvite: (invitation_token: string, full_name: string, password: string) =>
+      request<{ message: string; email: string }>("/organizations/invites/register", {
+        method: "POST",
+        body: { invitation_token, full_name, password },
+      }),
+    changePassword: (current_password: string, new_password: string) =>
+      request("/auth/change-password", { method: "POST", body: { current_password, new_password } }),
+    totpSetup: () => request<{ secret: string; uri: string }>("/auth/totp/setup", { method: "POST" }),
+    totpVerify: (code: string) => request("/auth/totp/verify", { method: "POST", body: { code } }),
+    totpDisable: (password: string, code: string) => request("/auth/totp/disable", { method: "POST", body: { password, code } }),
+    organizations: () => request<{ id: string; name: string; role: string }[]>("/auth/organizations"),
+    async switchOrg(organization_id: string) {
+      const s = await request<Session>("/auth/switch-org", { method: "POST", body: { organization_id } });
+      setSession(s);
+      return s;
+    },
   },
+
   scans: {
-    upload: (file: File) => { const fd = new FormData(); fd.append('file', file); return apiFetchFormData<EmailScan>('/api/v1/scans/upload', fd); },
-    paste: (content: string) => { const fd = new FormData(); fd.append('raw_content', content); return apiFetchFormData<EmailScan>('/api/v1/scans/paste', fd); },
-    submitHeaders: (headers: string) => apiFetch<EmailScan>('/api/v1/scan/headers', { method: 'POST', body: JSON.stringify({ headers }) }),
-    list: (page = 1, perPage = 20) => apiFetch<{ scans: EmailScan[]; total: number }>(`/api/v1/scans?page=${page}&per_page=${perPage}`),
-    getById: (id: string) => apiFetch<EmailScan>(`/api/v1/scans/${id}`),
-    getSandbox: (id: string) => apiFetch<{ sanitized_html: string; raw_source: string; suspicious_elements: string[] }>(`/api/v1/scans/${id}/sandbox`),
-    delete: (id: string) => apiFetch<void>(`/api/v1/scans/${id}`, { method: 'DELETE' }),
+    list: (p: { page?: number; risk_level?: RiskLevel | ""; status?: string; q?: string } = {}) =>
+      request<Paged<ScanSummary>>(`/scans${qs({ page: p.page, risk_level: p.risk_level, status: p.status, q: p.q })}`),
+    get: (id: string) => request<ScanDetail>(`/scans/${encodeURIComponent(id)}`),
+    preview: (id: string) => request<{ sanitized_html: string; warnings: string[] }>(`/scans/${encodeURIComponent(id)}/preview`),
+    rawHeaders: (id: string) => request<{ raw_headers: string }>(`/scans/${encodeURIComponent(id)}/raw-headers`),
+    upload: (file: File) => {
+      const fd = new FormData();
+      fd.append("file", file);
+      return request<{ id: string }>("/scans/upload", { method: "POST", body: fd });
+    },
+    paste: (raw: string) => {
+      const fd = new FormData();
+      fd.append("raw_content", raw);
+      return request<{ id: string }>("/scans/paste", { method: "POST", body: fd });
+    },
+    rescan: (id: string) => request(`/scans/${encodeURIComponent(id)}/rescan`, { method: "POST" }),
+    remove: (id: string) => request(`/scans/${encodeURIComponent(id)}`, { method: "DELETE" }),
   },
+
   dashboard: {
-    getStats: () => apiFetch<DashboardStats>('/api/v1/dashboard/stats'),
-    getTrends: (days = 30) => apiFetch<TrendData[]>(`/api/v1/dashboard/trends?days=${days}`),
-    getRiskDistribution: () => apiFetch<RiskDistribution>('/api/v1/dashboard/risk-distribution'),
-    getAttackCategories: () => apiFetch<AttackCategory[]>('/api/v1/dashboard/attack-categories'),
-    getTopDomains: () => apiFetch<TopDomain[]>('/api/v1/dashboard/top-domains'),
-    getRecentScans: (limit = 10) => apiFetch<EmailScan[]>(`/api/v1/dashboard/recent-scans?limit=${limit}`),
+    stats: () => request<DashboardStats>("/dashboard/stats"),
+    trends: (days = 14) => request<{ points: TrendPoint[] }>(`/dashboard/trends?days=${days}`),
+    categories: () => request<{ categories: { name: string; count: number }[] }>("/dashboard/attack-categories"),
+    topDomains: () => request<{ domains: { domain: string; count: number }[] }>("/dashboard/top-domains"),
+    recent: () => request<ScanSummary[]>("/dashboard/recent-threats"),
   },
+
   hunt: {
-    getStatistics: () => apiFetch<any>('/api/v1/threat-hunting/statistics'),
-    search: (query: string) => apiFetch<any>(`/api/v1/threat-hunting/search?q=${encodeURIComponent(query)}`),
-    getIocDetails: (value: string) => apiFetch<any>(`/api/v1/threat-hunting/ioc/${encodeURIComponent(value)}`),
-    getCampaigns: () => apiFetch<any>('/api/v1/threat-hunting/campaigns'),
-    getSavedSearches: () => apiFetch<any>('/api/v1/threat-hunting/saved-searches'),
-    saveSearch: (name: string, query: string) => apiFetch<any>(`/api/v1/threat-hunting/saved-searches?name=${encodeURIComponent(name)}&query=${encodeURIComponent(query)}`, { method: 'POST' }),
-    getTrackedEntities: () => apiFetch<any>('/api/v1/threat-hunting/tracked-entities'),
-    trackEntity: (type: string, value: string) => apiFetch<any>(`/api/v1/threat-hunting/tracked-entities?entity_type=${type}&entity_value=${encodeURIComponent(value)}`, { method: 'POST' }),
+    stats: () =>
+      request<{
+        top_domains: { domain: string; count: number }[];
+        top_senders: { domain: string; count: number }[];
+        common_attacks: { type: string; count: number }[];
+        soc_metrics: Record<string, number>;
+      }>("/threat-hunting/statistics"),
+    search: (q: string) => request<{ total: number; results: SearchItem[] }>(`/threat-hunting/search${qs({ q })}`),
+    ioc: (value: string) => request<IocDetail>(`/threat-hunting/ioc/${encodeURIComponent(value)}`),
+    campaigns: () => request<{ total_campaigns: number; campaigns: Campaign[] }>("/threat-hunting/campaigns"),
   },
+
   investigations: {
-    list: () => apiFetch<any>('/api/v1/investigations'),
-    getById: (id: string) => apiFetch<any>(`/api/v1/investigations/${id}`),
-    create: (data: any) => apiFetch<any>('/api/v1/investigations', { method: 'POST', body: JSON.stringify(data) }),
-    addArtifact: (id: string, artifact_type: string, artifact_value: string) => apiFetch<any>(`/api/v1/investigations/${id}/artifacts`, { method: 'POST', body: JSON.stringify({ artifact_type, artifact_value }) }),
-    addNote: (id: string, content: string, status?: string, priority?: string, severity?: string) => apiFetch<any>(`/api/v1/investigations/${id}/notes`, { method: 'POST', body: JSON.stringify({ content, status, priority, severity }) }),
+    list: () => request<Investigation[]>("/investigations"),
+    get: (id: string) => request<InvestigationDetail>(`/investigations/${encodeURIComponent(id)}`),
+    create: (data: { title: string; description?: string; priority?: string; severity?: string }) =>
+      request<{ id: string }>("/investigations", { method: "POST", body: data }),
+    addArtifact: (id: string, artifact_type: string, artifact_value: string) =>
+      request(`/investigations/${encodeURIComponent(id)}/artifacts`, { method: "POST", body: { artifact_type, artifact_value } }),
+    addNote: (id: string, body: { content: string; status?: string; priority?: string; severity?: string }) =>
+      request(`/investigations/${encodeURIComponent(id)}/notes`, { method: "POST", body }),
   },
+
+  graph: {
+    overview: (limit = 150) => request<GraphPayload>(`/graph/overview?limit=${limit}`),
+    neighborhood: (ioc: string, depth = 2) => request<GraphPayload>(`/graph/neighborhood${qs({ ioc, depth })}`),
+  },
+
+  playbooks: {
+    list: (status?: string) => request<Recommendation[]>(`/playbooks${qs({ status })}`),
+    approve: (id: string, analyst_notes?: string) =>
+      request(`/playbooks/${encodeURIComponent(id)}/approve`, { method: "POST", body: { analyst_notes } }),
+    reject: (id: string, analyst_notes?: string) =>
+      request(`/playbooks/${encodeURIComponent(id)}/reject`, { method: "POST", body: { analyst_notes } }),
+  },
+
   reports: {
-    generate: (targetId: string, type: string, format: string, graphSnapshot?: string) => apiFetch<Report>('/api/v1/reports/generate', { method: 'POST', body: JSON.stringify({ target_id: targetId, report_type: type, format, graph_snapshot: graphSnapshot }) }),
-    list: () => apiFetch<Report[]>('/api/v1/reports'),
-    getById: (id: string) => apiFetch<Report>(`/api/v1/reports/${id}`),
-    download: async (reportId: string) => {
-      const { access } = getTokens();
-      const res = await fetch(`${API_BASE}/api/v1/reports/${reportId}/download`, { headers: access ? { Authorization: `Bearer ${access}` } : {} });
-      if (!res.ok) throw new Error('Download failed');
+    generate: (target_id: string, report_type: "scan" | "investigation") =>
+      request<Report>("/reports/generate", { method: "POST", body: { target_id, report_type, format: "pdf" } }),
+    get: (id: string) => request<Report>(`/reports/${encodeURIComponent(id)}`),
+    async download(id: string): Promise<Blob> {
+      const res = await request<Response>(`/reports/${encodeURIComponent(id)}/download`, { raw: true });
       return res.blob();
     },
   },
+
   copilot: {
-    chat: (message: string, history: CopilotMessage[], analystMode: string = "soc_analyst", context: Record<string, string> = {}) => apiFetch<CopilotResponse & { tools_used?: string[], sources?: string[], confidence?: number }>('/api/v1/copilot/chat', { method: 'POST', body: JSON.stringify({ message, history, analyst_mode: analystMode, context }) }),
-    getSuggestions: (scanId?: string) => apiFetch<string[]>(`/api/v1/copilot/suggestions${scanId ? `?scan_id=${scanId}` : ''}`),
+    chat: (message: string, history: CopilotTurn[], context: Record<string, string>) =>
+      request<{ answer: string; tools_used: string[]; sources: string[]; confidence: number }>("/copilot/chat", {
+        method: "POST",
+        body: { message, history: history.slice(-20), context },
+      }),
   },
-  graph: {
-    getScanGraph: (scanId: string) => apiFetch<GraphData>(`/api/v1/graph/scan/${scanId}`),
-    getFullGraph: () => apiFetch<GraphData>('/api/v1/graph'),
-    getNodeDetails: (nodeId: string) => apiFetch<Record<string, any>>(`/api/v1/graph/node/${nodeId}`),
-    getAttackChain: (scanId: string) => apiFetch<GraphData>(`/api/v1/graph/attack-chain/${scanId}`),
-  },
-  admin: {
-    getUsers: () => apiFetch<User[]>('/api/v1/admin/users'),
-    updateUserRole: (userId: string, role: string) => apiFetch<void>(`/api/v1/admin/users/${userId}/role`, { method: 'PUT', body: JSON.stringify({ role }) }),
-    getAuditLog: () => apiFetch<AuditLogEntry[]>('/api/v1/admin/audit-log'),
-  },
-  notifications: {
-    list: () => apiFetch<Notification[]>('/api/v1/notifications'),
-    markRead: (id: string) => apiFetch<void>(`/api/v1/notifications/${id}/read`, { method: 'PUT' }),
+
+  org: {
+    members: () => request<Member[]>("/organizations/members"),
+    updateMember: (id: string, body: { role?: string; is_active?: boolean }) =>
+      request<Member>(`/organizations/members/${encodeURIComponent(id)}`, { method: "PATCH", body }),
+    invites: () => request<Invite[]>("/organizations/invites"),
+    invite: (email: string, role: string) => request<Invite>("/organizations/invites", { method: "POST", body: { email, role } }),
+    revokeInvite: (id: string) => request(`/organizations/invites/${encodeURIComponent(id)}`, { method: "DELETE" }),
+    apiKeys: () => request<ApiKey[]>("/api-keys"),
+    createApiKey: (name: string, permissions: string[], expires_in_days: number) =>
+      request<ApiKey & { raw_key: string }>("/api-keys", { method: "POST", body: { name, permissions, expires_in_days } }),
+    revokeApiKey: (id: string) => request(`/api-keys/${encodeURIComponent(id)}`, { method: "DELETE" }),
   },
 };
-
-// Aliasing getToken for backwards compatibility
-export { getTokens as getToken, getUser, clearTokens, setUser, setTokens };

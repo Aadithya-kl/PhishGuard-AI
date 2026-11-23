@@ -17,7 +17,7 @@ import app.models  # noqa
 config = context.config
 
 # Overwrite sqlalchemy.url with the app's settings
-config.set_main_option("sqlalchemy.url", str(settings.DATABASE_URL))
+config.set_main_option("sqlalchemy.url", str(settings.DATABASE_URL).replace("%", "%%"))
 
 # Interpret the config file for Python logging.
 if config.config_file_name is not None:

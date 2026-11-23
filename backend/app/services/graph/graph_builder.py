@@ -5,11 +5,13 @@ import uuid
 
 from app.models.graph import Relationship
 
-async def build_global_graph(db: AsyncSession, user_id: uuid.UUID) -> nx.Graph:
+async def build_global_graph(db: AsyncSession, organization_id: uuid.UUID, limit: int = 20000) -> nx.Graph:
     """
     Builds an in-memory NetworkX graph from the persisted relationships table.
     """
-    rels_res = await db.execute(select(Relationship).where(Relationship.user_id == user_id))
+    rels_res = await db.execute(
+        select(Relationship).where(Relationship.organization_id == organization_id).order_by(Relationship.created_at.desc()).limit(limit)
+    )
     relationships = rels_res.scalars().all()
     
     G = nx.Graph()
@@ -40,11 +42,11 @@ async def build_global_graph(db: AsyncSession, user_id: uuid.UUID) -> nx.Graph:
         
     return G
 
-async def build_ego_graph(db: AsyncSession, user_id: uuid.UUID, root_value: str, depth: int = 3) -> nx.Graph:
+async def build_ego_graph(db: AsyncSession, organization_id: uuid.UUID, root_value: str, depth: int = 3) -> nx.Graph:
     """
     Builds a bounded traversal graph (ego graph) from a specific root node.
     """
-    G = await build_global_graph(db, user_id)
+    G = await build_global_graph(db, organization_id)
     if not G.has_node(root_value):
         return nx.Graph()
         

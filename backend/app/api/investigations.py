@@ -2,7 +2,6 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select, desc
 from sqlalchemy.orm import selectinload
-from typing import Any
 import uuid
 
 from app.database import get_db
@@ -11,11 +10,9 @@ from app.schemas.investigation import (
     ArtifactCreate, NoteCreate
 )
 from app.models.investigation import (
-    Investigation, InvestigationStatus, InvestigationPriority, InvestigationSeverity,
-    InvestigationArtifact, ArtifactType, InvestigationNote,
+    Investigation, InvestigationArtifact, ArtifactType, InvestigationNote,
     InvestigationTimelineEvent, TimelineEventType
 )
-from app.models.user import User
 from app.core.tenant_context import TenantContext, requires_permission, Permission
 
 router = APIRouter()

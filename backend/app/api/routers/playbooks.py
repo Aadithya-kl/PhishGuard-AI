@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select, desc
 from typing import List
@@ -18,7 +18,7 @@ router = APIRouter()
 
 @router.get("", response_model=List[ActionRecommendationResponse])
 async def list_recommendations(
-    status: str = None,
+    status: ActionStatus | None = None,
     db: AsyncSession = Depends(get_db),
     tenant: TenantContext = Depends(requires_permission(Permission.VIEW_SCANS))
 ):
@@ -26,7 +26,7 @@ async def list_recommendations(
     if status:
         query = query.where(ActionRecommendation.status == status)
     
-    query = query.order_by(desc(ActionRecommendation.created_at))
+    query = query.order_by(desc(ActionRecommendation.created_at)).limit(200)
     result = await db.execute(query)
     
     return [ActionRecommendationResponse.model_validate(r) for r in result.scalars()]
@@ -38,7 +38,7 @@ async def approve_recommendation(
     db: AsyncSession = Depends(get_db),
     tenant: TenantContext = Depends(requires_permission(Permission.MANAGE_INVESTIGATIONS))
 ):
-    rec = await db.get(ActionRecommendation, id)
+    rec = await db.get(ActionRecommendation, id, with_for_update=True)
     if not rec or rec.organization_id != tenant.organization.id:
         raise HTTPException(status_code=404, detail="Recommendation not found")
         
@@ -89,7 +89,7 @@ async def reject_recommendation(
     db: AsyncSession = Depends(get_db),
     tenant: TenantContext = Depends(requires_permission(Permission.MANAGE_INVESTIGATIONS))
 ):
-    rec = await db.get(ActionRecommendation, id)
+    rec = await db.get(ActionRecommendation, id, with_for_update=True)
     if not rec or rec.organization_id != tenant.organization.id:
         raise HTTPException(status_code=404, detail="Recommendation not found")
         

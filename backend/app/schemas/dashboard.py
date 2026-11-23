@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-from datetime import datetime
-from typing import Any
 
 from pydantic import BaseModel
 
@@ -28,15 +26,12 @@ class DashboardStats(BaseModel):
 
 class TrendPoint(BaseModel):
     date: str
-    total: int = 0
-    high: int = 0
-    suspicious: int = 0
-    low: int = 0
-    safe: int = 0
+    scans: int = 0
+    threats: int = 0
 
 
 class TrendsResponse(BaseModel):
-    trends: list[TrendPoint]
+    points: list[TrendPoint]
 
 
 class RiskDistribution(BaseModel):
@@ -47,18 +42,18 @@ class RiskDistribution(BaseModel):
 
 
 class AttackCategory(BaseModel):
-    category: str
+    name: str
     count: int
 
 
 class TopDomain(BaseModel):
     domain: str
     count: int
-    avg_risk: float
+    avg_risk: float = 0.0
 
 
 class DashboardTrends(BaseModel):
-    trends: list[TrendPoint]
+    points: list[TrendPoint]
 
 
 class AttackCategoriesResponse(BaseModel):

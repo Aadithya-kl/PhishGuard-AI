@@ -10,8 +10,8 @@ from app.ml.providers.base import AIProvider
 class GeminiProvider(AIProvider):
     def __init__(self):
         self.api_key = settings.GEMINI_API_KEY
-        self.model = "gemini-2.5-pro"
-        self.api_model = "gemini-2.0-flash"  # Using 2.0-flash due to 2.5-pro free-tier 0 limit quota
+        self.api_model = settings.GEMINI_MODEL or "gemini-2.0-flash"
+        self.model = self.api_model
         self.base_url = f"https://generativelanguage.googleapis.com/v1beta/models/{self.api_model}:generateContent"
 
     @property
@@ -27,7 +27,8 @@ class GeminiProvider(AIProvider):
 
         try:
             async with httpx.AsyncClient(timeout=60.0) as client:
-                url = f"{self.base_url}?key={self.api_key}"
+                # Key goes in a header, never the URL (URLs end up in proxy/httpx logs)
+                url = self.base_url
                 payload = {
                     "contents": [{"parts": [{"text": prompt}]}],
                     "generationConfig": {
@@ -36,7 +37,7 @@ class GeminiProvider(AIProvider):
                     }
                 }
                 
-                response = await client.post(url, json=payload)
+                response = await client.post(url, json=payload, headers={"x-goog-api-key": self.api_key})
                 latency = time.time() - start_time
 
                 if response.status_code == 200:
@@ -65,7 +66,7 @@ class GeminiProvider(AIProvider):
                         "latency_seconds": round(latency, 2)
                     }
                 else:
-                    logger.error(f"Gemini API error: {response.status_code} - {response.text}")
+                    logger.error(f"Gemini API error: {response.status_code} - {response.text[:300]}")
                     return self._error_result(self.model, latency, f"Gemini API returned status {response.status_code}")
 
         except httpx.ConnectError as e:

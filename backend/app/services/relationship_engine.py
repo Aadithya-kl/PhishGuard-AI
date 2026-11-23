@@ -30,7 +30,7 @@ class RelationshipEngine:
             def add_rel(src_t, src_v, tgt_t, tgt_v, rel_type, conf=RelationshipConfidence.high):
                 # Avoid duplicates in memory
                 new_relationships.append(Relationship(
-                    user_id=scan.user_id,
+                    organization_id=scan.organization_id,
                     source_type=src_t,
                     source_value=src_v,
                     target_type=tgt_t,
@@ -77,11 +77,29 @@ class RelationshipEngine:
                     add_rel(EntityType.sender, scan.sender_address, tgt_type, ioc.value, "Delivered")
             
             # Persist
+            # De-duplicate against rows already stored for this organization (re-scans, repeat senders)
+            if new_relationships:
+                sources = {r.source_value for r in new_relationships}
+                existing_rows = await db.execute(
+                    select(Relationship.source_value, Relationship.target_value, Relationship.relationship_type).where(
+                        Relationship.organization_id == scan.organization_id,
+                        Relationship.source_value.in_(sources),
+                    )
+                )
+                seen = {tuple(row) for row in existing_rows.all()}
+                unique = []
+                for r in new_relationships:
+                    key = (r.source_value, r.target_value, r.relationship_type)
+                    if key not in seen:
+                        seen.add(key)
+                        unique.append(r)
+                new_relationships = unique
+
             if new_relationships:
                 db.add_all(new_relationships)
                 await db.commit()
                 logger.info(f"RelationshipEngine: Persisted {len(new_relationships)} relationships for scan {scan_id}")
                 
-        except Exception as e:
+        except Exception:
             logger.exception(f"RelationshipEngine failed for scan {scan_id}")
             await db.rollback()

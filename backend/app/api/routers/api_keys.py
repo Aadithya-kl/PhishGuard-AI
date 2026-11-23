@@ -21,6 +21,8 @@ async def create_api_key(
 ):
     """Create a new organization-scoped API key."""
     # Ensure requested permissions are a subset of the user's permissions, or they are an admin
+    if tenant.is_api_key:
+        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="API keys cannot mint other API keys")
     if not set(data.permissions).issubset(tenant.permissions):
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN, 
@@ -49,7 +51,7 @@ async def create_api_key(
     await db.refresh(api_key)
     
     # We must return the raw key ONLY ONCE here
-    response_dict = ApiKeyCreateResponse.model_validate(api_key).model_dump()
+    response_dict = ApiKeyResponse.model_validate(api_key).model_dump()
     response_dict["raw_key"] = raw_key
     return response_dict
 
@@ -60,7 +62,7 @@ async def list_api_keys(
 ):
     """List API keys for the organization."""
     result = await db.execute(
-        select(ApiKey).where(ApiKey.organization_id == tenant.organization.id)
+        select(ApiKey).where(ApiKey.organization_id == tenant.organization.id).order_by(ApiKey.created_at.desc())
     )
     return result.scalars().all()
 

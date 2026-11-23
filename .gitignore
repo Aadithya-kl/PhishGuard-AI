@@ -63,3 +63,10 @@ logs/
 *.pkl
 *.joblib
 *.h5
+
+# Generated analysis artefacts / local scratch
+*.pdf
+backend/tools/output/
+scratch/
+.pytest_cache/
+.ruff_cache/

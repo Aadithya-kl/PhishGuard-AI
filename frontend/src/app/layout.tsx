@@ -1,64 +1,33 @@
-import type { Metadata } from "next";
-import { Inter, JetBrains_Mono } from "next/font/google";
-import "./globals.css";
-import { AppShell } from "@/components/layout/app-shell";
-import { CopilotConsole } from "@/components/copilot/CopilotChat";
-import { CommandPalette } from "@/components/ui/command-palette";
+import type { Metadata, Viewport } from "next";
+import { IBM_Plex_Mono, IBM_Plex_Sans, IBM_Plex_Sans_Condensed } from "next/font/google";
 import { Toaster } from "sonner";
-import { ErrorBoundary } from "@/components/ui/error-boundary";
+import "./globals.css";
+import { AppShell } from "@/components/shell";
+import { SessionProvider } from "@/lib/session";
 
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-  display: "swap",
-});
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ["latin"],
-  variable: "--font-mono",
-  display: "swap",
-});
+const plex = IBM_Plex_Sans({ subsets: ["latin"], weight: ["400", "500", "600"], variable: "--font-plex", display: "swap" });
+const plexCondensed = IBM_Plex_Sans_Condensed({ subsets: ["latin"], weight: ["500", "600"], variable: "--font-plex-condensed", display: "swap" });
+const plexMono = IBM_Plex_Mono({ subsets: ["latin"], weight: ["400", "500"], variable: "--font-plex-mono", display: "swap" });
 
 export const metadata: Metadata = {
-  title: "PhishGuard AI | Cyber Intelligence Platform",
-  description: "AI-Powered Email Threat Intelligence & Security Operations Platform",
+  title: { default: "PhishGuard", template: "%s · PhishGuard" },
+  description: "Email threat analysis for security operations teams.",
+  robots: { index: false, follow: false },
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export const viewport: Viewport = { themeColor: "#0f1e24", colorScheme: "dark" };
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className="dark">
-      <body
-        className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased`}
-        style={{ background: "#020617" }}
-      >
-        {/* Ambient Intelligence Environment */}
-        <div className="aurora-bg" aria-hidden="true" />
-        <div className="intel-grid" aria-hidden="true" />
-        <div className="tactical-sweep" aria-hidden="true" />
-
-        {/* Application Shell */}
-        <div className="relative z-10">
-          <ErrorBoundary>
-            <AppShell>{children}</AppShell>
-          </ErrorBoundary>
-        </div>
-
-        {/* Global Overlays */}
-        <CopilotConsole />
-        <CommandPalette />
+    <html lang="en" className={`${plex.variable} ${plexCondensed.variable} ${plexMono.variable}`}>
+      <body>
+        <SessionProvider>
+          <AppShell>{children}</AppShell>
+        </SessionProvider>
         <Toaster
           theme="dark"
-          position="top-right"
-          toastOptions={{
-            style: {
-              background: "rgba(15, 23, 42, 0.9)",
-              border: "1px solid rgba(255,255,255,0.08)",
-              color: "#e2e8f0",
-            },
-          }}
+          position="bottom-left"
+          toastOptions={{ style: { background: "#152830", border: "1px solid #33586a", color: "#e6eef0" } }}
         />
       </body>
     </html>

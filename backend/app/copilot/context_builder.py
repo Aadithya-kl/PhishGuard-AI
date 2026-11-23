@@ -46,7 +46,7 @@ class ContextBuilder:
                     "title": inv.title,
                     "status": inv.status,
                     "severity": inv.severity,
-                    "findings": inv.findings
+                    "description": inv.description
                 }
                 
         if "current_ioc" in context_ids:
